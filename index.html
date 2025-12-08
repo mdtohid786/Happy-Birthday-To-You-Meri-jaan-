@@ -43,10 +43,10 @@ body {
   100% {transform: translateY(-10vh);}
 }
 
-/* 🎂 Cake Cutting Animation */
+/* 🎂 Cake */
 .cake {
   font-size: 90px;
-  margin-top: 20px;
+  margin-top: 18px;
   animation: cut 2s infinite;
 }
 @keyframes cut {
@@ -55,19 +55,19 @@ body {
   100% {transform: scale(1);}
 }
 
-/* 🎉 Main Text */
+/* 🎉 Title */
 h1 {
-  font-size: 32px;
-  margin: 10px 0;
+  font-size: 30px;
+  margin: 8px 0;
   text-shadow: 0 0 15px pink;
 }
 
-/* 💌 Love Typing */
+/* 💌 Love Text */
 .love {
   font-size: 20px;
-  margin-top: 8px;
+  margin-top: 6px;
   color: #ffb6c1;
-  min-height: 50px;
+  min-height: 45px;
   animation: glow 2s infinite alternate;
 }
 @keyframes glow {
@@ -75,17 +75,12 @@ h1 {
   to {text-shadow: 0 0 25px hotpink;}
 }
 
-/* ✨ Shayari (Slow & Smooth) */
+/* ✨ Shayari */
 .shayari {
-  margin-top: 10px;
-  font-size: 17px;
+  margin-top: 8px;
+  font-size: 16px;
   color: #ffd1dc;
-  animation: fade 6s infinite;
-}
-@keyframes fade {
-  0% {opacity: 0;}
-  50% {opacity: 1;}
-  100% {opacity: 0;}
+  min-height: 40px;
 }
 
 /* 🔥 3D Glow Names */
@@ -113,16 +108,38 @@ h1 {
   100% {filter: brightness(1);}
 }
 
-/* 📸 Photo (Gap FIXED) */
+/* 📸 Photo */
 .photo {
-  width: 180px;
+  width: 170px;
   border-radius: 20px;
-  margin-top: 6px;
-  margin-bottom: 0px;
+  margin-top: 5px;
   box-shadow: 0 0 25px hotpink;
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+/* 🔘 Buttons */
+.buttons {
+  margin-top: 12px;
+}
+button {
+  background: linear-gradient(45deg, red, hotpink);
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  margin: 5px;
+  border-radius: 25px;
+  font-size: 14px;
+  box-shadow: 0 0 10px pink;
+}
+
+/* ⏳ Countdown */
+#countdown {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #ffcccb;
+  text-shadow: 0 0 10px red;
 }
 </style>
 </head>
@@ -151,10 +168,10 @@ h1 {
 <!-- 🎂 Cake -->
 <div class="cake">🎂</div>
 
-<!-- 🎉 Main Text -->
+<!-- 🎉 Title -->
 <h1>Happy Birthday Nazni 🎉</h1>
 
-<!-- 💌 Love Typing -->
+<!-- 💌 Love -->
 <div class="love" id="loveText"></div>
 
 <!-- ✨ Shayari -->
@@ -163,32 +180,31 @@ h1 {
 <!-- 📸 Photo -->
 <img src="Snapchat-602998492.jpg" class="photo">
 
+<!-- 🔘 Buttons -->
+<div class="buttons">
+  <button onclick="showLove()">💖 Love Message</button>
+  <button onclick="showShayari()">✨ Shayari</button>
+</div>
+
+<!-- ⏳ Countdown -->
+<div id="countdown"></div>
+
 <script>
-/* 💌 Love Typing Effect */
+/* 💌 Love Messages */
 const loveLines = [
   "I Love You Meri Jaan ❤️",
   "Tum Meri Zindagi Ho 💍",
-  "Happy Birthday My Love 🎂",
-  "Hamesha Mere Saath Rehna 💖"
+  "Hamesha Mere Saath Rehna 💖",
+  "Happy Birthday My Love 🎂"
 ];
-let loveIndex = 0, charIndex = 0;
-function typeLove() {
-  if (charIndex < loveLines[loveIndex].length) {
-    document.getElementById("loveText").innerHTML += loveLines[loveIndex].charAt(charIndex);
-    charIndex++;
-    setTimeout(typeLove, 80);
-  } else {
-    setTimeout(() => {
-      document.getElementById("loveText").innerHTML = "";
-      charIndex = 0;
-      loveIndex = (loveIndex + 1) % loveLines.length;
-      typeLove();
-    }, 2200);
-  }
-}
-typeLove();
+let loveIndex = 0;
 
-/* ✨ Shayari Rotation (SLOW = 6 seconds) */
+function showLove() {
+  document.getElementById("loveText").innerText = loveLines[loveIndex];
+  loveIndex = (loveIndex + 1) % loveLines.length;
+}
+
+/* ✨ Shayari */
 const shayari = [
   "Tumhari ek muskaan meri har thakaan mita deti hai ❤️",
   "Meri har khushi tumse hi shuru hoti hai 💖",
@@ -196,11 +212,28 @@ const shayari = [
   "Meri duniya bas tum ho Nazni 💍"
 ];
 let sIndex = 0;
-document.getElementById("shayariText").innerText = shayari[0];
-setInterval(() => {
-  sIndex = (sIndex + 1) % shayari.length;
+
+function showShayari() {
   document.getElementById("shayariText").innerText = shayari[sIndex];
-}, 6000);
+  sIndex = (sIndex + 1) % shayari.length;
+}
+
+/* ⏳ COUNTDOWN (SET YOUR DATE HERE) */
+const birthday = new Date("January 4, 2026 00:00:00").getTime();
+
+setInterval(function () {
+  const now = new Date().getTime();
+  const distance = birthday - now;
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  document.getElementById("countdown").innerHTML =
+    "⏳ Birthday Countdown: " +
+    days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+}, 1000);
 </script>
 
 </body>
