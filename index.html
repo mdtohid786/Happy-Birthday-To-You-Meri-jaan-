@@ -13,14 +13,20 @@
       overflow: hidden;
     }
     h1 {
-      margin-top: 25px;
-      font-size: 32px;
-      animation: zoom 2s infinite alternate;
+      margin-top: 20px;
+      font-size: 34px;
+      animation: glow 2s infinite alternate;
     }
     h2 {
       font-weight: 300;
       margin: 10px;
     }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px yellow; }
+      to { text-shadow: 0 0 25px white; }
+    }
+
     button {
       padding: 12px 25px;
       border: none;
@@ -28,11 +34,19 @@
       background: yellow;
       color: black;
       font-size: 16px;
-      margin: 10px;
+      margin: 8px;
       cursor: pointer;
     }
+
     .hidden {
       display: none;
+    }
+
+    img {
+      width: 220px;
+      border-radius: 25px;
+      margin-top: 20px;
+      box-shadow: 0 0 15px black;
     }
 
     .fire {
@@ -57,16 +71,10 @@
       to { transform: translateY(-15px); }
     }
 
-    @keyframes zoom {
-      from { transform: scale(1); }
-      to { transform: scale(1.2); }
-    }
-
-    img {
-      width: 220px;
-      border-radius: 25px;
-      margin-top: 20px;
-      box-shadow: 0 0 15px black;
+    .shayari {
+      font-size: 18px;
+      margin: 20px;
+      color: #fff9c4;
     }
   </style>
 </head>
@@ -74,7 +82,7 @@
 
 <h1>🎂 Happy Birthday Nazni 🎂</h1>
 <h2>Happy Birthday To You Meri Jaan ❤️</h2>
-<h2>In Advance – 4 January 💖</h2>
+<h2 id="countdown">Countdown Loading...</h2>
 
 <img src="Snapchat-602998492.jpg">
 
@@ -83,6 +91,7 @@
 <button onclick="playMusic()">🎆 Play Patakha Music</button>
 <button onclick="showLove()">💌 Open Love Message</button>
 <button onclick="cutCake()">🎂 Cut Cake</button>
+<button onclick="showShayari()">📝 Shayari Mode</button>
 
 <div id="love" class="hidden">
   <h2>❤️ I Love You Meri Jaan ❤️</h2>
@@ -91,6 +100,11 @@
 <div id="cake" class="hidden">
   <div class="cake">🎂</div>
   <h2>Yeh Cake Sirf Tumhare Liye Hai Meri Jaan ❤️</h2>
+</div>
+
+<div id="shayari" class="hidden shayari">
+  💖 “Tum meri zindagi ki wo muskurahat ho  
+  Jiske bina sab adhoora lagta hai.” 💖
 </div>
 
 <audio id="music" loop>
@@ -105,12 +119,8 @@
     fire.style.left = Math.random() * 100 + "vw";
     fire.style.top = Math.random() * 100 + "vh";
     document.body.appendChild(fire);
-
-    setTimeout(() => {
-      fire.remove();
-    }, 1500);
+    setTimeout(() => fire.remove(), 1500);
   }
-
   setInterval(createFireHeart, 400);
 
   function playMusic() {
@@ -124,6 +134,31 @@
   function cutCake() {
     document.getElementById("cake").classList.remove("hidden");
   }
+
+  function showShayari() {
+    document.getElementById("shayari").classList.remove("hidden");
+  }
+
+  // ✅ 12 AM Countdown (4 January)
+  const targetDate = new Date("January 4, 2026 00:00:00").getTime();
+
+  setInterval(() => {
+    const now = new Date().getTime();
+    const diff = targetDate - now;
+
+    if (diff < 0) {
+      document.getElementById("countdown").innerHTML = "🎉 IT'S NAZNI'S BIRTHDAY 🎉";
+      return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const mins = Math.floor((diff / (1000 * 60)) % 60);
+    const secs = Math.floor((diff / 1000) % 60);
+
+    document.getElementById("countdown").innerHTML =
+      `⏳ ${days}d ${hours}h ${mins}m ${secs}s Remaining`;
+  }, 1000);
 </script>
 
 </body>
