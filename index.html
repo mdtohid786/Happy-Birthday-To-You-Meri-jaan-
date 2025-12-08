@@ -6,14 +6,14 @@
   <style>
     body {
       margin: 0;
-      background: radial-gradient(circle, #ff758c, #ff7eb3);
+      background: radial-gradient(circle, #ff416c, #ff4b2b);
       font-family: Arial, sans-serif;
       text-align: center;
       color: white;
       overflow: hidden;
     }
     h1 {
-      margin-top: 30px;
+      margin-top: 25px;
       font-size: 32px;
       animation: zoom 2s infinite alternate;
     }
@@ -25,36 +25,48 @@
       padding: 12px 25px;
       border: none;
       border-radius: 25px;
-      background: red;
-      color: white;
-      font-size: 18px;
-      margin-top: 20px;
+      background: yellow;
+      color: black;
+      font-size: 16px;
+      margin: 10px;
       cursor: pointer;
     }
     .hidden {
       display: none;
     }
-    .heart {
+
+    .fire {
       position: absolute;
-      color: red;
-      font-size: 24px;
-      animation: fall linear infinite;
+      font-size: 22px;
+      animation: blast 1.5s linear;
     }
-    @keyframes fall {
-      from { transform: translateY(-10vh); }
-      to { transform: translateY(110vh); }
+
+    @keyframes blast {
+      0% { transform: scale(0); opacity: 1; }
+      50% { transform: scale(2); }
+      100% { transform: scale(0); opacity: 0; }
     }
-    @keyframes zoom {
-      from { transform: scale(1); }
-      to { transform: scale(1.2); }
-    }
+
     .cake {
       font-size: 90px;
       animation: bounce 1s infinite alternate;
     }
+
     @keyframes bounce {
       from { transform: translateY(0); }
       to { transform: translateY(-15px); }
+    }
+
+    @keyframes zoom {
+      from { transform: scale(1); }
+      to { transform: scale(1.2); }
+    }
+
+    img {
+      width: 220px;
+      border-radius: 25px;
+      margin-top: 20px;
+      box-shadow: 0 0 15px black;
     }
   </style>
 </head>
@@ -63,16 +75,17 @@
 <h1>🎂 Happy Birthday Nazni 🎂</h1>
 <h2>Happy Birthday To You Meri Jaan ❤️</h2>
 <h2>In Advance – 4 January 💖</h2>
-  <img src="Snapchat-602998492.jpg" style="width:220px; border-radius:25px; margin-top:20px; box-shadow:0 0 15px black;">
 
+<img src="Snapchat-602998492.jpg">
 
-<button onclick="playMusic()">🎵 Play Music</button>
+<br><br>
+
+<button onclick="playMusic()">🎆 Play Patakha Music</button>
 <button onclick="showLove()">💌 Open Love Message</button>
 <button onclick="cutCake()">🎂 Cut Cake</button>
 
 <div id="love" class="hidden">
-  <h2>💖 Nazni, Tum Meri Zindagi Ho 💖</h2>
-  <h2>Main Tumse Bahut Pyaar Karta Hoon 😘</h2>
+  <h2>❤️ I Love You Meri Jaan ❤️</h2>
 </div>
 
 <div id="cake" class="hidden">
@@ -81,20 +94,24 @@
 </div>
 
 <audio id="music" loop>
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  <source src="https://www.soundjay.com/misc/sounds/firework-1.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-  function createHeart() {
-    const heart = document.createElement("div");
-    heart.innerHTML = "❤️";
-    heart.className = "heart";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 5000);
+  function createFireHeart() {
+    const fire = document.createElement("div");
+    fire.innerHTML = "💥❤️";
+    fire.className = "fire";
+    fire.style.left = Math.random() * 100 + "vw";
+    fire.style.top = Math.random() * 100 + "vh";
+    document.body.appendChild(fire);
+
+    setTimeout(() => {
+      fire.remove();
+    }, 1500);
   }
-  setInterval(createHeart, 300);
+
+  setInterval(createFireHeart, 400);
 
   function playMusic() {
     document.getElementById("music").play();
