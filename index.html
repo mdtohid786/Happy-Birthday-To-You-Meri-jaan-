@@ -12,11 +12,26 @@
       color: white;
       overflow: hidden;
     }
+
+    /* ✅ Side Name Animation */
+    .side-names {
+      position: fixed;
+      top: 40%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 10px;
+      font-size: 18px;
+      animation: glow 2s infinite alternate;
+      pointer-events: none;
+    }
+
     h1 {
       margin-top: 20px;
       font-size: 34px;
       animation: glow 2s infinite alternate;
     }
+
     h2 {
       font-weight: 300;
       margin: 10px;
@@ -76,9 +91,37 @@
       margin: 20px;
       color: #fff9c4;
     }
+
+    /* ✅ Popup Style */
+    .popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.7);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+
+    .popup-box {
+      background: #ff4081;
+      padding: 25px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 0 20px white;
+    }
   </style>
 </head>
 <body>
+
+<!-- ✅ Side Names -->
+<div class="side-names">
+  <div>💙 Mr Tohid</div>
+  <div>Nazni Parveen 💖</div>
+</div>
 
 <h1>🎂 Happy Birthday Nazni 🎂</h1>
 <h2>Happy Birthday To You Meri Jaan ❤️</h2>
@@ -105,6 +148,15 @@
 <div id="shayari" class="hidden shayari">
   💖 “Tum meri zindagi ki wo muskurahat ho  
   Jiske bina sab adhoora lagta hai.” 💖
+</div>
+
+<!-- ✅ Popup Surprise -->
+<div id="popup" class="popup">
+  <div class="popup-box">
+    <h2>🎉 Surprise Nazni 🎉</h2>
+    <p>Mr Tohid Loves You ❤️</p>
+    <button onclick="closePopup()">Close</button>
+  </div>
 </div>
 
 <audio id="music" loop>
@@ -139,7 +191,11 @@
     document.getElementById("shayari").classList.remove("hidden");
   }
 
-  // ✅ 12 AM Countdown (4 January)
+  function closePopup() {
+    document.getElementById("popup").style.display = "none";
+  }
+
+  /* ✅ Countdown + 12 AM Auto Music + Popup */
   const targetDate = new Date("January 4, 2026 00:00:00").getTime();
 
   setInterval(() => {
@@ -148,6 +204,8 @@
 
     if (diff < 0) {
       document.getElementById("countdown").innerHTML = "🎉 IT'S NAZNI'S BIRTHDAY 🎉";
+      document.getElementById("music").play();
+      document.getElementById("popup").style.display = "flex";
       return;
     }
 
