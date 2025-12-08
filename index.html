@@ -17,18 +17,15 @@ body {
   color: white;
 }
 
-/* 🎆 Fireworks */
-.firework {
+/* 💖 Heart Blast */
+.heart-blast {
   position: absolute;
-  width: 4px;
-  height: 4px;
-  background: gold;
-  border-radius: 50%;
-  animation: blast 1.5s infinite;
+  font-size: 24px;
+  animation: blast 2s ease-out forwards;
 }
 @keyframes blast {
   0% {transform: scale(0); opacity: 1;}
-  100% {transform: scale(20); opacity: 0;}
+  100% {transform: scale(8); opacity: 0;}
 }
 
 /* 💖 Floating Hearts */
@@ -46,12 +43,17 @@ body {
 /* 🎂 Cake */
 .cake {
   font-size: 90px;
-  margin-top: 18px;
-  animation: cut 2s infinite;
+  margin-top: 15px;
+  transition: 0.3s;
+}
+
+/* 🎂 Cake Cut Animation */
+.cut {
+  animation: cut 1s ease-in-out;
 }
 @keyframes cut {
   0% {transform: scale(1);}
-  50% {transform: scale(0.9) rotate(-2deg);}
+  50% {transform: scale(0.9) rotate(-3deg);}
   100% {transform: scale(1);}
 }
 
@@ -62,7 +64,7 @@ h1 {
   text-shadow: 0 0 15px pink;
 }
 
-/* 💌 Love Text */
+/* 💌 Love */
 .love {
   font-size: 20px;
   margin-top: 6px;
@@ -155,18 +157,13 @@ button {
 <div class="ultra-name left-ultra">Mr Tohid</div>
 <div class="ultra-name right-ultra">Nazni Parveen</div>
 
-<!-- 🎆 Fireworks -->
-<div class="firework" style="top:20%;left:30%"></div>
-<div class="firework" style="top:40%;left:70%"></div>
-<div class="firework" style="top:60%;left:50%"></div>
-
-<!-- 💖 Hearts -->
+<!-- 💖 Floating Hearts -->
 <div class="heart" style="left:10%">❤️</div>
 <div class="heart" style="left:50%">💖</div>
 <div class="heart" style="left:90%">💕</div>
 
 <!-- 🎂 Cake -->
-<div class="cake">🎂</div>
+<div class="cake" id="cake">🎂</div>
 
 <!-- 🎉 Title -->
 <h1>Happy Birthday Nazni 🎉</h1>
@@ -184,6 +181,7 @@ button {
 <div class="buttons">
   <button onclick="showLove()">💖 Love Message</button>
   <button onclick="showShayari()">✨ Shayari</button>
+  <button onclick="cutCake()">🎂 Cut Cake</button>
 </div>
 
 <!-- ⏳ Countdown -->
@@ -201,6 +199,7 @@ let loveIndex = 0;
 
 function showLove() {
   document.getElementById("loveText").innerText = loveLines[loveIndex];
+  heartBlast();
   loveIndex = (loveIndex + 1) % loveLines.length;
 }
 
@@ -215,10 +214,31 @@ let sIndex = 0;
 
 function showShayari() {
   document.getElementById("shayariText").innerText = shayari[sIndex];
+  heartBlast();
   sIndex = (sIndex + 1) % shayari.length;
 }
 
-/* ⏳ COUNTDOWN (SET YOUR DATE HERE) */
+/* 🎂 Cake Cut */
+function cutCake() {
+  const cake = document.getElementById("cake");
+  cake.classList.add("cut");
+  heartBlast();
+  setTimeout(() => cake.classList.remove("cut"), 1000);
+}
+
+/* 💖 Heart Blast Effect */
+function heartBlast() {
+  const heart = document.createElement("div");
+  heart.className = "heart-blast";
+  heart.innerHTML = "💖";
+  heart.style.left = Math.random() * window.innerWidth + "px";
+  heart.style.top = Math.random() * window.innerHeight + "px";
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 2000);
+}
+
+/* ⏳ COUNTDOWN */
 const birthday = new Date("January 4, 2026 00:00:00").getTime();
 
 setInterval(function () {
