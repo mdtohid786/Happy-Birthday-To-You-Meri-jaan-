@@ -36,40 +36,56 @@ body {
   position: absolute;
   color: hotpink;
   animation: float 6s linear infinite;
-  font-size: 20px;
+  font-size: 22px;
 }
 @keyframes float {
   0% {transform: translateY(100vh);}
   100% {transform: translateY(-10vh);}
 }
 
-/* 🎂 Cake */
+/* 🎂 Cake Cutting Animation */
 .cake {
   font-size: 90px;
-  margin-top: 30px;
-  animation: bounce 2s infinite;
+  margin-top: 25px;
+  animation: cut 2s infinite;
 }
-@keyframes bounce {
-  0%,100% {transform: translateY(0);}
-  50% {transform: translateY(-20px);}
+@keyframes cut {
+  0% {transform: scale(1);}
+  50% {transform: scale(0.9) rotate(-2deg);}
+  100% {transform: scale(1);}
 }
 
 /* 🎉 Main Text */
 h1 {
-  font-size: 34px;
+  font-size: 32px;
   margin: 10px 0;
   text-shadow: 0 0 15px pink;
 }
 
-/* 💌 Love Message */
+/* 💌 Love Typing Animation */
 .love {
   font-size: 20px;
   margin-top: 10px;
+  color: #ffb6c1;
+  min-height: 55px;
   animation: glow 2s infinite alternate;
 }
 @keyframes glow {
   from {text-shadow: 0 0 5px red;}
   to {text-shadow: 0 0 25px hotpink;}
+}
+
+/* ✨ Shayari Box */
+.shayari {
+  margin-top: 14px;
+  font-size: 17px;
+  color: #ffd1dc;
+  animation: fade 4s infinite;
+}
+@keyframes fade {
+  0% {opacity: 0;}
+  50% {opacity: 1;}
+  100% {opacity: 0;}
 }
 
 /* 🔥 3D GLOW NAMES */
@@ -101,7 +117,7 @@ h1 {
 .photo {
   width: 180px;
   border-radius: 20px;
-  margin-top: 10px;
+  margin-top: 12px;
   box-shadow: 0 0 25px hotpink;
 }
 </style>
@@ -109,7 +125,7 @@ h1 {
 
 <body>
 
-<!-- 🎵 AUTO PLAY BACKGROUND MUSIC -->
+<!-- 🎵 AUTO PLAY MUSIC -->
 <audio autoplay loop>
   <source src="music.mp3" type="audio/mpeg">
 </audio>
@@ -134,14 +150,53 @@ h1 {
 <!-- 🎉 Main Text -->
 <h1>Happy Birthday Nazni 🎉</h1>
 
-<!-- 💌 Love Message -->
-<div class="love">
-I Love You Meri Jaan ❤️<br>
-Happy Birthday To You In Advance 💍
-</div>
+<!-- 💌 Love Typing -->
+<div class="love" id="loveText"></div>
+
+<!-- ✨ Shayari -->
+<div class="shayari" id="shayariText"></div>
 
 <!-- 📸 Photo -->
 <img src="Snapchat-602998492.jpg" class="photo">
+
+<script>
+/* 💌 Love Typing Effect */
+const loveLines = [
+  "I Love You Meri Jaan ❤️",
+  "Tum Meri Zindagi Ho 💍",
+  "Happy Birthday My Love 🎂",
+  "Hamesha Mere Saath Rehna 💖"
+];
+let loveIndex = 0, charIndex = 0;
+function typeLove() {
+  if (charIndex < loveLines[loveIndex].length) {
+    document.getElementById("loveText").innerHTML += loveLines[loveIndex].charAt(charIndex);
+    charIndex++;
+    setTimeout(typeLove, 80);
+  } else {
+    setTimeout(() => {
+      document.getElementById("loveText").innerHTML = "";
+      charIndex = 0;
+      loveIndex = (loveIndex + 1) % loveLines.length;
+      typeLove();
+    }, 2000);
+  }
+}
+typeLove();
+
+/* ✨ Shayari Rotation */
+const shayari = [
+  "Tumhari ek muskaan meri har thakaan mita deti hai ❤️",
+  "Meri har khushi tumse hi shuru hoti hai 💖",
+  "Tum saath ho to har din ek tyohar hai 🎉",
+  "Meri duniya bas tum ho Nazni 💍"
+];
+let sIndex = 0;
+setInterval(() => {
+  document.getElementById("shayariText").innerText = shayari[sIndex];
+  sIndex = (sIndex + 1) % shayari.length;
+}, 3000);
+</script>
 
 </body>
 </html>
