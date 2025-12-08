@@ -1,259 +1,239 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <title>Happy Birthday Nazni ❤️</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
-body {
-  margin: 0;
-  padding: 0;
-  background: radial-gradient(circle at top, #1a0000, #000);
-  height: 100vh;
-  overflow: hidden;
-  font-family: Arial, sans-serif;
-  text-align: center;
-  color: white;
+body{
+margin:0;
+padding:0;
+background:radial-gradient(circle at top,#2b0000,#000);
+height:100vh;
+overflow:hidden;
+text-align:center;
+font-family:Arial;
+color:white;
 }
 
-/* 💖 Heart Blast */
-.heart-blast {
-  position: absolute;
-  font-size: 24px;
-  animation: blast 2s ease-out forwards;
+/* 🔥 INTRO BLAST */
+.intro{
+position:fixed;
+top:0;
+left:0;
+right:0;
+bottom:0;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:80px;
+z-index:99999;
+animation:introFade 2.5s forwards;
 }
-@keyframes blast {
-  0% {transform: scale(0); opacity: 1;}
-  100% {transform: scale(8); opacity: 0;}
-}
-
-/* 💖 Floating Hearts */
-.heart {
-  position: absolute;
-  color: hotpink;
-  animation: float 6s linear infinite;
-  font-size: 22px;
-}
-@keyframes float {
-  0% {transform: translateY(100vh);}
-  100% {transform: translateY(-10vh);}
+@keyframes introFade{
+0%{opacity:1}
+80%{opacity:1}
+100%{opacity:0;visibility:hidden}
 }
 
-/* 🎂 Cake */
-.cake {
-  font-size: 90px;
-  margin-top: 15px;
-  transition: 0.3s;
+/* 💖 HEART BLAST */
+.blast{
+position:absolute;
+font-size:26px;
+animation:boom 2s ease-out forwards;
+}
+@keyframes boom{
+0%{transform:scale(0);opacity:1}
+100%{transform:scale(8);opacity:0}
 }
 
-/* 🎂 Cake Cut Animation */
-.cut {
-  animation: cut 1s ease-in-out;
+/* 💕 FLOAT HEART */
+.heart{
+position:absolute;
+font-size:20px;
+animation:float 6s linear infinite;
 }
-@keyframes cut {
-  0% {transform: scale(1);}
-  50% {transform: scale(0.9) rotate(-3deg);}
-  100% {transform: scale(1);}
-}
-
-/* 🎉 Title */
-h1 {
-  font-size: 30px;
-  margin: 8px 0;
-  text-shadow: 0 0 15px pink;
+@keyframes float{
+0%{transform:translateY(110vh)}
+100%{transform:translateY(-10vh)}
 }
 
-/* 💌 Love */
-.love {
-  font-size: 20px;
-  margin-top: 6px;
-  color: #ffb6c1;
-  min-height: 45px;
-  animation: glow 2s infinite alternate;
+/* 🎂 CAKE */
+#cake{
+font-size:90px;
+margin-top:15px;
+cursor:pointer;
 }
-@keyframes glow {
-  from {text-shadow: 0 0 5px red;}
-  to {text-shadow: 0 0 25px hotpink;}
-}
-
-/* ✨ Shayari */
-.shayari {
-  margin-top: 8px;
-  font-size: 16px;
-  color: #ffd1dc;
-  min-height: 40px;
+.cut{animation:cut 1s;}
+@keyframes cut{
+0%{transform:scale(1)}
+50%{transform:scale(.85) rotate(-5deg)}
+100%{transform:scale(1)}
 }
 
-/* 🔥 3D Glow Names */
-.ultra-name {
-  position: fixed;
-  top: 40%;
-  font-size: 22px;
-  font-weight: 900;
-  color: #fff;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  text-shadow:
-    0 0 10px #fff,
-    0 0 20px #ff1744,
-    0 0 40px #ff1744;
-  animation: floatGlow 3s infinite ease-in-out;
-  z-index: 9999;
-}
-.left-ultra { left: 5px; transform: rotate(-90deg); }
-.right-ultra { right: 5px; transform: rotate(90deg); }
-
-@keyframes floatGlow {
-  0% {filter: brightness(1);}
-  50% {filter: brightness(1.6);}
-  100% {filter: brightness(1);}
+/* 🌟 TITLE */
+h1{
+font-size:28px;
+text-shadow:0 0 15px hotpink;
 }
 
-/* 📸 Photo */
-.photo {
-  width: 170px;
-  border-radius: 20px;
-  margin-top: 5px;
-  box-shadow: 0 0 25px hotpink;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+/* 💌 LOVE */
+#loveText{
+min-height:40px;
+font-size:20px;
+color:#ffc0cb;
+text-shadow:0 0 12px red;
+margin-top:5px;
 }
 
-/* 🔘 Buttons */
-.buttons {
-  margin-top: 12px;
-}
-button {
-  background: linear-gradient(45deg, red, hotpink);
-  color: white;
-  border: none;
-  padding: 10px 18px;
-  margin: 5px;
-  border-radius: 25px;
-  font-size: 14px;
-  box-shadow: 0 0 10px pink;
+/* ✨ SHAYARI */
+#shayariText{
+min-height:40px;
+font-size:16px;
+color:#ffd6d6;
+margin-top:5px;
 }
 
-/* ⏳ Countdown */
-#countdown {
-  margin-top: 10px;
-  font-size: 16px;
-  color: #ffcccb;
-  text-shadow: 0 0 10px red;
+/* 🔥 3D NAMES */
+.name{
+position:fixed;
+top:40%;
+font-weight:900;
+text-shadow:0 0 10px white,0 0 25px red;
+animation:glow 3s infinite;
+}
+.left{left:5px;transform:rotate(-90deg)}
+.right{right:5px;transform:rotate(90deg)}
+@keyframes glow{
+50%{filter:brightness(2)}
+}
+
+/* 📸 PHOTO */
+img{
+width:170px;
+border-radius:20px;
+box-shadow:0 0 20px hotpink;
+margin:8px auto;
+display:block;
+}
+
+/* 🔘 BUTTONS */
+button{
+background:linear-gradient(45deg,red,hotpink);
+border:none;
+padding:10px 18px;
+margin:6px;
+color:white;
+border-radius:25px;
+box-shadow:0 0 10px pink;
+}
+
+/* ⏳ COUNTDOWN */
+#countdown{
+margin-top:10px;
+color:#ffcaca;
 }
 </style>
 </head>
 
 <body>
 
-<!-- 🎵 AUTO PLAY MUSIC -->
+<!-- 🔥 INTRO PATKA -->
+<div class="intro">💖</div>
+
+<!-- 🎵 MUSIC -->
 <audio autoplay loop>
-  <source src="music.mp3" type="audio/mpeg">
+<source src="music.mp3">
 </audio>
 
-<!-- 🔥 3D Names -->
-<div class="ultra-name left-ultra">Mr Tohid</div>
-<div class="ultra-name right-ultra">Nazni Parveen</div>
+<div class="name left">Mr Tohid</div>
+<div class="name right">Nazni Parveen</div>
 
-<!-- 💖 Floating Hearts -->
 <div class="heart" style="left:10%">❤️</div>
-<div class="heart" style="left:50%">💖</div>
-<div class="heart" style="left:90%">💕</div>
+<div class="heart" style="left:40%">💖</div>
+<div class="heart" style="left:80%">💕</div>
 
-<!-- 🎂 Cake -->
-<div class="cake" id="cake">🎂</div>
+<div id="cake">🎂</div>
 
-<!-- 🎉 Title -->
 <h1>Happy Birthday Nazni 🎉</h1>
 
-<!-- 💌 Love -->
-<div class="love" id="loveText"></div>
+<div id="loveText"></div>
+<div id="shayariText"></div>
 
-<!-- ✨ Shayari -->
-<div class="shayari" id="shayariText"></div>
+<img src="Snapchat-602998492.jpg">
 
-<!-- 📸 Photo -->
-<img src="Snapchat-602998492.jpg" class="photo">
-
-<!-- 🔘 Buttons -->
-<div class="buttons">
-  <button onclick="showLove()">💖 Love Message</button>
-  <button onclick="showShayari()">✨ Shayari</button>
-  <button onclick="cutCake()">🎂 Cut Cake</button>
+<div>
+<button onclick="showLove()">💖 Love</button>
+<button onclick="showShayari()">✨ Shayari</button>
+<button onclick="cutCake()">🎂 Cut Cake</button>
 </div>
 
-<!-- ⏳ Countdown -->
 <div id="countdown"></div>
 
 <script>
-/* 💌 Love Messages */
-const loveLines = [
-  "I Love You Meri Jaan ❤️",
-  "Tum Meri Zindagi Ho 💍",
-  "Hamesha Mere Saath Rehna 💖",
-  "Happy Birthday My Love 🎂"
+/* 💖 AUTO BLAST ON LOAD */
+for(let i=0;i<20;i++){setTimeout(blast, i*100);}
+
+function blast(){
+let h=document.createElement("div");
+h.className="blast";
+h.innerHTML="💖";
+h.style.left=Math.random()*window.innerWidth+"px";
+h.style.top=Math.random()*window.innerHeight+"px";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),2000);
+}
+
+/* 💌 LOVE */
+const love=[
+"I Love You Meri Jaan ❤️",
+"Tum Meri Zindagi Ho 💍",
+"Meri Har Khushi Tumse Hai 💖",
+"Happy Birthday My Love 🎂"
 ];
-let loveIndex = 0;
-
-function showLove() {
-  document.getElementById("loveText").innerText = loveLines[loveIndex];
-  heartBlast();
-  loveIndex = (loveIndex + 1) % loveLines.length;
+let li=0;
+function showLove(){
+document.getElementById("loveText").innerText=love[li];
+blast();
+li=(li+1)%love.length;
 }
 
-/* ✨ Shayari */
-const shayari = [
-  "Tumhari ek muskaan meri har thakaan mita deti hai ❤️",
-  "Meri har khushi tumse hi shuru hoti hai 💖",
-  "Tum saath ho to har din ek tyohar hai 🎉",
-  "Meri duniya bas tum ho Nazni 💍"
+/* ✨ SHAYARI */
+const shayari=[
+"Tumhari muskaan meri jaan hai ❤️",
+"Meri har subah tumse hai 💖",
+"Tum meri duniya ho 🌍",
+"Main tumse beinteha mohabbat karta hoon 💍"
 ];
-let sIndex = 0;
-
-function showShayari() {
-  document.getElementById("shayariText").innerText = shayari[sIndex];
-  heartBlast();
-  sIndex = (sIndex + 1) % shayari.length;
+let si=0;
+function showShayari(){
+document.getElementById("shayariText").innerText=shayari[si];
+blast();
+si=(si+1)%shayari.length;
 }
 
-/* 🎂 Cake Cut */
-function cutCake() {
-  const cake = document.getElementById("cake");
-  cake.classList.add("cut");
-  heartBlast();
-  setTimeout(() => cake.classList.remove("cut"), 1000);
-}
-
-/* 💖 Heart Blast Effect */
-function heartBlast() {
-  const heart = document.createElement("div");
-  heart.className = "heart-blast";
-  heart.innerHTML = "💖";
-  heart.style.left = Math.random() * window.innerWidth + "px";
-  heart.style.top = Math.random() * window.innerHeight + "px";
-  document.body.appendChild(heart);
-
-  setTimeout(() => heart.remove(), 2000);
+/* 🎂 CAKE CUT */
+function cutCake(){
+const cake=document.getElementById("cake");
+cake.classList.add("cut");
+blast();
+setTimeout(()=>cake.classList.remove("cut"),1000);
 }
 
 /* ⏳ COUNTDOWN */
-const birthday = new Date("January 4, 2026 00:00:00").getTime();
-
-setInterval(function () {
-  const now = new Date().getTime();
-  const distance = birthday - now;
-
-  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-  document.getElementById("countdown").innerHTML =
-    "⏳ Birthday Countdown: " +
-    days + "d " + hours + "h " + minutes + "m " + seconds + "s";
-}, 1000);
+const bday=new Date("January 4, 2026 00:00:00").getTime();
+setInterval(()=>{
+let now=new Date().getTime();
+let d=bday-now;
+let days=Math.floor(d/(1000*60*60*24));
+let h=Math.floor((d%(1000*60*60*24))/(1000*60*60));
+let m=Math.floor((d%(1000*60*60))/60000);
+let s=Math.floor((d%60000)/1000);
+document.getElementById("countdown").innerHTML=
+"⏳ "+days+"d "+h+"h "+m+"m "+s+"s";
+},1000);
 </script>
 
 </body>
