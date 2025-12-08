@@ -46,7 +46,7 @@ body {
 /* 🎂 Cake Cutting Animation */
 .cake {
   font-size: 90px;
-  margin-top: 25px;
+  margin-top: 20px;
   animation: cut 2s infinite;
 }
 @keyframes cut {
@@ -62,12 +62,12 @@ h1 {
   text-shadow: 0 0 15px pink;
 }
 
-/* 💌 Love Typing Animation */
+/* 💌 Love Typing */
 .love {
   font-size: 20px;
-  margin-top: 10px;
+  margin-top: 8px;
   color: #ffb6c1;
-  min-height: 55px;
+  min-height: 50px;
   animation: glow 2s infinite alternate;
 }
 @keyframes glow {
@@ -75,12 +75,12 @@ h1 {
   to {text-shadow: 0 0 25px hotpink;}
 }
 
-/* ✨ Shayari Box */
+/* ✨ Shayari (Slow & Smooth) */
 .shayari {
-  margin-top: 14px;
+  margin-top: 10px;
   font-size: 17px;
   color: #ffd1dc;
-  animation: fade 4s infinite;
+  animation: fade 6s infinite;
 }
 @keyframes fade {
   0% {opacity: 0;}
@@ -88,7 +88,7 @@ h1 {
   100% {opacity: 0;}
 }
 
-/* 🔥 3D GLOW NAMES */
+/* 🔥 3D Glow Names */
 .ultra-name {
   position: fixed;
   top: 40%;
@@ -113,12 +113,16 @@ h1 {
   100% {filter: brightness(1);}
 }
 
-/* 📸 Photo */
+/* 📸 Photo (Gap FIXED) */
 .photo {
   width: 180px;
   border-radius: 20px;
-  margin-top: 12px;
+  margin-top: 6px;
+  margin-bottom: 0px;
   box-shadow: 0 0 25px hotpink;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 </style>
 </head>
@@ -179,12 +183,12 @@ function typeLove() {
       charIndex = 0;
       loveIndex = (loveIndex + 1) % loveLines.length;
       typeLove();
-    }, 2000);
+    }, 2200);
   }
 }
 typeLove();
 
-/* ✨ Shayari Rotation */
+/* ✨ Shayari Rotation (SLOW = 6 seconds) */
 const shayari = [
   "Tumhari ek muskaan meri har thakaan mita deti hai ❤️",
   "Meri har khushi tumse hi shuru hoti hai 💖",
@@ -192,10 +196,11 @@ const shayari = [
   "Meri duniya bas tum ho Nazni 💍"
 ];
 let sIndex = 0;
+document.getElementById("shayariText").innerText = shayari[0];
 setInterval(() => {
-  document.getElementById("shayariText").innerText = shayari[sIndex];
   sIndex = (sIndex + 1) % shayari.length;
-}, 3000);
+  document.getElementById("shayariText").innerText = shayari[sIndex];
+}, 6000);
 </script>
 
 </body>
