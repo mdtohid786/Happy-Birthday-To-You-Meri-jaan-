@@ -221,3 +221,66 @@
 
 </body>
 </html>
+/* 🔥 ULTRA 3D FLOATING NEON NAME EFFECT 🔥 */
+.ultra-name {
+  position: fixed;
+  top: 40%;
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-shadow:
+    0 0 5px #fff,
+    0 0 10px #ff1744,
+    0 0 20px #ff1744,
+    0 0 40px #ff1744,
+    0 0 80px #ff1744;
+  animation: floatGlow 3s infinite ease-in-out;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.left-ultra {
+  left: 5px;
+  transform: rotate(-90deg);
+}
+
+.right-ultra {
+  right: 5px;
+  transform: rotate(90deg);
+  animation-name: floatGlowRight;
+}
+
+@keyframes floatGlow {
+  0% {
+    transform: translateY(0) rotate(-90deg);
+    text-shadow:
+      0 0 10px #00e5ff,
+      0 0 30px #00e5ff;
+  }
+  50% {
+    transform: translateY(-20px) rotate(-90deg);
+    text-shadow:
+      0 0 20px #ffea00,
+      0 0 60px #ffea00;
+  }
+  100% {
+    transform: translateY(0) rotate(-90deg);
+    text-shadow:
+      0 0 20px #ff1744,
+      0 0 60px #ff1744;
+  }
+}
+
+@keyframes floatGlowRight {
+  0% {
+    transform: translateY(0) rotate(90deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(90deg);
+  }
+  100% {
+    transform: translateY(0) rotate(90deg);
+  }
+}
