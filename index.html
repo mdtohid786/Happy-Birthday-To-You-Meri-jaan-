@@ -238,19 +238,76 @@ document.getElementById("countdown").innerHTML=
 
 </body>
 </html>
-<!-- ✅ QR CODE SECTION -->
-<div style="margin-top:15px;">
+<!-- ✅ PERFECT QR + RING ANIMATION -->
+<div style="margin-top:20px; position:relative;">
+  
   <h2 style="color:#ffb6c1;text-shadow:0 0 10px red;">
-    📱 Scan To Open Surprise
+    📱 Scan This QR For Surprise
   </h2>
 
-  <!-- 🔥 YAHAN APNA LIVE LINK PASTE KARNA -->
+  <!-- ✅ FULL QR IMAGE -->
   <img 
-    src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://mdtohid786.github.io/Happy-Birthday-To-You-Meri-jaan-/
-    style="background:white;padding:10px;border-radius:15px;box-shadow:0 0 15px hotpink;"
+    id="qrImg"
+    src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://mdtohid786.github.io/Happy-Birthday-To-You-Meri-jaan-/
+    style="
+      background:white;
+      padding:12px;
+      border-radius:20px;
+      box-shadow:0 0 20px hotpink;
+      width:220px;
+      height:220px;
+      object-fit:cover;
+      cursor:pointer;
+    "
+    onclick="showRing()"
   >
 
   <p style="font-size:12px;color:#ccc;">
     Nazni ke phone se scan karo ❤️
   </p>
+
+  <!-- 💍 HIDDEN RING -->
+  <div 
+    id="ring"
+    style="
+      position:fixed;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%) scale(0);
+      font-size:120px;
+      z-index:999999;
+      text-shadow:0 0 25px gold;
+      transition:0.5s;
+    "
+  >
+    💍
+    <div style="
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      font-size:24px;
+      color:white;
+      font-weight:900;
+      text-shadow:0 0 10px red;
+    ">
+      TN
+    </div>
+  </div>
+
 </div>
+
+<script>
+/* 💍 RING SHOW ON QR TAP */
+function showRing(){
+  const ring = document.getElementById("ring");
+  ring.style.transform = "translate(-50%,-50%) scale(1)";
+  
+  // Heart blast also
+  for(let i=0;i<12;i++) setTimeout(blast, i*80);
+
+  setTimeout(()=>{
+    ring.style.transform = "translate(-50%,-50%) scale(0)";
+  }, 3000);
+}
+</script>
