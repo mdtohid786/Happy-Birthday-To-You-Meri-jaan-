@@ -1,0 +1,112 @@
+# Happy Birthday To You Meri Jaan 
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Happy Birthday Nazni</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      background: radial-gradient(circle, #ff758c, #ff7eb3);
+      font-family: Arial, sans-serif;
+      text-align: center;
+      color: white;
+      overflow: hidden;
+    }
+    h1 {
+      margin-top: 30px;
+      font-size: 32px;
+      animation: zoom 2s infinite alternate;
+    }
+    h2 {
+      font-weight: 300;
+      margin: 10px;
+    }
+    button {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 25px;
+      background: red;
+      color: white;
+      font-size: 18px;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+    .hidden {
+      display: none;
+    }
+    .heart {
+      position: absolute;
+      color: red;
+      font-size: 24px;
+      animation: fall linear infinite;
+    }
+    @keyframes fall {
+      from { transform: translateY(-10vh); }
+      to { transform: translateY(110vh); }
+    }
+    @keyframes zoom {
+      from { transform: scale(1); }
+      to { transform: scale(1.2); }
+    }
+    .cake {
+      font-size: 90px;
+      animation: bounce 1s infinite alternate;
+    }
+    @keyframes bounce {
+      from { transform: translateY(0); }
+      to { transform: translateY(-15px); }
+    }
+  </style>
+</head>
+<body>
+
+<h1>🎂 Happy Birthday Nazni 🎂</h1>
+<h2>Happy Birthday To You Meri Jaan ❤️</h2>
+<h2>In Advance – 4 January 💖</h2>
+
+<button onclick="playMusic()">🎵 Play Music</button>
+<button onclick="showLove()">💌 Open Love Message</button>
+<button onclick="cutCake()">🎂 Cut Cake</button>
+
+<div id="love" class="hidden">
+  <h2>💖 Nazni, Tum Meri Zindagi Ho 💖</h2>
+  <h2>Main Tumse Bahut Pyaar Karta Hoon 😘</h2>
+</div>
+
+<div id="cake" class="hidden">
+  <div class="cake">🎂</div>
+  <h2>Yeh Cake Sirf Tumhare Liye Hai Meri Jaan ❤️</h2>
+</div>
+
+<audio id="music" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  function createHeart() {
+    const heart = document.createElement("div");
+    heart.innerHTML = "❤️";
+    heart.className = "heart";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 5000);
+  }
+  setInterval(createHeart, 300);
+
+  function playMusic() {
+    document.getElementById("music").play();
+  }
+
+  function showLove() {
+    document.getElementById("love").classList.remove("hidden");
+  }
+
+  function cutCake() {
+    document.getElementById("cake").classList.remove("hidden");
+  }
+</script>
+
+</body>
+</html>
