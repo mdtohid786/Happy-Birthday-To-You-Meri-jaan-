@@ -3,77 +3,128 @@
 <head>
 <meta charset="UTF-8">
 <title>Happy Birthday Nazni ❤️</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 body{
-margin:0;padding:0;
-background:radial-gradient(circle at top,#2b0000,#000);
-height:100vh;overflow:hidden;
-text-align:center;font-family:Arial;color:white;
+margin:0;
+padding:0;
+background:radial-gradient(circle at top,#3a0000,#000);
+min-height:100vh;
+font-family:Arial;
+color:white;
+text-align:center;
+overflow-x:hidden;
 }
+
 .intro{
-position:fixed;top:0;left:0;right:0;bottom:0;
-background:black;display:flex;justify-content:center;align-items:center;
-font-size:90px;z-index:99999;animation:introFade 2.5s forwards;
+position:fixed;
+inset:0;
+background:black;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:80px;
+z-index:9999;
+animation:fadeout 2.5s forwards;
 }
-@keyframes introFade{0%{opacity:1}80%{opacity:1}100%{opacity:0;visibility:hidden}}
+@keyframes fadeout{80%{opacity:1}100%{opacity:0;visibility:hidden}}
 
-.blast{position:absolute;font-size:26px;animation:boom 2s ease-out forwards;}
-@keyframes boom{0%{transform:scale(0);opacity:1}100%{transform:scale(8);opacity:0}}
-
-.heart{position:absolute;font-size:20px;animation:float 6s linear infinite;}
-@keyframes float{0%{transform:translateY(110vh)}100%{transform:translateY(-10vh)}}
-
-#cake{font-size:90px;margin-top:10px;cursor:pointer;}
-.cut{animation:cut 1s;}
-@keyframes cut{50%{transform:scale(.85) rotate(-5deg)}}
-
-h1{text-shadow:0 0 15px hotpink}
-#loveText{min-height:40px;font-size:20px;color:#ffc0cb;text-shadow:0 0 12px red;}
-#shayariText{min-height:40px;font-size:16px;color:#ffd6d6;}
-
-.name{
-position:fixed;top:40%;font-weight:900;
-text-shadow:0 0 10px white,0 0 25px red;
-animation:glow 3s infinite;
+h1{
+margin-top:10px;
+font-size:26px;
+text-shadow:0 0 12px hotpink;
 }
-.left{left:5px;transform:rotate(-90deg)}
-.right{right:5px;transform:rotate(90deg)}
+
+#sub{
+font-size:18px;
+color:#ffc0cb;
+margin-bottom:10px;
+}
+
+.photo{
+width:220px;
+border-radius:25px;
+box-shadow:0 0 25px hotpink;
+margin:15px auto;
+display:block;
+}
+
+.names{
+position:fixed;
+top:50%;
+transform:translateY(-50%);
+font-weight:bold;
+font-size:20px;
+writing-mode:vertical-rl;
+text-shadow:0 0 10px white,0 0 20px red;
+animation:glow 2.5s infinite;
+}
+#left{left:5px;}
+#right{right:5px;}
 @keyframes glow{50%{filter:brightness(2)}}
 
-img{width:170px;border-radius:20px;box-shadow:0 0 20px hotpink;margin:8px auto;display:block}
-
 button{
-background:linear-gradient(45deg,red,hotpink);
-border:none;padding:10px 18px;margin:6px;
-color:white;border-radius:25px;box-shadow:0 0 10px pink;
+background:linear-gradient(45deg,#ff0055,#ff66aa);
+border:none;
+padding:10px 16px;
+border-radius:25px;
+color:white;
+margin:6px;
+box-shadow:0 0 10px pink;
+font-size:15px;
 }
 
-#countdown{color:#ffcaca;margin-top:8px}
+#cake{
+font-size:80px;
+margin-top:5px;
+cursor:pointer;
+}
 
-/* QR */
-#ring{
-position:fixed;top:50%;left:50%;
+#loveText,#shayariText{
+min-height:30px;
+margin:6px;
+font-size:18px;
+color:#ffd6d6;
+}
+
+#countdown{
+margin-top:10px;
+font-size:18px;
+color:#ffe3e3;
+}
+
+.heart{
+position:absolute;
+font-size:20px;
+animation:float 6s linear infinite;
+}
+@keyframes float{
+0%{transform:translateY(110vh)}
+100%{transform:translateY(-10vh)}
+}
+
+#ring,#dairy{
+position:fixed;
+top:50%;
+left:50%;
 transform:translate(-50%,-50%) scale(0);
-font-size:120px;z-index:999999;
-text-shadow:0 0 25px gold;transition:0.5s;
+font-size:120px;
+z-index:99999;
+transition:0.4s;
 }
 
-/* Chocolate */
 .choco{
-position:fixed;bottom:15px;
-background:linear-gradient(45deg,#5a2d0c,#8b4513);
-color:white;padding:10px 16px;border-radius:30px;
-box-shadow:0 0 12px brown;z-index:9999;
+position:fixed;
+bottom:15px;
+background:brown;
+padding:10px 14px;
+border-radius:30px;
+box-shadow:0 0 10px chocolate;
+font-size:14px;
 }
-#cl{left:10px} #cr{right:10px}
-
-#dairyMilk{
-position:fixed;top:50%;left:50%;
-transform:translate(-50%,-50%) scale(0);
-font-size:140px;transition:0.4s;z-index:999999;
-}
+#cl{left:10px}
+#cr{right:10px}
 </style>
 </head>
 
@@ -85,79 +136,83 @@ font-size:140px;transition:0.4s;z-index:999999;
 <source src="music.mp3">
 </audio>
 
-<div class="name left">Mr Tohid</div>
-<div class="name right">Nazni Parveen</div>
+<div id="left" class="names">Mr Tohid</div>
+<div id="right" class="names">Nazni Parveen</div>
 
 <div class="heart" style="left:10%">❤️</div>
-<div class="heart" style="left:50%">💖</div>
-<div class="heart" style="left:90%">💕</div>
+<div class="heart" style="left:40%">💖</div>
+<div class="heart" style="left:70%">💕</div>
 
-<div id="cake">🎂</div>
+<div id="cake" onclick="cutCake()">🎂</div>
 <h1>Happy Birthday Nazni 🎉</h1>
+<div id="sub">I Love You Meri Jaan ❤️</div>
+
+<img class="photo" src="Snapchat-602998492.jpg">
 
 <div id="loveText"></div>
 <div id="shayariText"></div>
 
-<img src="Snapchat-602998492.jpg">
-
 <div>
 <button onclick="showLove()">💖 Love</button>
 <button onclick="showShayari()">✨ Shayari</button>
-<button onclick="cutCake()">🎂 Cut Cake</button>
 </div>
 
 <div id="countdown"></div>
 
-<!-- ✅ QR -->
 <h2>📱 Scan For Surprise</h2>
-<img id="qrImg" src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://mdtohid786.github.io/Happy-Birthday-To-You-Meri-jaan-/
-style="width:220px;background:white;padding:10px;border-radius:20px"
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https://mdtohid786.github.io/Happy-Birthday-To-You-Meri-jaan-/
+style="background:white;padding:10px;border-radius:20px;width:200px"
 onclick="showRing()">
 
-<div id="ring">💍
-<div style="font-size:24px;margin-top:-30px;font-weight:900">TN</div>
-</div>
+<div id="ring">💍<div style="font-size:26px">TN</div></div>
+<div id="dairy">🍫</div>
 
-<!-- ✅ Chocolate -->
-<div class="choco" id="cl" onclick="showChocolate()">🍫 Chocolate</div>
-<div class="choco" id="cr" onclick="showChocolate()">🍫 Chocolate</div>
-
-<div id="dairyMilk">🍫<div style="font-size:22px">Dairy Milk ❤️</div></div>
+<div class="choco" id="cl" onclick="showChoco()">🍫 Chocolate</div>
+<div class="choco" id="cr" onclick="showChoco()">🍫 Chocolate</div>
 
 <script>
-for(let i=0;i<20;i++)setTimeout(blast,i*100);
-function blast(){
-let h=document.createElement("div");
-h.className="blast";h.innerHTML="💖";
-h.style.left=Math.random()*innerWidth+"px";
-h.style.top=Math.random()*innerHeight+"px";
-document.body.appendChild(h);
-setTimeout(()=>h.remove(),2000);
+const love=[
+"I Love You Meri Jaan ❤️",
+"Tum Meri Duniya Ho 💖",
+"Sirf Tum ❤️"
+];
+let li=0;
+
+function showLove(){
+loveText.innerText=love[li];
+li=(li+1)%love.length;
 }
 
-const love=["I Love You Meri Jaan ❤️","Tum Meri Zindagi Ho 💍","Happy Birthday My Love 🎂"];
-let li=0;function showLove(){loveText.innerText=love[li];blast();li=(li+1)%love.length;}
+const shayari=[
+"Tum saath ho to har lamha haseen hai ❤️",
+"Meri har khushi tumse judi hai 💖"
+];
+let si=0;
 
-const shayari=["Tum meri duniya ho ❤️","Tum saath ho to sab kuchh hai 💖"];
-let si=0;function showShayari(){shayariText.innerText=shayari[si];blast();si=(si+1)%shayari.length;}
+function showShayari(){
+shayariText.innerText=shayari[si];
+si=(si+1)%shayari.length;
+}
 
-function cutCake(){cake.classList.add("cut");blast();setTimeout(()=>cake.classList.remove("cut"),1000);}
+function cutCake(){
+cake.style.transform="scale(0.9)";
+setTimeout(()=>cake.style.transform="scale(1)",300);
+}
 
 function showRing(){
 ring.style.transform="translate(-50%,-50%) scale(1)";
-for(let i=0;i<12;i++)setTimeout(blast,i*80);
-setTimeout(()=>ring.style.transform="translate(-50%,-50%) scale(0)",3000);
+setTimeout(()=>ring.style.transform="translate(-50%,-50%) scale(0)",2500);
 }
 
-function showChocolate(){
-dairyMilk.style.transform="translate(-50%,-50%) scale(1)";
-for(let i=0;i<10;i++)setTimeout(blast,i*80);
-setTimeout(()=>dairyMilk.style.transform="translate(-50%,-50%) scale(0)",2500);
+function showChoco(){
+dairy.style.transform="translate(-50%,-50%) scale(1)";
+setTimeout(()=>dairy.style.transform="translate(-50%,-50%) scale(0)",2500);
 }
 
 const bday=new Date("January 4, 2026 00:00:00").getTime();
 setInterval(()=>{
-let d=bday-new Date().getTime();
+const now=new Date().getTime();
+const d=bday-now;
 countdown.innerHTML="⏳ "+Math.floor(d/86400000)+" Days Left";
 },1000);
 </script>
