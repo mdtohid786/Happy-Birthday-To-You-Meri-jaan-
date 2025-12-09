@@ -8,125 +8,76 @@
 <style>
 body{
 margin:0;
-padding:0;
-background:radial-gradient(circle at top,#3a0000,#000);
-min-height:100vh;
 font-family:Arial;
+background:radial-gradient(circle at top,#520000,#000);
 color:white;
 text-align:center;
 overflow-x:hidden;
 }
 
-.intro{
-position:fixed;
-inset:0;
-background:black;
-display:flex;
-align-items:center;
-justify-content:center;
+#cakeTop{
 font-size:80px;
-z-index:9999;
-animation:fadeout 2.5s forwards;
+margin-top:10px;
 }
-@keyframes fadeout{80%{opacity:1}100%{opacity:0;visibility:hidden}}
 
 h1{
-margin-top:10px;
 font-size:26px;
-text-shadow:0 0 12px hotpink;
+margin:5px 0;
+text-shadow:0 0 10px pink;
 }
 
 #sub{
 font-size:18px;
-color:#ffc0cb;
-margin-bottom:10px;
+color:#ffb6c1;
 }
 
-.photo{
-width:220px;
+.photoBox{
+margin:15px auto;
+width:240px;
+padding:8px;
 border-radius:25px;
 box-shadow:0 0 25px hotpink;
-margin:15px auto;
-display:block;
+background:#000;
 }
+
+.photoBox img{
+width:100%;
+border-radius:20px;
+}
+
+.confetti{
+position:fixed;
+top:40%;
+font-size:35px;
+}
+.left{left:10px;}
+.right{right:10px;}
+
+.gift{
+position:fixed;
+top:55%;
+font-size:40px;
+}
+.giftLeft{left:10px;}
+.giftRight{right:10px;}
 
 button{
-background:linear-gradient(45deg,#ff0055,#ff66aa);
+background:linear-gradient(45deg,#ff0066,#ff99cc);
 border:none;
+color:white;
 padding:10px 16px;
 border-radius:25px;
-color:white;
 margin:6px;
 box-shadow:0 0 10px pink;
-font-size:15px;
-}
-
-#cake{
-font-size:80px;
-margin-top:5px;
-cursor:pointer;
-}
-
-#loveText,#shayariText{
-min-height:30px;
-margin:6px;
-font-size:18px;
-color:#ffd6d6;
 }
 
 #countdown{
 margin-top:10px;
 font-size:18px;
-color:#ffe3e3;
+color:#ffe1e1;
 }
 
-.heart{
-position:absolute;
-font-size:20px;
-animation:float 6s linear infinite;
-}
-@keyframes float{
-0%{transform:translateY(110vh)}
-100%{transform:translateY(-10vh)}
-}
-
-/* GIFT BUTTONS */
-.gift{
-position:fixed;
-top:50%;
-font-size:35px;
-cursor:pointer;
-text-shadow:0 0 10px pink;
-}
-#giftLeft{left:8px;}
-#giftRight{right:8px;}
-
-/* POPUPS */
-#popup{
-position:fixed;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%) scale(0);
-font-size:120px;
-z-index:99999;
-transition:0.4s;
-}
-
-/* Chocolate center fixed */
-#choco{
-position:fixed;
-bottom:15px;
-left:50%;
-transform:translateX(-50%);
-background:brown;
-padding:10px 18px;
-border-radius:30px;
-box-shadow:0 0 12px chocolate;
-font-size:14px;
-}
-
-/* HEART QR */
-.qrbox{
+.qrHeart{
 margin:20px auto;
 width:220px;
 height:220px;
@@ -137,99 +88,90 @@ align-items:center;
 justify-content:center;
 box-shadow:0 0 25px hotpink;
 }
-.qrbox img{
-width:170px;
-border-radius:20px;
+
+.qrHeart img{
+width:160px;
 background:white;
 padding:6px;
+border-radius:15px;
+}
+
+#chocoBtn{
+position:fixed;
+bottom:15px;
+left:50%;
+transform:translateX(-50%);
+background:brown;
+padding:12px 20px;
+border-radius:30px;
+box-shadow:0 0 12px chocolate;
+}
+
+#popup{
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%) scale(0);
+font-size:120px;
+transition:0.3s;
+z-index:99999;
 }
 </style>
 </head>
 
 <body>
 
-<div class="intro">💖</div>
-
-<audio autoplay loop>
-<source src="music.mp3">
-</audio>
-
-<div class="heart" style="left:10%">❤️</div>
-<div class="heart" style="left:40%">💖</div>
-<div class="heart" style="left:70%">💕</div>
-
-<div id="cake" onclick="cutCake()">🎂</div>
+<div id="cakeTop">🎂</div>
 <h1>Happy Birthday Nazni 🎉</h1>
 <div id="sub">I Love You Meri Jaan ❤️</div>
 
-<img class="photo" src="Snapchat-602998492.jpg">
+<div class="confetti left">🎉</div>
+<div class="confetti right">🎉</div>
 
-<div id="loveText"></div>
-<div id="shayariText"></div>
-
-<div>
-<button onclick="showLove()">💖 Love</button>
-<button onclick="showShayari()">✨ Shayari</button>
+<div class="photoBox">
+<img src="Snapchat-602998492.jpg">
 </div>
 
-<div id="countdown"></div>
+<p>Sirf Tum ❤️</p>
+<p>Meri har khushi tumse judi hai 💖</p>
+
+<button>💖 Love</button>
+<button>✨ Shayari</button>
+
+<div id="countdown">⏳ Loading...</div>
 
 <h2>❤️ Scan For Surprise ❤️</h2>
 
-<div class="qrbox" onclick="showPopup('💍')">
+<div class="qrHeart" onclick="showPopup('💍')">
 <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://mdtohid786.github.io/Happy-Birthday-To-You-Meri-jaan-/
 </div>
 
 <!-- Gifts -->
-<div class="gift" id="giftLeft" onclick="showPopup('🎂')">🎁</div>
-<div class="gift" id="giftRight" onclick="showPopup('😘')">🎁</div>
+<div class="gift giftLeft" onclick="showPopup('🎂')">🎁</div>
+<div class="gift giftRight" onclick="showPopup('😘')">🎁</div>
 
 <!-- Center Chocolate -->
-<div id="choco" onclick="showPopup('🍫')">🍫 Chocolate</div>
+<div id="chocoBtn" onclick="showPopup('🍫')">🍫 Chocolate</div>
 
-<!-- Popup -->
 <div id="popup"></div>
 
 <script>
-const love=[
-"I Love You Meri Jaan ❤️",
-"Tum Meri Duniya Ho 💖",
-"Sirf Tum ❤️"
-];
-let li=0;
-
-function showLove(){
-loveText.innerText=love[li];
-li=(li+1)%love.length;
-}
-
-const shayari=[
-"Tum saath ho to har lamha haseen hai ❤️",
-"Meri har khushi tumse judi hai 💖"
-];
-let si=0;
-
-function showShayari(){
-shayariText.innerText=shayari[si];
-si=(si+1)%shayari.length;
-}
-
-function cutCake(){
-cake.style.transform="scale(0.9)";
-setTimeout(()=>cake.style.transform="scale(1)",300);
-}
-
 function showPopup(icon){
 popup.innerHTML=icon;
 popup.style.transform="translate(-50%,-50%) scale(1)";
-setTimeout(()=>popup.style.transform="translate(-50%,-50%) scale(0)",2500);
+setTimeout(()=>popup.style.transform="translate(-50%,-50%) scale(0)",2000);
 }
 
-const bday=new Date("January 4, 2026 00:00:00").getTime();
+/* ✅ COUNTDOWN */
+const birthday = new Date("January 4, 2026 00:00:00").getTime();
+
 setInterval(()=>{
-const now=new Date().getTime();
-const d=bday-now;
-countdown.innerHTML="⏳ "+Math.floor(d/86400000)+" Days Left";
+const now = new Date().getTime();
+const diff = birthday - now;
+
+const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+document.getElementById("countdown").innerHTML =
+"⏳ " + days + " Days Left";
 },1000);
 </script>
 
