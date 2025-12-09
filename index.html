@@ -7,143 +7,80 @@
 
 <style>
 body{
-margin:0;
-padding:0;
+margin:0;padding:0;
 background:radial-gradient(circle at top,#2b0000,#000);
-height:100vh;
-overflow:hidden;
-text-align:center;
-font-family:Arial;
-color:white;
+height:100vh;overflow:hidden;
+text-align:center;font-family:Arial;color:white;
 }
-
-/* 🔥 INTRO BLAST */
 .intro{
-position:fixed;
-top:0;
-left:0;
-right:0;
-bottom:0;
-background:black;
-display:flex;
-justify-content:center;
-align-items:center;
-font-size:80px;
-z-index:99999;
-animation:introFade 2.5s forwards;
+position:fixed;top:0;left:0;right:0;bottom:0;
+background:black;display:flex;justify-content:center;align-items:center;
+font-size:90px;z-index:99999;animation:introFade 2.5s forwards;
 }
-@keyframes introFade{
-0%{opacity:1}
-80%{opacity:1}
-100%{opacity:0;visibility:hidden}
-}
+@keyframes introFade{0%{opacity:1}80%{opacity:1}100%{opacity:0;visibility:hidden}}
 
-/* 💖 HEART BLAST */
-.blast{
-position:absolute;
-font-size:26px;
-animation:boom 2s ease-out forwards;
-}
-@keyframes boom{
-0%{transform:scale(0);opacity:1}
-100%{transform:scale(8);opacity:0}
-}
+.blast{position:absolute;font-size:26px;animation:boom 2s ease-out forwards;}
+@keyframes boom{0%{transform:scale(0);opacity:1}100%{transform:scale(8);opacity:0}}
 
-/* 💕 FLOAT HEART */
-.heart{
-position:absolute;
-font-size:20px;
-animation:float 6s linear infinite;
-}
-@keyframes float{
-0%{transform:translateY(110vh)}
-100%{transform:translateY(-10vh)}
-}
+.heart{position:absolute;font-size:20px;animation:float 6s linear infinite;}
+@keyframes float{0%{transform:translateY(110vh)}100%{transform:translateY(-10vh)}}
 
-/* 🎂 CAKE */
-#cake{
-font-size:90px;
-margin-top:15px;
-cursor:pointer;
-}
+#cake{font-size:90px;margin-top:10px;cursor:pointer;}
 .cut{animation:cut 1s;}
-@keyframes cut{
-0%{transform:scale(1)}
-50%{transform:scale(.85) rotate(-5deg)}
-100%{transform:scale(1)}
-}
+@keyframes cut{50%{transform:scale(.85) rotate(-5deg)}}
 
-/* 🌟 TITLE */
-h1{
-font-size:28px;
-text-shadow:0 0 15px hotpink;
-}
+h1{text-shadow:0 0 15px hotpink}
+#loveText{min-height:40px;font-size:20px;color:#ffc0cb;text-shadow:0 0 12px red;}
+#shayariText{min-height:40px;font-size:16px;color:#ffd6d6;}
 
-/* 💌 LOVE */
-#loveText{
-min-height:40px;
-font-size:20px;
-color:#ffc0cb;
-text-shadow:0 0 12px red;
-margin-top:5px;
-}
-
-/* ✨ SHAYARI */
-#shayariText{
-min-height:40px;
-font-size:16px;
-color:#ffd6d6;
-margin-top:5px;
-}
-
-/* 🔥 3D NAMES */
 .name{
-position:fixed;
-top:40%;
-font-weight:900;
+position:fixed;top:40%;font-weight:900;
 text-shadow:0 0 10px white,0 0 25px red;
 animation:glow 3s infinite;
 }
 .left{left:5px;transform:rotate(-90deg)}
 .right{right:5px;transform:rotate(90deg)}
-@keyframes glow{
-50%{filter:brightness(2)}
-}
+@keyframes glow{50%{filter:brightness(2)}}
 
-/* 📸 PHOTO */
-img{
-width:170px;
-border-radius:20px;
-box-shadow:0 0 20px hotpink;
-margin:8px auto;
-display:block;
-}
+img{width:170px;border-radius:20px;box-shadow:0 0 20px hotpink;margin:8px auto;display:block}
 
-/* 🔘 BUTTONS */
 button{
 background:linear-gradient(45deg,red,hotpink);
-border:none;
-padding:10px 18px;
-margin:6px;
-color:white;
-border-radius:25px;
-box-shadow:0 0 10px pink;
+border:none;padding:10px 18px;margin:6px;
+color:white;border-radius:25px;box-shadow:0 0 10px pink;
 }
 
-/* ⏳ COUNTDOWN */
-#countdown{
-margin-top:10px;
-color:#ffcaca;
+#countdown{color:#ffcaca;margin-top:8px}
+
+/* QR */
+#ring{
+position:fixed;top:50%;left:50%;
+transform:translate(-50%,-50%) scale(0);
+font-size:120px;z-index:999999;
+text-shadow:0 0 25px gold;transition:0.5s;
+}
+
+/* Chocolate */
+.choco{
+position:fixed;bottom:15px;
+background:linear-gradient(45deg,#5a2d0c,#8b4513);
+color:white;padding:10px 16px;border-radius:30px;
+box-shadow:0 0 12px brown;z-index:9999;
+}
+#cl{left:10px} #cr{right:10px}
+
+#dairyMilk{
+position:fixed;top:50%;left:50%;
+transform:translate(-50%,-50%) scale(0);
+font-size:140px;transition:0.4s;z-index:999999;
 }
 </style>
 </head>
 
 <body>
 
-<!-- 🔥 INTRO PATKA -->
 <div class="intro">💖</div>
 
-<!-- 🎵 MUSIC -->
 <audio autoplay loop>
 <source src="music.mp3">
 </audio>
@@ -152,11 +89,10 @@ color:#ffcaca;
 <div class="name right">Nazni Parveen</div>
 
 <div class="heart" style="left:10%">❤️</div>
-<div class="heart" style="left:40%">💖</div>
-<div class="heart" style="left:80%">💕</div>
+<div class="heart" style="left:50%">💖</div>
+<div class="heart" style="left:90%">💕</div>
 
 <div id="cake">🎂</div>
-
 <h1>Happy Birthday Nazni 🎉</h1>
 
 <div id="loveText"></div>
@@ -172,142 +108,59 @@ color:#ffcaca;
 
 <div id="countdown"></div>
 
-<script>
-/* 💖 AUTO BLAST ON LOAD */
-for(let i=0;i<20;i++){setTimeout(blast, i*100);}
+<!-- ✅ QR -->
+<h2>📱 Scan For Surprise</h2>
+<img id="qrImg" src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://mdtohid786.github.io/Happy-Birthday-To-You-Meri-jaan-/
+style="width:220px;background:white;padding:10px;border-radius:20px"
+onclick="showRing()">
 
+<div id="ring">💍
+<div style="font-size:24px;margin-top:-30px;font-weight:900">TN</div>
+</div>
+
+<!-- ✅ Chocolate -->
+<div class="choco" id="cl" onclick="showChocolate()">🍫 Chocolate</div>
+<div class="choco" id="cr" onclick="showChocolate()">🍫 Chocolate</div>
+
+<div id="dairyMilk">🍫<div style="font-size:22px">Dairy Milk ❤️</div></div>
+
+<script>
+for(let i=0;i<20;i++)setTimeout(blast,i*100);
 function blast(){
 let h=document.createElement("div");
-h.className="blast";
-h.innerHTML="💖";
-h.style.left=Math.random()*window.innerWidth+"px";
-h.style.top=Math.random()*window.innerHeight+"px";
+h.className="blast";h.innerHTML="💖";
+h.style.left=Math.random()*innerWidth+"px";
+h.style.top=Math.random()*innerHeight+"px";
 document.body.appendChild(h);
 setTimeout(()=>h.remove(),2000);
 }
 
-/* 💌 LOVE */
-const love=[
-"I Love You Meri Jaan ❤️",
-"Tum Meri Zindagi Ho 💍",
-"Meri Har Khushi Tumse Hai 💖",
-"Happy Birthday My Love 🎂"
-];
-let li=0;
-function showLove(){
-document.getElementById("loveText").innerText=love[li];
-blast();
-li=(li+1)%love.length;
+const love=["I Love You Meri Jaan ❤️","Tum Meri Zindagi Ho 💍","Happy Birthday My Love 🎂"];
+let li=0;function showLove(){loveText.innerText=love[li];blast();li=(li+1)%love.length;}
+
+const shayari=["Tum meri duniya ho ❤️","Tum saath ho to sab kuchh hai 💖"];
+let si=0;function showShayari(){shayariText.innerText=shayari[si];blast();si=(si+1)%shayari.length;}
+
+function cutCake(){cake.classList.add("cut");blast();setTimeout(()=>cake.classList.remove("cut"),1000);}
+
+function showRing(){
+ring.style.transform="translate(-50%,-50%) scale(1)";
+for(let i=0;i<12;i++)setTimeout(blast,i*80);
+setTimeout(()=>ring.style.transform="translate(-50%,-50%) scale(0)",3000);
 }
 
-/* ✨ SHAYARI */
-const shayari=[
-"Tumhari muskaan meri jaan hai ❤️",
-"Meri har subah tumse hai 💖",
-"Tum meri duniya ho 🌍",
-"Main tumse beinteha mohabbat karta hoon 💍"
-];
-let si=0;
-function showShayari(){
-document.getElementById("shayariText").innerText=shayari[si];
-blast();
-si=(si+1)%shayari.length;
+function showChocolate(){
+dairyMilk.style.transform="translate(-50%,-50%) scale(1)";
+for(let i=0;i<10;i++)setTimeout(blast,i*80);
+setTimeout(()=>dairyMilk.style.transform="translate(-50%,-50%) scale(0)",2500);
 }
 
-/* 🎂 CAKE CUT */
-function cutCake(){
-const cake=document.getElementById("cake");
-cake.classList.add("cut");
-blast();
-setTimeout(()=>cake.classList.remove("cut"),1000);
-}
-
-/* ⏳ COUNTDOWN */
 const bday=new Date("January 4, 2026 00:00:00").getTime();
 setInterval(()=>{
-let now=new Date().getTime();
-let d=bday-now;
-let days=Math.floor(d/(1000*60*60*24));
-let h=Math.floor((d%(1000*60*60*24))/(1000*60*60));
-let m=Math.floor((d%(1000*60*60))/60000);
-let s=Math.floor((d%60000)/1000);
-document.getElementById("countdown").innerHTML=
-"⏳ "+days+"d "+h+"h "+m+"m "+s+"s";
+let d=bday-new Date().getTime();
+countdown.innerHTML="⏳ "+Math.floor(d/86400000)+" Days Left";
 },1000);
 </script>
 
 </body>
 </html>
-<!-- ✅ PERFECT QR + RING ANIMATION -->
-<div style="margin-top:20px; position:relative;">
-  
-  <h2 style="color:#ffb6c1;text-shadow:0 0 10px red;">
-    📱 Scan This QR For Surprise
-  </h2>
-
-  <!-- ✅ FULL QR IMAGE -->
-  <img 
-    id="qrImg"
-    src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://mdtohid786.github.io/Happy-Birthday-To-You-Meri-jaan-/
-    style="
-      background:white;
-      padding:12px;
-      border-radius:20px;
-      box-shadow:0 0 20px hotpink;
-      width:220px;
-      height:220px;
-      object-fit:cover;
-      cursor:pointer;
-    "
-    onclick="showRing()"
-  >
-
-  <p style="font-size:12px;color:#ccc;">
-    Nazni ke phone se scan karo ❤️
-  </p>
-
-  <!-- 💍 HIDDEN RING -->
-  <div 
-    id="ring"
-    style="
-      position:fixed;
-      top:50%;
-      left:50%;
-      transform:translate(-50%,-50%) scale(0);
-      font-size:120px;
-      z-index:999999;
-      text-shadow:0 0 25px gold;
-      transition:0.5s;
-    "
-  >
-    💍
-    <div style="
-      position:absolute;
-      top:50%;
-      left:50%;
-      transform:translate(-50%,-50%);
-      font-size:24px;
-      color:white;
-      font-weight:900;
-      text-shadow:0 0 10px red;
-    ">
-      TN
-    </div>
-  </div>
-
-</div>
-
-<script>
-/* 💍 RING SHOW ON QR TAP */
-function showRing(){
-  const ring = document.getElementById("ring");
-  ring.style.transform = "translate(-50%,-50%) scale(1)";
-  
-  // Heart blast also
-  for(let i=0;i<12;i++) setTimeout(blast, i*80);
-
-  setTimeout(()=>{
-    ring.style.transform = "translate(-50%,-50%) scale(0)";
-  }, 3000);
-}
-</script>
