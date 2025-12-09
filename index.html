@@ -50,20 +50,6 @@ margin:15px auto;
 display:block;
 }
 
-.names{
-position:fixed;
-top:50%;
-transform:translateY(-50%);
-font-weight:bold;
-font-size:20px;
-writing-mode:vertical-rl;
-text-shadow:0 0 10px white,0 0 20px red;
-animation:glow 2.5s infinite;
-}
-#left{left:5px;}
-#right{right:5px;}
-@keyframes glow{50%{filter:brightness(2)}}
-
 button{
 background:linear-gradient(45deg,#ff0055,#ff66aa);
 border:none;
@@ -104,7 +90,19 @@ animation:float 6s linear infinite;
 100%{transform:translateY(-10vh)}
 }
 
-#ring,#dairy{
+/* GIFT BUTTONS */
+.gift{
+position:fixed;
+top:50%;
+font-size:35px;
+cursor:pointer;
+text-shadow:0 0 10px pink;
+}
+#giftLeft{left:8px;}
+#giftRight{right:8px;}
+
+/* POPUPS */
+#popup{
 position:fixed;
 top:50%;
 left:50%;
@@ -114,17 +112,37 @@ z-index:99999;
 transition:0.4s;
 }
 
-.choco{
+/* Chocolate center fixed */
+#choco{
 position:fixed;
 bottom:15px;
+left:50%;
+transform:translateX(-50%);
 background:brown;
-padding:10px 14px;
+padding:10px 18px;
 border-radius:30px;
-box-shadow:0 0 10px chocolate;
+box-shadow:0 0 12px chocolate;
 font-size:14px;
 }
-#cl{left:10px}
-#cr{right:10px}
+
+/* HEART QR */
+.qrbox{
+margin:20px auto;
+width:220px;
+height:220px;
+background:red;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+box-shadow:0 0 25px hotpink;
+}
+.qrbox img{
+width:170px;
+border-radius:20px;
+background:white;
+padding:6px;
+}
 </style>
 </head>
 
@@ -135,9 +153,6 @@ font-size:14px;
 <audio autoplay loop>
 <source src="music.mp3">
 </audio>
-
-<div id="left" class="names">Mr Tohid</div>
-<div id="right" class="names">Nazni Parveen</div>
 
 <div class="heart" style="left:10%">❤️</div>
 <div class="heart" style="left:40%">💖</div>
@@ -159,16 +174,21 @@ font-size:14px;
 
 <div id="countdown"></div>
 
-<h2>📱 Scan For Surprise</h2>
-<img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https://mdtohid786.github.io/Happy-Birthday-To-You-Meri-jaan-/
-style="background:white;padding:10px;border-radius:20px;width:200px"
-onclick="showRing()">
+<h2>❤️ Scan For Surprise ❤️</h2>
 
-<div id="ring">💍<div style="font-size:26px">TN</div></div>
-<div id="dairy">🍫</div>
+<div class="qrbox" onclick="showPopup('💍')">
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://mdtohid786.github.io/Happy-Birthday-To-You-Meri-jaan-/
+</div>
 
-<div class="choco" id="cl" onclick="showChoco()">🍫 Chocolate</div>
-<div class="choco" id="cr" onclick="showChoco()">🍫 Chocolate</div>
+<!-- Gifts -->
+<div class="gift" id="giftLeft" onclick="showPopup('🎂')">🎁</div>
+<div class="gift" id="giftRight" onclick="showPopup('😘')">🎁</div>
+
+<!-- Center Chocolate -->
+<div id="choco" onclick="showPopup('🍫')">🍫 Chocolate</div>
+
+<!-- Popup -->
+<div id="popup"></div>
 
 <script>
 const love=[
@@ -199,14 +219,10 @@ cake.style.transform="scale(0.9)";
 setTimeout(()=>cake.style.transform="scale(1)",300);
 }
 
-function showRing(){
-ring.style.transform="translate(-50%,-50%) scale(1)";
-setTimeout(()=>ring.style.transform="translate(-50%,-50%) scale(0)",2500);
-}
-
-function showChoco(){
-dairy.style.transform="translate(-50%,-50%) scale(1)";
-setTimeout(()=>dairy.style.transform="translate(-50%,-50%) scale(0)",2500);
+function showPopup(icon){
+popup.innerHTML=icon;
+popup.style.transform="translate(-50%,-50%) scale(1)";
+setTimeout(()=>popup.style.transform="translate(-50%,-50%) scale(0)",2500);
 }
 
 const bday=new Date("January 4, 2026 00:00:00").getTime();
