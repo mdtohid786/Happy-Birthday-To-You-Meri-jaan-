@@ -12,24 +12,19 @@ font-family:Arial;
 background:radial-gradient(circle at top,#520000,#000);
 color:white;
 text-align:center;
-overflow-x:hidden;
-}
-
-#cakeTop{
-font-size:80px;
-margin-top:10px;
 }
 
 h1{
 font-size:26px;
-margin:5px 0;
-text-shadow:0 0 10px pink;
+text-shadow:0 0 10px hotpink;
 }
 
 #sub{
-font-size:18px;
 color:#ffb6c1;
+font-size:18px;
 }
+
+#cakeTop{font-size:80px;}
 
 .photoBox{
 margin:15px auto;
@@ -45,40 +40,25 @@ width:100%;
 border-radius:20px;
 }
 
-.confetti{
-position:fixed;
-top:40%;
-font-size:35px;
-}
-.left{left:10px;}
-.right{right:10px;}
-
-.gift{
-position:fixed;
-top:55%;
-font-size:40px;
-}
-.giftLeft{left:10px;}
-.giftRight{right:10px;}
-
 button{
 background:linear-gradient(45deg,#ff0066,#ff99cc);
 border:none;
 color:white;
-padding:10px 16px;
-border-radius:25px;
+padding:12px 18px;
+border-radius:30px;
 margin:6px;
-box-shadow:0 0 10px pink;
+box-shadow:0 0 12px pink;
+font-size:16px;
 }
 
 #countdown{
-margin-top:10px;
+margin-top:8px;
 font-size:18px;
 color:#ffe1e1;
 }
 
 .qrHeart{
-margin:20px auto;
+margin:18px auto;
 width:220px;
 height:220px;
 background:red;
@@ -93,19 +73,27 @@ box-shadow:0 0 25px hotpink;
 width:160px;
 background:white;
 padding:6px;
-border-radius:15px;
+border-radius:18px;
 }
 
 #chocoBtn{
 position:fixed;
-bottom:15px;
+bottom:12px;
 left:50%;
 transform:translateX(-50%);
 background:brown;
-padding:12px 20px;
+padding:12px 22px;
 border-radius:30px;
 box-shadow:0 0 12px chocolate;
 }
+
+.gift{
+position:fixed;
+top:55%;
+font-size:42px;
+}
+.giftLeft{left:10px;}
+.giftRight{right:10px;}
 
 #popup{
 position:fixed;
@@ -116,6 +104,21 @@ font-size:120px;
 transition:0.3s;
 z-index:99999;
 }
+
+#box{
+position:fixed;
+bottom:90px;
+left:50%;
+transform:translateX(-50%) scale(0);
+background:#111;
+color:white;
+padding:18px;
+border-radius:20px;
+box-shadow:0 0 20px hotpink;
+width:85%;
+font-size:16px;
+transition:.3s;
+}
 </style>
 </head>
 
@@ -125,9 +128,6 @@ z-index:99999;
 <h1>Happy Birthday Nazni 🎉</h1>
 <div id="sub">I Love You Meri Jaan ❤️</div>
 
-<div class="confetti left">🎉</div>
-<div class="confetti right">🎉</div>
-
 <div class="photoBox">
 <img src="Snapchat-602998492.jpg">
 </div>
@@ -135,10 +135,10 @@ z-index:99999;
 <p>Sirf Tum ❤️</p>
 <p>Meri har khushi tumse judi hai 💖</p>
 
-<button>💖 Love</button>
-<button>✨ Shayari</button>
+<button onclick="showLove()">💖 Love</button>
+<button onclick="showShayari()">✨ Shayari</button>
 
-<div id="countdown">⏳ Loading...</div>
+<div id="countdown"></div>
 
 <h2>❤️ Scan For Surprise ❤️</h2>
 
@@ -146,33 +146,45 @@ z-index:99999;
 <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://mdtohid786.github.io/Happy-Birthday-To-You-Meri-jaan-/
 </div>
 
-<!-- Gifts -->
 <div class="gift giftLeft" onclick="showPopup('🎂')">🎁</div>
 <div class="gift giftRight" onclick="showPopup('😘')">🎁</div>
 
-<!-- Center Chocolate -->
 <div id="chocoBtn" onclick="showPopup('🍫')">🍫 Chocolate</div>
 
 <div id="popup"></div>
+<div id="box"></div>
 
 <script>
+
 function showPopup(icon){
-popup.innerHTML=icon;
+popup.innerHTML = icon;
 popup.style.transform="translate(-50%,-50%) scale(1)";
 setTimeout(()=>popup.style.transform="translate(-50%,-50%) scale(0)",2000);
 }
 
-/* ✅ COUNTDOWN */
+function showLove(){
+box.innerHTML="Nazni, tum meri zindagi ho ❤️<br>Har saans tumhare naam 💕";
+box.style.transform="translateX(-50%) scale(1)";
+setTimeout(()=>box.style.transform="translateX(-50%) scale(0)",4000);
+}
+
+function showShayari(){
+box.innerHTML="Tumhari muskan meri pehchan hai 🌙<br>Tum hi meri jaan ho 💖";
+box.style.transform="translateX(-50%) scale(1)";
+setTimeout(()=>box.style.transform="translateX(-50%) scale(0)",5000);
+}
+
+/* COUNTDOWN */
 const birthday = new Date("January 4, 2026 00:00:00").getTime();
 
 setInterval(()=>{
 const now = new Date().getTime();
 const diff = birthday - now;
-
-const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+const days = Math.floor(diff / (1000*60*60*24));
 document.getElementById("countdown").innerHTML =
 "⏳ " + days + " Days Left";
 },1000);
+
 </script>
 
 </body>
