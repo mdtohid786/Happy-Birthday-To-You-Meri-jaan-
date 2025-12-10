@@ -1,114 +1,237 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Happy Birthday Nazni</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Happy Birthday Nazni ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      margin: 0;
-      background: radial-gradient(circle, #2b0000, #000);
-      color: white;
-      font-family: Arial, sans-serif;
-      text-align: center;
-    }
+<style>
+body{
+margin:0;
+padding:0;
+background:radial-gradient(circle at top,#3a0000,#000);
+min-height:100vh;
+font-family:Arial;
+color:white;
+text-align:center;
+overflow-x:hidden;
+}
 
-    h1 {
-      margin-top: 20px;
-      text-shadow: 0 0 10px hotpink;
-    }
+.intro{
+position:fixed;
+inset:0;
+background:black;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:80px;
+z-index:9999;
+animation:fadeout 2.5s forwards;
+}
+@keyframes fadeout{80%{opacity:1}100%{opacity:0;visibility:hidden}}
 
-    .heart-qr {
-      margin-top: 40px;
-      display: flex;
-      justify-content: center;
-    }
+h1{
+margin-top:10px;
+font-size:26px;
+text-shadow:0 0 12px hotpink;
+}
 
-    .heart {
-      width: 220px;
-      height: 220px;
-      background: red;
-      position: relative;
-      transform: rotate(-45deg);
-      animation: pulse 1.5s infinite;
-    }
+#sub{
+font-size:18px;
+color:#ffc0cb;
+margin-bottom:10px;
+}
 
-    .heart:before,
-    .heart:after {
-      content: "";
-      width: 220px;
-      height: 220px;
-      background: red;
-      border-radius: 50%;
-      position: absolute;
-    }
+.photo{
+width:220px;
+border-radius:25px;
+box-shadow:0 0 25px hotpink;
+margin:15px auto;
+display:block;
+}
 
-    .heart:before {
-      top: -110px;
-      left: 0;
-    }
+button{
+background:linear-gradient(45deg,#ff0055,#ff66aa);
+border:none;
+padding:10px 16px;
+border-radius:25px;
+color:white;
+margin:6px;
+box-shadow:0 0 10px pink;
+font-size:15px;
+}
 
-    .heart:after {
-      left: 110px;
-      top: 0;
-    }
+#cake{
+font-size:80px;
+margin-top:5px;
+cursor:pointer;
+}
 
-    .qr-box {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) rotate(45deg);
-      background: white;
-      padding: 8px;
-      border-radius: 12px;
-    }
+#loveText,#shayariText{
+min-height:30px;
+margin:6px;
+font-size:18px;
+color:#ffd6d6;
+}
 
-    .qr-box img {
-      width: 130px;
-      height: 130px;
-    }
+#countdown{
+margin-top:10px;
+font-size:18px;
+color:#ffe3e3;
+}
 
-    @keyframes pulse {
-      0% { transform: rotate(-45deg) scale(1); }
-      50% { transform: rotate(-45deg) scale(1.05); }
-      100% { transform: rotate(-45deg) scale(1); }
-    }
+.heart{
+position:absolute;
+font-size:20px;
+animation:float 6s linear infinite;
+}
+@keyframes float{
+0%{transform:translateY(110vh)}
+100%{transform:translateY(-10vh)}
+}
 
-    .countdown {
-      font-size: 26px;
-      margin-top: 30px;
-      color: gold;
-      text-shadow: 0 0 10px red;
-    }
-  </style>
+/* GIFT BUTTONS */
+.gift{
+position:fixed;
+top:50%;
+font-size:35px;
+cursor:pointer;
+text-shadow:0 0 10px pink;
+}
+#giftLeft{left:8px;}
+#giftRight{right:8px;}
+
+/* POPUPS */
+#popup{
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%) scale(0);
+font-size:120px;
+z-index:99999;
+transition:0.4s;
+}
+
+/* Chocolate center fixed */
+#choco{
+position:fixed;
+bottom:15px;
+left:50%;
+transform:translateX(-50%);
+background:brown;
+padding:10px 18px;
+border-radius:30px;
+box-shadow:0 0 12px chocolate;
+font-size:14px;
+}
+
+/* HEART QR */
+.qrbox{
+margin:20px auto;
+width:220px;
+height:220px;
+background:red;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+box-shadow:0 0 25px hotpink;
+}
+.qrbox img{
+width:170px;
+border-radius:20px;
+background:white;
+padding:6px;
+}
+</style>
 </head>
 
 <body>
 
-  <h1>🎂 Happy Birthday Nazni 🎉</h1>
-  <p>I Love You Meri Jaan ❤️</p>
+<div class="intro">💖</div>
 
-  <!-- ✅ COUNTDOWN -->
-  <div class="countdown" id="timer">Loading...</div>
+<audio autoplay loop>
+<source src="music.mp3">
+</audio>
 
-  <!-- ✅ COUNTDOWN SCRIPT -->
-  <script>
-    var targetDate = new Date("January 04, 2026 00:00:00").getTime();
+<div class="heart" style="left:10%">❤️</div>
+<div class="heart" style="left:40%">💖</div>
+<div class="heart" style="left:70%">💕</div>
 
-    setInterval(function() {
-      var now = new Date().getTime();
-      var distance = targetDate - now;
+<div id="cake" onclick="cutCake()">🎂</div>
+<h1>Happy Birthday Nazni 🎉</h1>
+<div id="sub">I Love You Meri Jaan ❤️</div>
 
-      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+<img class="photo" src="Snapchat-602998492.jpg">
 
-      document.getElementById("timer").innerHTML =
-        "⏳ " + days + " Days " + hours + "h " + minutes + "m " + seconds + "s Left";
+<div id="loveText"></div>
+<div id="shayariText"></div>
 
-    }, 1000);
-  </script>
+<div>
+<button onclick="showLove()">💖 Love</button>
+<button onclick="showShayari()">✨ Shayari</button>
+</div>
+
+<div id="countdown"></div>
+
+<h2>❤️ Scan For Surprise ❤️</h2>
+
+<div class="qrbox" onclick="showPopup('💍')">
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=https://dl.flipkart.com/s/0sp_4rNNNN
+</div>
+
+<!-- Gifts -->
+<div class="gift" id="giftLeft" onclick="showPopup('🎂')">🎁</div>
+<div class="gift" id="giftRight" onclick="showPopup('😘')">🎁</div>
+
+<!-- Center Chocolate -->
+<div id="choco" onclick="showPopup('🍫')">🍫 Chocolate</div>
+
+<!-- Popup -->
+<div id="popup"></div>
+
+<script>
+const love=[
+"I Love You Meri Jaan ❤️",
+"Tum Meri Duniya Ho 💖",
+"Sirf Tum ❤️"
+];
+let li=0;
+
+function showLove(){
+loveText.innerText=love[li];
+li=(li+1)%love.length;
+}
+
+const shayari=[
+"Tum saath ho to har lamha haseen hai ❤️",
+"Meri har khushi tumse judi hai 💖"
+];
+let si=0;
+
+function showShayari(){
+shayariText.innerText=shayari[si];
+si=(si+1)%shayari.length;
+}
+
+function cutCake(){
+cake.style.transform="scale(0.9)";
+setTimeout(()=>cake.style.transform="scale(1)",300);
+}
+
+function showPopup(icon){
+popup.innerHTML=icon;
+popup.style.transform="translate(-50%,-50%) scale(1)";
+setTimeout(()=>popup.style.transform="translate(-50%,-50%) scale(0)",2500);
+}
+
+const bday=new Date("January 4, 2026 00:00:00").getTime();
+setInterval(()=>{
+const now=new Date().getTime();
+const d=bday-now;
+countdown.innerHTML="⏳ "+Math.floor(d/86400000)+" Days Left";
+},1000);
+</script>
 
 </body>
 </html>
