@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Start ❤️‍🩹</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{
+margin:0;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+background:black;
+color:white;
+font-family:Arial;
+}
+
+.tapBox{
+text-align:center;
+font-size:45px;
+animation:pulse 1.5s infinite;
+cursor:pointer;
+}
+
+@keyframes pulse{
+0%{transform:scale(1);}
+50%{transform:scale(1.2);}
+100%{transform:scale(1);}
+}
+</style>
+</head>
+
+<body onclick="goNext()">
+  <div class="tapBox">
+    ❤️‍🩹<br>
+    <span style="font-size:18px;">Tap</span>
+  </div>
+
+<script>
+function goNext(){
+  window.location.href="gift.html";
+}
+</script>
+</body>
+</html>
