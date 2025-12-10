@@ -1,191 +1,123 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Happy Birthday Nazni ❤️</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Nazni</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-body{
-margin:0;
-font-family:Arial;
-background:radial-gradient(circle at top,#520000,#000);
-color:white;
-text-align:center;
-}
+  <style>
+    body {
+      margin: 0;
+      background: radial-gradient(circle, #2b0000, #000);
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
 
-h1{
-font-size:26px;
-text-shadow:0 0 10px hotpink;
-}
+    h1 {
+      margin-top: 20px;
+      text-shadow: 0 0 10px hotpink;
+    }
 
-#sub{
-color:#ffb6c1;
-font-size:18px;
-}
+    .heart-qr {
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+    }
 
-#cakeTop{font-size:80px;}
+    .heart {
+      width: 220px;
+      height: 220px;
+      background: red;
+      position: relative;
+      transform: rotate(-45deg);
+      animation: pulse 1.5s infinite;
+    }
 
-.photoBox{
-margin:15px auto;
-width:240px;
-padding:8px;
-border-radius:25px;
-box-shadow:0 0 25px hotpink;
-background:#000;
-}
+    .heart:before,
+    .heart:after {
+      content: "";
+      width: 220px;
+      height: 220px;
+      background: red;
+      border-radius: 50%;
+      position: absolute;
+    }
 
-.photoBox img{
-width:100%;
-border-radius:20px;
-}
+    .heart:before {
+      top: -110px;
+      left: 0;
+    }
 
-button{
-background:linear-gradient(45deg,#ff0066,#ff99cc);
-border:none;
-color:white;
-padding:12px 18px;
-border-radius:30px;
-margin:6px;
-box-shadow:0 0 12px pink;
-font-size:16px;
-}
+    .heart:after {
+      left: 110px;
+      top: 0;
+    }
 
-#countdown{
-margin-top:8px;
-font-size:18px;
-color:#ffe1e1;
-}
+    .qr-box {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(45deg);
+      background: white;
+      padding: 8px;
+      border-radius: 12px;
+    }
 
-.qrHeart{
-margin:18px auto;
-width:220px;
-height:220px;
-background:red;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-box-shadow:0 0 25px hotpink;
-}
+    .qr-box img {
+      width: 130px;
+      height: 130px;
+    }
 
-.qrHeart img{
-width:160px;
-background:white;
-padding:6px;
-border-radius:18px;
-}
+    @keyframes pulse {
+      0% { transform: rotate(-45deg) scale(1); }
+      50% { transform: rotate(-45deg) scale(1.05); }
+      100% { transform: rotate(-45deg) scale(1); }
+    }
 
-#chocoBtn{
-position:fixed;
-bottom:12px;
-left:50%;
-transform:translateX(-50%);
-background:brown;
-padding:12px 22px;
-border-radius:30px;
-box-shadow:0 0 12px chocolate;
-}
-
-.gift{
-position:fixed;
-top:55%;
-font-size:42px;
-}
-.giftLeft{left:10px;}
-.giftRight{right:10px;}
-
-#popup{
-position:fixed;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%) scale(0);
-font-size:120px;
-transition:0.3s;
-z-index:99999;
-}
-
-#box{
-position:fixed;
-bottom:90px;
-left:50%;
-transform:translateX(-50%) scale(0);
-background:#111;
-color:white;
-padding:18px;
-border-radius:20px;
-box-shadow:0 0 20px hotpink;
-width:85%;
-font-size:16px;
-transition:.3s;
-}
-</style>
+    .countdown {
+      font-size: 26px;
+      margin-top: 30px;
+      color: gold;
+      text-shadow: 0 0 10px red;
+    }
+  </style>
 </head>
 
 <body>
 
-<div id="cakeTop">🎂</div>
-<h1>Happy Birthday Nazni 🎉</h1>
-<div id="sub">I Love You Meri Jaan ❤️</div>
+  <h1>🎂 Happy Birthday Nazni 🎉</h1>
+  <p>I Love You Meri Jaan ❤️</p>
 
-<div class="photoBox">
-<img src="Snapchat-602998492.jpg">
-</div>
+  <!-- ✅ HEART QR -->
+  <div class="heart-qr">
+    <div class="heart">
+      <div class="qr-box">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://tohid786.github.io">
+      </div>
+    </div>
+  </div>
 
-<p>Sirf Tum ❤️</p>
-<p>Meri har khushi tumse judi hai 💖</p>
+  <!-- ✅ COUNTDOWN -->
+  <div class="countdown" id="timer">Loading...</div>
 
-<button onclick="showLove()">💖 Love</button>
-<button onclick="showShayari()">✨ Shayari</button>
+  <!-- ✅ COUNTDOWN SCRIPT -->
+  <script>
+    var targetDate = new Date("January 4, 2026 00:00:00").getTime();
 
-<div id="countdown"></div>
+    setInterval(function() {
+      var now = new Date().getTime();
+      var distance = targetDate - now;
 
-<h2>❤️ Scan For Surprise ❤️</h2>
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-<div class="qrHeart" onclick="showPopup('💍')">
-<img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://mdtohid786.github.io/Happy-Birthday-To-You-Meri-jaan-/
-</div>
+      document.getElementById("timer").innerHTML =
+        "⏳ " + days + " Days " + hours + "h " + minutes + "m " + seconds + "s Left";
 
-<div class="gift giftLeft" onclick="showPopup('🎂')">🎁</div>
-<div class="gift giftRight" onclick="showPopup('😘')">🎁</div>
-
-<div id="chocoBtn" onclick="showPopup('🍫')">🍫 Chocolate</div>
-
-<div id="popup"></div>
-<div id="box"></div>
-
-<script>
-
-function showPopup(icon){
-popup.innerHTML = icon;
-popup.style.transform="translate(-50%,-50%) scale(1)";
-setTimeout(()=>popup.style.transform="translate(-50%,-50%) scale(0)",2000);
-}
-
-function showLove(){
-box.innerHTML="Nazni, tum meri zindagi ho ❤️<br>Har saans tumhare naam 💕";
-box.style.transform="translateX(-50%) scale(1)";
-setTimeout(()=>box.style.transform="translateX(-50%) scale(0)",4000);
-}
-
-function showShayari(){
-box.innerHTML="Tumhari muskan meri pehchan hai 🌙<br>Tum hi meri jaan ho 💖";
-box.style.transform="translateX(-50%) scale(1)";
-setTimeout(()=>box.style.transform="translateX(-50%) scale(0)",5000);
-}
-
-/* COUNTDOWN */
-const birthday = new Date("January 4, 2026 00:00:00").getTime();
-
-setInterval(()=>{
-const now = new Date().getTime();
-const diff = birthday - now;
-const days = Math.floor(diff / (1000*60*60*24));
-document.getElementById("countdown").innerHTML =
-"⏳ " + days + " Days Left";
-},1000);
-
-</script>
+    }, 1000);
+  </script>
 
 </body>
 </html>
