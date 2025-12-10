@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Open Gift 🎁</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{
+margin:0;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+background:#111;
+color:white;
+font-family:Arial;
+}
+
+.gift{
+font-size:90px;
+animation:shake 1s infinite;
+cursor:pointer;
+text-align:center;
+}
+
+@keyframes shake{
+0%{transform:rotate(0);}
+25%{transform:rotate(6deg);}
+50%{transform:rotate(0);}
+75%{transform:rotate(-6deg);}
+100%{transform:rotate(0);}
+}
+</style>
+</head>
+
+<body onclick="openGift()">
+
+<div class="gift">
+🎁<br>
+<span style="font-size:18px;">Tap To Open</span>
+</div>
+
+<script>
+function openGift(){
+  window.location.href="index.html";   // ✅ Nazni Birthday Page
+}
+</script>
+
+</body>
+</html>
