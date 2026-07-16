@@ -1,237 +1,34 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Wedding Invitation | Invifest Clone</title>
-    <!-- Tailwind Engine -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Exact Luxury Serif and Cursive Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Primary Meta Tags -->
+    <title>Invifest | Demo Wedding Invitation</title>
+    <meta name="title" content="Invifest | Demo Wedding Invitation" />
+    <meta name="description" content="Beautiful digital invitations for every celebration ✨ Weddings · Birthdays · All occasions. Design in minutes, share on WhatsApp." />
 
-    <style>
-        :root {
-            --gold-gradient: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
-            --bg-dark: #0a0b10;
-        }
-        body {
-            background-color: var(--bg-dark);
-            color: #f3f4f6;
-            font-family: 'Montserrat', sans-serif;
-            overflow-x: hidden;
-        }
-        .font-luxury { font-family: 'Cinzel', serif; }
-        .font-signature { font-family: 'Great Vibes', cursive; }
-        
-        /* Gold Text & Borders Custom System */
-        .text-gold {
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .border-gold {
-            border-image: var(--gold-gradient) 1;
-        }
-        
-        /* Glass Card Wrapper */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://invifest-demo.vercel.app/" />
+    <meta property="og:title" content="Invifest | Demo Wedding Invitation" />
+    <meta property="og:description" content="Beautiful digital invitations for every celebration ✨ Weddings · Birthdays · All occasions. Design in minutes, share on WhatsApp." />
+    <!-- High-res image for WhatsApp preview -->
+    <meta property="og:image" content="https://i.ibb.co/Z6mZjgyj/INVIFEST-BY-AASTHA-1.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
 
-        /* Smooth App Snap Horizontal Rail */
-        .invifest-gallery {
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            scroll-behavior: smooth;
-            gap: 20px;
-            padding: 20px 40px;
-        }
-        .invifest-gallery::-webkit-scrollbar { display: none; }
-        .gallery-item {
-            flex: 0 0 290px;
-            scroll-snap-align: center;
-            height: 420px;
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.1);
-            position: relative;
-        }
-        
-        /* Gate System Overlay */
-        #gate-lock {
-            position: fixed;
-            inset: 0;
-            background: radial-gradient(circle at center, #141622 0%, #08090f 100%);
-            z-index: 99999;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-    </style>
-</head>
-<body>
-
-    <!-- 🌟 1. EXACT PREMIUM GATE ENTRY OVERLAY -->
-    <div id="gate-lock" class="text-center px-6">
-        <!-- Elegant Border Frame Decoration -->
-        <div class="absolute inset-6 border border-dashed border-gray-800 pointer-events-none rounded-lg"></div>
-        
-        <p class="font-luxury tracking-[0.4em] text-xs text-amber-400/70 mb-4 uppercase">Wedding Invitation</p>
-        <h1 class="font-signature text-6xl text-white mb-2">Rahul & Riya</h1>
-        <p class="text-[11px] text-gray-500 tracking-widest uppercase mb-12">Save The Date</p>
-        
-        <button onclick="unlockInvite()" class="px-8 py-3 rounded-full border border-amber-500/50 text-amber-400 font-luxury text-xs tracking-[0.2em] uppercase hover:bg-amber-500 hover:text-black transition-all duration-300 shadow-xl shadow-amber-500/5 active:scale-95">
-            Open Invitation
-        </button>
-    </div>
-
-    <!-- 🎵 AUDIO HARDWARE SETUP -->
-    <audio id="invite-bg-track" loop>
-        <source src="song.mp3" type="audio/mp3">
-    </audio>
-
-    <!-- 🏛️ 2. HERO LUXURY SCREEN -->
-    <section class="min-h-screen flex flex-col justify-center items-center text-center px-4 relative">
-        <div class="absolute top-10 left-10 w-24 h-24 border-t border-l border-amber-500/20"></div>
-        <div class="absolute bottom-10 right-10 w-24 h-24 border-b border-r border-amber-500/20"></div>
-
-        <p class="font-luxury text-xs tracking-[0.5em] text-amber-500 mb-6 uppercase">The Celebration of Love</p>
-        <h2 class="font-signature text-8xl text-white my-4">Rahul <span class="text-3xl font-luxury text-amber-400/60 vertical-middle mx-2">&</span> Riya</h2>
-        <div class="w-16 h-[1px] bg-gradient-to-r from-transparent via-amber-500 to-transparent my-6"></div>
-        <p class="text-sm font-light text-gray-400 max-w-sm leading-relaxed tracking-wide">
-            Together with their families, request the pleasure of your company at the celebration of their marriage.
-        </p>
-
-        <div class="absolute bottom-10 animate-bounce text-amber-500/30 text-xs tracking-widest uppercase">
-            Scroll Down <br> ↓
-        </div>
-    </section>
-
-    <!-- 🎫 3. EXACT CLONE SCRATCH CARD VIEW -->
-    <section class="py-24 bg-[#0d0e15] flex flex-col items-center justify-center border-y border-white/5 relative">
-        <p class="font-luxury text-[11px] tracking-[0.3em] text-amber-500 mb-2 uppercase">Exclusive Details</p>
-        <h3 class="font-luxury text-2xl text-white mb-8 tracking-wide">Scratch To Reveal Date</h3>
-
-        <!-- Card Container Box -->
-        <div class="relative w-[320px] h-[160px] rounded-2xl overflow-hidden shadow-2xl border border-amber-500/30 bg-[#12141f]">
-            <!-- Hidden Content Layer -->
-            <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-4">
-                <p class="font-luxury text-amber-500 text-xs tracking-widest mb-1">SHUBH VIVAAH</p>
-                <h4 class="font-luxury text-2xl font-bold text-white tracking-wider">NOVEMBER 15, 2026</h4>
-                <div class="w-12 h-[1px] bg-amber-500/30 my-2"></div>
-                <p class="text-[11px] text-gray-400 tracking-wide">Save the auspicious date for celebrations</p>
-            </div>
-            <!-- Interactive Top Cover Scratch Surface Canvas -->
-            <canvas id="scratch-layer" width="320" height="160" class="absolute inset-0 z-10 cursor-pointer touch-none"></canvas>
-        </div>
-        <p class="text-[10px] text-gray-500 mt-4 italic">Swipe or click-drag to wipe off the surface gray mask</p>
-    </section>
-
-    <!-- 🖼️ 4. APP SLIDE PREMIUM MULTI GALLERY -->
-    <section class="py-24">
-        <div class="text-center mb-12">
-            <p class="font-luxury text-[11px] tracking-[0.3em] text-amber-500 mb-2 uppercase">Our Journey</p>
-            <h3 class="font-signature text-5xl text-white">Sweet Memories</h3>
-        </div>
-
-        <!-- Snap Rail -->
-        <div class="invifest-gallery">
-            <!-- Frame 1 -->
-            <div class="gallery-item">
-                <img src="https://picsum.photos/600/900?random=1" class="w-full h-full object-cover pointer-events-none" alt="1">
-            </div>
-            <!-- Frame 2 -->
-            <div class="gallery-item">
-                <img src="https://picsum.photos/600/900?random=2" class="w-full h-full object-cover pointer-events-none" alt="2">
-            </div>
-            <!-- Frame 3 -->
-            <div class="gallery-item">
-                <img src="https://picsum.photos/600/900?random=3" class="w-full h-full object-cover pointer-events-none" alt="3">
-            </div>
-            <!-- Frame 4 -->
-            <div class="gallery-item">
-                <img src="https://picsum.photos/600/900?random=4" class="w-full h-full object-cover pointer-events-none" alt="4">
-            </div>
-            <!-- Frame 5 -->
-            <div class="gallery-item">
-                <img src="https://picsum.photos/600/900?random=5" class="w-full h-full object-cover pointer-events-none" alt="5">
-            </div>
-        </div>
-        <p class="text-center text-[10px] text-gray-600 mt-4 tracking-widest uppercase">← Swipe Horizontally to View More →</p>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="py-12 text-center border-t border-white/5 bg-[#08090f]">
-        <p class="font-luxury text-[10px] text-gray-600 tracking-[0.4em] uppercase">Celebrations • Invifest Premium Edition</p>
-    </footer>
-
-    <!-- ENGINE SCRIPTS SETUP -->
-    <script>
-        // 1. Unlocking Overlay Engine Setup
-        function unlockInvite() {
-            const lock = document.getElementById('gate-lock');
-            lock.style.opacity = '0';
-            lock.style.transform = 'scale(1.05)';
-            setTimeout(() => { lock.style.display = 'none'; }, 600);
-            
-            // Audio Core Bypasser trigger
-            const audio = document.getElementById('invite-bg-track');
-            audio.play().catch(e => console.log('Audio Engine requires manual system handshake'));
-        }
-
-        // 2. High Density Pixel Canvas Scratch Engine
-        const canvas = document.getElementById('scratch-layer');
-        const ctx = canvas.getContext('2d');
-        let activeErase = false;
-
-        // Cover fill with clean matching dark metallic tone
-        ctx.fillStyle = '#222533';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        // Gold luxury text inside scratch mask cover
-        ctx.fillStyle = '#dfb76c';
-        ctx.font = 'bold 12px Montserrat, sans-serif';
-        ctx.textAlign = 'center';
-        ctx.fillText('✨ SCRATCH WITH FINGER ✨', canvas.width / 2, canvas.height / 2 + 5);
-
-        function positionHandler(e) {
-            const boundary = canvas.getBoundingClientRect();
-            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-            return {
-                x: clientX - boundary.left,
-                y: clientY - boundary.top
-            };
-        }
-
-        function eraseInit(e) { activeErase = true; eraseMove(e); }
-        function eraseHalt() { activeErase = false; }
-
-        function eraseMove(e) {
-            if (!activeErase) return;
-            e.preventDefault();
-            const pos = positionHandler(e);
-            
-            ctx.globalCompositeOperation = 'destination-out';
-            ctx.beginPath();
-            ctx.arc(pos.x, pos.y, 22, 0, Math.PI * 2); // Optimized diameter pointer eraser brush
-            ctx.fill();
-        }
-
-        // Hardware Event Interfaces
-        canvas.addEventListener('touchstart', eraseInit);
-        canvas.addEventListener('touchmove', eraseMove);
-        canvas.addEventListener('touchend', eraseHalt);
-        canvas.addEventListener('mousedown', eraseInit);
-        canvas.addEventListener('mousemove', eraseMove);
-        canvas.addEventListener('mouseup', eraseHalt);
-        canvas.addEventListener('mouseleave', eraseHalt);
-    </script>
-</body>
-    </html>
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://invifest-demo.vercel.app/" />
+    <meta property="twitter:title" content="Invifest | Demo Wedding Invitation" />
+    <meta property="twitter:description" content="Beautiful digital invitations for every celebration ✨ Weddings · Birthdays · All occasions. Design in minutes, share on WhatsApp." />
+    <meta property="twitter:image" content="https://i.ibb.co/Z6mZjgyj/INVIFEST-BY-AASTHA-1.jpg" />
+    <script type="module" crossorigin src="/assets/index-Bcc8A_gg.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-B-b92nF0.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
