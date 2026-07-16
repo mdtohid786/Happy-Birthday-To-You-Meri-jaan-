@@ -1,292 +1,84 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Royal Celebration ✨</title>
-    <!-- Tailwind CSS CDN -->
+    <title>Royal Invitation</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- AOS Library for advanced smooth scroll entry -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <!-- FontAwesome Pro style icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Premium Font Family integrations -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&family=Sacramento&display=swap" rel="stylesheet">
-
     <style>
-        .font-royal { font-family: 'Cinzel', serif; }
-        .font-cursive { font-family: 'Sacramento', cursive; }
-        .font-serif-premium { font-family: 'Playfair Display', serif; }
-        .font-main { font-family: 'Poppins', sans-serif; }
+        body { background-color: #0c0c0c; color: white; font-family: 'Times New Roman', serif; }
         
-        /* Premium Background Elements */
-        .glass-card { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.07); box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4); }
-        .glow-blob { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.12; z-index: 1; pointer-events: none; }
+        /* 1. Entry Overlay */
+        #entry-overlay { position: fixed; inset: 0; background: #000; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         
-        /* Custom dynamic scrollbar */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #07080d; }
-        ::-webkit-scrollbar-thumb { background: #14b8a6; border-radius: 10px; }
+        /* 2. Scratch/Swipe Effect */
+        #scratch-zone { position: relative; width: 300px; height: 150px; background: #1a1a1a; border: 2px solid #d4af37; overflow: hidden; cursor: crosshair; }
+        #cover-layer { position: absolute; inset: 0; background: #1a1a1a; display: flex; align-items: center; justify-content: center; transition: opacity 0.8s; }
+        
+        /* 3. Snap Gallery */
+        .gallery-container { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 1rem; padding: 2rem; }
+        .gallery-item { flex: 0 0 80%; scroll-snap-align: center; height: 350px; background: #222; border-radius: 20px; overflow: hidden; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
     </style>
 </head>
-<body class="bg-[#07080d] text-gray-200 font-main overflow-x-hidden relative">
+<body>
 
-    <!-- 🌌 Ambient Atmosphere Layers -->
-    <div class="glow-blob w-[400px] h-[400px] bg-teal-500 top-[-100px] left-[-150px]"></div>
-    <div class="glow-blob w-[500px] h-[500px] bg-indigo-600 top-[120vh] right-[-200px]"></div>
-    <div class="glow-blob w-[450px] h-[450px] bg-emerald-500 bottom-[80vh] left-[-100px]"></div>
-
-    <!-- 🎵 Floating Audio Controller Component -->
-    <div class="fixed bottom-6 right-6 z-50">
-        <button id="musicBtn" onclick="toggleMusic()" class="w-14 h-14 rounded-full bg-gradient-to-tr from-teal-400 to-emerald-500 text-black flex items-center justify-center font-bold shadow-lg shadow-teal-500/20 hover:scale-110 active:scale-95 transition-all duration-300">
-            <i id="musicIcon" class="fas fa-music text-lg"></i>
-        </button>
-        <audio id="bgMusic" loop>
-            <source src="wedding-theme.mp3" type="audio/mp3">
-        </audio>
+    <!-- Overlay -->
+    <div id="entry-overlay">
+        <h1 class="text-4xl mb-8 animate-pulse text-[#d4af37]">Rahul & Riya</h1>
+        <button onclick="startExperience()" class="px-8 py-3 border border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-black transition">TAP TO REVEAL</button>
     </div>
 
-    <!-- 1. 🏛️ HERO CINEMATIC COVER WITH PARALLAX VIBES -->
-    <section class="min-h-screen flex flex-col justify-center items-center text-center px-4 relative z-10 select-none">
-        <div data-aos="fade-down" data-aos-duration="1500" class="border-b border-teal-500/30 pb-3 mb-6">
-            <p class="font-royal text-teal-400 uppercase tracking-[0.4em] text-xs md:text-sm">The Royal Celebration</p>
-        </div>
-        
-        <h1 data-aos="zoom-in" data-aos-duration="2000" class="font-cursive text-7xl md:text-9xl text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-200 to-gray-500 py-3">
-            Rahul & Riya
-        </h1>
-        
-        <p data-aos="fade-up" data-aos-duration="1500" data-aos-delay="400" class="font-royal text-xs md:text-sm text-gray-400 tracking-[0.3em] mt-4">
-            ARE BRIDGING THEIR HEARTS FOREVER
-        </p>
+    <!-- Music -->
+    <audio id="bgMusic" loop>
+        <source src="YOUR_MUSIC_LINK_HERE.mp3" type="audio/mpeg">
+    </audio>
 
-        <!-- ⏳ High-Fidelity Responsive Countdown Widget -->
-        <div data-aos="fade-up" data-aos-duration="1500" data-aos-delay="600" class="grid grid-cols-4 gap-3 md:gap-6 max-w-md mt-16 glass-card p-5 rounded-2xl w-full border border-teal-500/20 shadow-xl">
-            <div class="text-center"><span id="days" class="block font-royal text-2xl md:text-4xl text-teal-400 font-bold">00</span><span class="text-[9px] md:text-[11px] text-gray-500 uppercase tracking-widest font-semibold mt-1 block">Days</span></div>
-            <div class="text-center"><span id="hours" class="block font-royal text-2xl md:text-4xl text-teal-400 font-bold">00</span><span class="text-[9px] md:text-[11px] text-gray-500 uppercase tracking-widest font-semibold mt-1 block">Hours</span></div>
-            <div class="text-center"><span id="minutes" class="block font-royal text-2xl md:text-4xl text-teal-400 font-bold">00</span><span class="text-[9px] md:text-[11px] text-gray-500 uppercase tracking-widest font-semibold mt-1 block">Mins</span></div>
-            <div class="text-center"><span id="seconds" class="block font-royal text-2xl md:text-4xl text-teal-400 font-bold">00</span><span class="text-[9px] md:text-[11px] text-gray-500 uppercase tracking-widest font-semibold mt-1 block">Secs</span></div>
-        </div>
-
-        <div class="absolute bottom-10 animate-bounce text-teal-500/60">
-            <i class="fas fa-chevron-down text-2xl"></i>
-        </div>
+    <!-- Header Section -->
+    <section class="h-screen flex flex-col items-center justify-center text-center">
+        <p class="uppercase tracking-[0.5em] text-xs text-[#d4af37]">Wedding Invitation</p>
+        <h1 class="text-7xl mt-4">Rahul <span class="text-[#d4af37]">&</span> Riya</h1>
     </section>
 
-    <!-- 2. 📖 EXCLUSIVE LOVE SYMPHONY (Quotes / Story Section) -->
-    <section class="py-24 px-4 relative z-10 max-w-3xl mx-auto text-center">
-        <div data-aos="fade-up" data-aos-duration="1200" class="glass-card rounded-3xl p-8 md:p-12 border-l-4 border-l-teal-400">
-            <i class="fa fa-quote-left text-teal-500/20 text-5xl absolute top-6 left-6"></i>
-            <h3 class="font-serif-premium text-2xl italic text-gray-300 mb-6">"True love stories never have endings, but they surely have a beautiful beginning."</h3>
-            <p class="text-sm leading-relaxed text-gray-400 max-w-xl mx-auto font-light">
-                Humari kahani aam si hai par humare jazbaat bohot khaas hain. Humari is nayi shuruat ko yaadgar banane ke liye aapka aana sabse zaroori hai.
-            </p>
-        </div>
-    </section>
-
-    <!-- 3. ⏳ DYNAMIC TIMELINE SYSTEM (Events Flow) -->
-    <section class="py-20 px-4 relative z-10 max-w-4xl mx-auto">
-        <h2 data-aos="fade-up" class="font-royal text-center text-3xl text-white tracking-widest mb-16">The Wedding Program</h2>
-        
-        <div class="relative border-l-2 border-teal-500/20 ml-4 md:mx-auto md:w-full">
-            
-            <!-- Event 1 (Left Side Style on Desktop) -->
-            <div class="mb-12 relative flex items-center justify-between w-full" data-aos="fade-up">
-                <div class="absolute w-5 h-5 bg-teal-400 border-4 border-[#07080d] rounded-full left-[-11px]"></div>
-                <div class="glass-card ml-6 p-6 rounded-2xl w-full md:w-[45%] md:ml-0 md:mr-auto">
-                    <span class="text-xs font-bold text-teal-400 uppercase tracking-widest">01. Haldi Ceremony</span>
-                    <h4 class="font-serif-premium text-xl text-white mt-1">Shades of Yellow</h4>
-                    <p class="text-xs text-gray-400 mt-2"><i class="far fa-clock mr-1 text-teal-500"></i> 10:00 AM | Nov 14, 2026</p>
-                    <p class="text-sm text-gray-500 mt-2">Drenched in love, laughter, and a lot of traditional yellow vibes.</p>
-                </div>
+    <!-- Scratch Section -->
+    <section class="py-20 flex flex-col items-center">
+        <h2 class="text-2xl mb-6">Swipe to reveal the date</h2>
+        <div id="scratch-zone" ontouchmove="revealDate()" onmousemove="revealDate()">
+            <div id="cover-layer">
+                <span class="text-sm uppercase tracking-widest text-gray-500">Scratch Here</span>
             </div>
-
-            <!-- Event 2 (Right Side Style on Desktop) -->
-            <div class="mb-12 relative flex items-center justify-between w-full" data-aos="fade-up">
-                <div class="absolute w-5 h-5 bg-emerald-400 border-4 border-[#07080d] rounded-full left-[-11px]"></div>
-                <div class="glass-card ml-6 p-6 rounded-2xl w-full md:w-[45%] md:ml-auto">
-                    <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest">02. Sangeet Night</span>
-                    <h4 class="font-serif-premium text-xl text-white mt-1">Dance & Beats</h4>
-                    <p class="text-xs text-gray-400 mt-2"><i class="far fa-clock mr-1 text-emerald-500"></i> 07:30 PM | Nov 14, 2026</p>
-                    <p class="text-sm text-gray-500 mt-2">Get ready to rock the dance floor with infinite musical cheers.</p>
-                </div>
-            </div>
-
-            <!-- Event 3 -->
-            <div class="mb-4 relative flex items-center justify-between w-full" data-aos="fade-up">
-                <div class="absolute w-5 h-5 bg-cyan-400 border-4 border-[#07080d] rounded-full left-[-11px]"></div>
-                <div class="glass-card ml-6 p-6 rounded-2xl w-full md:w-[45%] md:ml-0 md:mr-auto">
-                    <span class="text-xs font-bold text-cyan-400 uppercase tracking-widest">03. The Main Vows</span>
-                    <h4 class="font-serif-premium text-xl text-white mt-1">Baraat & Wedding</h4>
-                    <p class="text-xs text-gray-400 mt-2"><i class="far fa-clock mr-1 text-cyan-500"></i> 07:00 PM | Nov 15, 2026</p>
-                    <p class="text-sm text-gray-500 mt-2">The sacred union where two souls combine into one single entity.</p>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- 4. 🖼️ PREMIUM IMMERSIVE MEDIA GALLERY (Interactive View) -->
-    <section class="py-20 px-4 relative z-10 max-w-5xl mx-auto">
-        <h2 data-aos="fade-up" class="font-royal text-center text-3xl text-white tracking-widest mb-12">Captured Moments</h2>
-        
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-            <div data-aos="zoom-in" class="overflow-hidden rounded-2xl aspect-square bg-slate-800 border border-white/5 cursor-pointer group relative" onclick="openLightbox('https://images.unsplash.com/photo-1519741497674-611481863552?w=600')">
-                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600" class="w-full height-full object-cover group-hover:scale-110 transition duration-500 opacity-85 group-hover:opacity-100" alt="Prewedding 1">
-            </div>
-            <div data-aos="zoom-in" data-aos-delay="100" class="overflow-hidden rounded-2xl aspect-square bg-slate-800 border border-white/5 cursor-pointer group relative" onclick="openLightbox('https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=600')">
-                <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=600" class="w-full height-full object-cover group-hover:scale-110 transition duration-500 opacity-85 group-hover:opacity-100" alt="Prewedding 2">
-            </div>
-            <div data-aos="zoom-in" data-aos-delay="200" class="overflow-hidden rounded-2xl aspect-square bg-slate-800 border border-white/5 cursor-pointer group relative" onclick="openLightbox('https://images.unsplash.com/photo-1606800052052-a08af7148866?w=600')">
-                <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?w=600" class="w-full height-full object-cover group-hover:scale-110 transition duration-500 opacity-85 group-hover:opacity-100" alt="Prewedding 3">
+            <div class="flex items-center justify-center h-full text-center">
+                <p class="text-2xl font-bold text-[#d4af37]">November 15, 2026</p>
             </div>
         </div>
     </section>
 
-    <!-- 5. 💳 DIGITAL DIGITAL GIFT CORNER (Shining Wallet Section) -->
-    <section class="py-16 px-4 relative z-10 max-w-md mx-auto">
-        <div data-aos="flip-left" class="glass-card rounded-3xl p-8 border border-yellow-500/20 shadow-2xl relative overflow-hidden">
-            <div class="absolute top-0 right-0 w-24 h-24 bg-yellow-500/10 rounded-bl-full pointer-events-none"></div>
-            <h3 class="font-royal text-center text-xl text-yellow-500 font-bold tracking-wider mb-6"><i class="fas fa-gift mr-2"></i> Digital Shagun</h3>
-            <p class="text-xs text-center text-gray-400 mb-6">Aapka sneh aur aashirwad hi hamare liye sabse bada uphar hai, par agar aap shagun bhejna chahein:</p>
-            
-            <div class="space-y-4">
-                <div class="bg-black/40 border border-white/5 p-4 rounded-xl flex justify-between items-center">
-                    <div>
-                        <span class="block text-[10px] uppercase tracking-wider text-gray-500">UPI ID</span>
-                        <span id="upiId" class="text-sm font-semibold text-white">tohid@upi</span>
-                    </div>
-                    <button onclick="copyText('upiId')" class="text-xs bg-teal-500/10 text-teal-400 border border-teal-500/20 px-3 py-1.5 rounded-lg active:scale-95 transition">Copy</button>
-                </div>
-                
-                <div class="bg-black/40 border border-white/5 p-4 rounded-xl flex justify-between items-center">
-                    <div>
-                        <span class="block text-[10px] uppercase tracking-wider text-gray-500">Bank Account</span>
-                        <span id="bankDetails" class="text-sm font-semibold text-white">HDFC - 50100XXXXXX</span>
-                    </div>
-                    <button onclick="copyText('bankDetails')" class="text-xs bg-teal-500/10 text-teal-400 border border-teal-500/20 px-3 py-1.5 rounded-lg active:scale-95 transition">Copy</button>
-                </div>
-            </div>
+    <!-- Snap Gallery -->
+    <section class="py-10">
+        <h2 class="text-center text-3xl mb-8">Memories</h2>
+        <div class="gallery-container">
+            <!-- 6 Photos -->
+            <div class="gallery-item"><img src="https://picsum.photos/400/600?random=1" alt="Photo 1"></div>
+            <div class="gallery-item"><img src="https://picsum.photos/400/600?random=2" alt="Photo 2"></div>
+            <div class="gallery-item"><img src="https://picsum.photos/400/600?random=3" alt="Photo 3"></div>
+            <div class="gallery-item"><img src="https://picsum.photos/400/600?random=4" alt="Photo 4"></div>
+            <div class="gallery-item"><img src="https://picsum.photos/400/600?random=5" alt="Photo 5"></div>
+            <div class="gallery-item"><img src="https://picsum.photos/400/600?random=6" alt="Photo 6"></div>
         </div>
     </section>
 
-    <!-- 6. ✍️ INTERACTIVE RSVP MODULE (Attendance Verification) -->
-    <section class="py-16 px-4 relative z-10 max-w-lg mx-auto">
-        <div data-aos="zoom-in" class="glass-card rounded-3xl p-8 border border-emerald-500/20 shadow-2xl">
-            <h2 class="font-royal text-center text-2xl text-white tracking-widest mb-2">Are You Attending?</h2>
-            <p class="text-xs text-center text-gray-500 mb-6">Kindly respond to help us arrange things perfectly.</p>
-            
-            <form id="rsvpForm" onsubmit="handleRSVP(event)" class="space-y-4 text-left">
-                <div>
-                    <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2 font-medium">Full Name</label>
-                    <input type="text" id="guestName" required placeholder="Enter your official name" class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-teal-400 transition text-sm">
-                </div>
-                <div>
-                    <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2 font-medium">Total Accompanied Guests</label>
-                    <select id="guestCount" class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-teal-400 text-sm">
-                        <option value="1">Just Me (1)</option>
-                        <option value="2">2 Persons</option>
-                        <option value="3">3 Persons</option>
-                        <option value="4">Family Pack (4+)</option>
-                    </select>
-                </div>
-                <button type="submit" class="w-full py-3.5 mt-4 bg-gradient-to-r from-teal-400 to-emerald-500 rounded-xl text-black font-bold tracking-wider shadow-lg shadow-teal-500/10 hover:opacity-95 transition">
-                    Confirm My Slot
-                </button>
-            </form>
-        </div>
-    </section>
-
-    <!-- 🌌 LIGHTBOX COMPONENT FOR FULL SCREEN CINEMATIC IMAGES -->
-    <div id="lightbox" class="fixed inset-0 bg-black/95 z-[9999] hidden opacity-0 transition-opacity duration-300 flex items-center justify-center p-4" onclick="closeLightbox()">
-        <button class="absolute top-6 right-6 text-white text-3xl hover:text-teal-400 transition">&times;</button>
-        <img id="lightboxImg" src="" class="max-w-full max-h-[85vh] rounded-xl object-contain shadow-2xl transform scale-95 transition-transform duration-300" alt="Expanded View">
-    </div>
-
-    <!-- Footer -->
-    <footer class="text-center py-10 border-t border-white/5 relative z-10 text-[11px] text-gray-600 tracking-[0.2em] font-royal">
-        THE CELEBRATION HUB &copy; 2026 | ALL RIGHTS RESERVED
-    </footer>
-
-    <!-- AOS Script initialization -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ once: true, offset: 100 });
-
-        // 🎵 Premium Audio Module logic
-        function toggleMusic() {
+        function startExperience() {
+            // Hide Overlay
+            document.getElementById('entry-overlay').style.display = 'none';
+            // Play Music
             const music = document.getElementById('bgMusic');
-            const icon = document.getElementById('musicIcon');
-            if (music.paused) {
-                music.play();
-                icon.className = "fas fa-pause text-lg";
-            } else {
-                music.pause();
-                icon.className = "fas fa-music text-lg";
-            }
+            music.play().catch(e => console.log("User interaction needed for audio"));
         }
 
-        // ⏳ Realtime High-Precision Countdown Calculations (Target: Nov 15, 2026)
-        const eventTimestamp = new Date("November 15, 2026 19:00:00").getTime();
-        const updateTimer = () => {
-            const now = new Date().getTime();
-            const delta = eventTimestamp - now;
-
-            if (delta < 0) {
-                clearInterval(timerInterval);
-                return;
-            }
-
-            const d = Math.floor(delta / (1000 * 60 * 60 * 24));
-            const h = Math.floor((delta % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const m = Math.floor((delta % (1000 * 60 * 60)) / (1000 * 60));
-            const s = Math.floor((delta % (1000 * 60)) / 1000);
-
-            document.getElementById("days").innerText = d < 10 ? "0" + d : d;
-            document.getElementById("hours").innerText = h < 10 ? "0" + h : h;
-            document.getElementById("minutes").innerText = m < 10 ? "0" + m : m;
-            document.getElementById("seconds").innerText = s < 10 ? "0" + s : s;
-        };
-        const timerInterval = setInterval(updateTimer, 1000);
-        updateTimer();
-
-        // 🖼️ Lightbox Modal Mechanism
-        function openLightbox(src) {
-            const lightbox = document.getElementById('lightbox');
-            const img = document.getElementById('lightboxImg');
-            img.src = src;
-            lightbox.classList.remove('hidden');
-            setTimeout(() => {
-                lightbox.classList.add('opacity-100');
-                img.classList.remove('scale-95');
-            }, 10);
-        }
-        function closeLightbox() {
-            const lightbox = document.getElementById('lightbox');
-            const img = document.getElementById('lightboxImg');
-            lightbox.classList.remove('opacity-100');
-            img.classList.add('scale-95');
-            setTimeout(() => lightbox.classList.add('hidden'), 300);
-        }
-
-        // 💳 Global Copy Utility
-        function copyText(elementId) {
-            const text = document.getElementById(elementId).innerText;
-            navigator.clipboard.writeText(text).then(() => {
-                alert("Copied Successfully: " + text);
-            }).catch(() => {
-                alert("Failed to copy text.");
-            });
-        }
-
-        // ✍️ Form RSVP processing
-        function handleRSVP(event) {
-            event.preventDefault();
-            const name = document.getElementById('guestName').value;
-            const count = document.getElementById('guestCount').value;
-            alert(`Shukriya ${name}! Aapka response save kar liya gaya hai (${count} person).`);
-            document.getElementById('rsvpForm').reset();
+        function revealDate() {
+            document.getElementById('cover-layer').style.opacity = '0';
         }
     </script>
 </body>
-                </html>
+</html>
