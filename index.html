@@ -3,82 +3,266 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Royal Invitation</title>
+    <title>Invifest Custom | Premium Wedding Invitation ✨</title>
+    <!-- Tailwind CSS for modern and premium UI styling -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts Integration -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700&family=Poppins:wght@300;400;500&family=Sacramento&display=swap" rel="stylesheet">
+
     <style>
-        body { background-color: #0c0c0c; color: white; font-family: 'Times New Roman', serif; }
-        
-        /* 1. Entry Overlay */
-        #entry-overlay { position: fixed; inset: 0; background: #000; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-        
-        /* 2. Scratch/Swipe Effect */
-        #scratch-zone { position: relative; width: 300px; height: 150px; background: #1a1a1a; border: 2px solid #d4af37; overflow: hidden; cursor: crosshair; }
-        #cover-layer { position: absolute; inset: 0; background: #1a1a1a; display: flex; align-items: center; justify-content: center; transition: opacity 0.8s; }
-        
-        /* 3. Snap Gallery */
-        .gallery-container { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 1rem; padding: 2rem; }
-        .gallery-item { flex: 0 0 80%; scroll-snap-align: center; height: 350px; background: #222; border-radius: 20px; overflow: hidden; }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+        .font-royal { font-family: 'Cinzel', serif; }
+        .font-cursive { font-family: 'Sacramento', cursive; }
+        .font-serif-premium { font-family: 'Playfair Display', serif; }
+        .font-main { font-family: 'Poppins', sans-serif; }
+
+        body {
+            background-color: #07080d;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+
+        /* 1. Full-Screen Tap To Reveal Overlay */
+        #entry-overlay {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle, #11131e 0%, #07080d 100%);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease, visibility 0.8s;
+        }
+
+        /* 2. Premium Scratch Card Module */
+        #scratch-container {
+            position: relative;
+            width: 320px;
+            height: 160px;
+            border: 2px solid rgba(212, 175, 55, 0.4);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            background: #11131e;
+        }
+        #scratch-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            cursor: crosshair;
+            z-index: 2;
+            touch-action: none; /* Stops mobile screen bounce while scratching */
+        }
+
+        /* 3. High-End Snap Scroll App-Style Gallery */
+        .snap-gallery {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            gap: 1.25rem;
+            padding: 1.5rem;
+        }
+        /* Custom scrollbar hide for premium aesthetic */
+        .snap-gallery::-webkit-scrollbar {
+            display: none;
+        }
+        .snap-item {
+            flex: 0 0 85%;
+            scroll-snap-align: center;
+            height: 420px;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: #161925;
+        }
+        @media (min-width: 768px) {
+            .snap-item { flex: 0 0 35%; height: 480px; }
+        }
     </style>
 </head>
-<body>
+<body class="font-main">
 
-    <!-- Overlay -->
+    <!-- 🌟 1. INTERACTIVE ENTRY OVERLAY (Tap to Reveal) -->
     <div id="entry-overlay">
-        <h1 class="text-4xl mb-8 animate-pulse text-[#d4af37]">Rahul & Riya</h1>
-        <button onclick="startExperience()" class="px-8 py-3 border border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-black transition">TAP TO REVEAL</button>
+        <!-- Decoration Ring -->
+        <div class="w-32 h-32 border border-dashed border-amber-500/30 rounded-full absolute animate-spin duration-10000"></div>
+        
+        <p class="font-royal text-amber-500/80 uppercase tracking-[0.4em] text-xs mb-3 z-10">You Are Invited</p>
+        <h2 class="font-cursive text-5xl md:text-6xl text-white mb-8 z-10">Rahul & Riya</h2>
+        
+        <button onclick="unlockInvitation()" class="z-10 px-8 py-3 bg-gradient-to-r from-amber-500 to-yellow-600 text-black font-semibold rounded-full tracking-widest text-xs uppercase shadow-lg shadow-amber-500/20 active:scale-95 transition-all duration-300">
+            ✨ Tap To Reveal ✨
+        </button>
     </div>
 
-    <!-- Music -->
-    <audio id="bgMusic" loop>
-        <source src="YOUR_MUSIC_LINK_HERE.mp3" type="audio/mpeg">
+    <!-- 🎵 BACKGROUND AUDIO SYSTEM -->
+    <!-- EDIT HERE: Apne music file ka path ya link src="" ke andar daalein -->
+    <audio id="invitationMusic" loop>
+        <source src="your-music-file.mp3" type="audio/mp3">
     </audio>
 
-    <!-- Header Section -->
-    <section class="h-screen flex flex-col items-center justify-center text-center">
-        <p class="uppercase tracking-[0.5em] text-xs text-[#d4af37]">Wedding Invitation</p>
-        <h1 class="text-7xl mt-4">Rahul <span class="text-[#d4af37]">&</span> Riya</h1>
-    </section>
-
-    <!-- Scratch Section -->
-    <section class="py-20 flex flex-col items-center">
-        <h2 class="text-2xl mb-6">Swipe to reveal the date</h2>
-        <div id="scratch-zone" ontouchmove="revealDate()" onmousemove="revealDate()">
-            <div id="cover-layer">
-                <span class="text-sm uppercase tracking-widest text-gray-500">Scratch Here</span>
-            </div>
-            <div class="flex items-center justify-center h-full text-center">
-                <p class="text-2xl font-bold text-[#d4af37]">November 15, 2026</p>
-            </div>
+    <!-- 🏛️ 2. HERO LANDING CANVAS -->
+    <section class="min-h-screen flex flex-col justify-center items-center text-center px-4 relative">
+        <div class="mb-4">
+            <span class="font-royal text-amber-500 tracking-[0.5em] text-xs uppercase">The Wedding Invitation</span>
+        </div>
+        <!-- Main Elegant Heading -->
+        <h1 class="font-cursive text-7xl md:text-9xl text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-200 to-gray-400 py-2">
+            Rahul & Riya
+        </h1>
+        <p class="font-serif-premium italic text-gray-400 text-sm md:text-base mt-4 tracking-wide">
+            Together with their families, invite you to share in their joy
+        </p>
+        
+        <div class="mt-12 animate-bounce text-amber-500/40">
+            <p class="text-[10px] uppercase tracking-[0.3em] mb-2">Scroll Down</p>
+            <span class="text-xl">↓</span>
         </div>
     </section>
 
-    <!-- Snap Gallery -->
-    <section class="py-10">
-        <h2 class="text-center text-3xl mb-8">Memories</h2>
-        <div class="gallery-container">
-            <!-- 6 Photos -->
-            <div class="gallery-item"><img src="https://picsum.photos/400/600?random=1" alt="Photo 1"></div>
-            <div class="gallery-item"><img src="https://picsum.photos/400/600?random=2" alt="Photo 2"></div>
-            <div class="gallery-item"><img src="https://picsum.photos/400/600?random=3" alt="Photo 3"></div>
-            <div class="gallery-item"><img src="https://picsum.photos/400/600?random=4" alt="Photo 4"></div>
-            <div class="gallery-item"><img src="https://picsum.photos/400/600?random=5" alt="Photo 5"></div>
-            <div class="gallery-item"><img src="https://picsum.photos/400/600?random=6" alt="Photo 6"></div>
+    <!-- 🎫 3. SCRATCH CARD TO REVEAL DATE MODULE -->
+    <section class="py-20 flex flex-col items-center justify-center bg-[#0b0d16] border-y border-white/5">
+        <h3 class="font-royal text-xs uppercase text-amber-500 tracking-[0.3em] mb-2">Exclusive Reveal</h3>
+        <h2 class="font-serif-premium text-2xl md:text-3xl text-white mb-6">Scratch to Reveal the Date</h2>
+        
+        <div id="scratch-container">
+            <!-- Background Layer: Yeh date user ko scratch karne ke baad dikhegi (EDITABLE TEXT) -->
+            <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-4">
+                <span class="text-xs uppercase font-royal text-amber-500 tracking-widest mb-1">Save The Date</span>
+                <p class="text-2xl font-bold font-royal text-white">NOVEMBER 15, 2026</p>
+                <p class="text-xs text-gray-400 mt-2 font-light">✨ Shubh Vivaah Mahurat ✨</p>
+            </div>
+            
+            <!-- Foreground Scratch Surface (Canvas) -->
+            <canvas id="scratch-canvas" width="320" height="160"></canvas>
         </div>
+        
+        <p class="text-xs text-gray-500 mt-4 italic font-light">Use your finger or mouse cursor to scratch the card surface</p>
     </section>
 
+    <!-- 🖼️ 4. APP-STYLE SNAP-SCROLL PHOTO GALLERY -->
+    <section class="py-20 bg-[#07080d]">
+        <div class="text-center mb-10">
+            <h2 class="font-royal text-xs uppercase text-amber-500 tracking-[0.3em] mb-2">Gallery Collection</h2>
+            <h3 class="font-cursive text-5xl text-white">Beautiful Memories</h3>
+        </div>
+
+        <!-- Horizontal Snap Rail -->
+        <div class="snap-gallery px-6 md:px-24">
+            
+            <!-- PHOTO 1 (EDIT HERE: src ke andar apna photo ka link daal sakte ho) -->
+            <div class="snap-item">
+                <img src="https://picsum.photos/600/900?random=1" class="w-full h-full object-cover select-none" alt="Moment 1">
+            </div>
+            
+            <!-- PHOTO 2 -->
+            <div class="snap-item">
+                <img src="https://picsum.photos/600/900?random=2" class="w-full h-full object-cover select-none" alt="Moment 2">
+            </div>
+            
+            <!-- PHOTO 3 -->
+            <div class="snap-item">
+                <img src="https://picsum.photos/600/900?random=3" class="w-full h-full object-cover select-none" alt="Moment 3">
+            </div>
+            
+            <!-- PHOTO 4 -->
+            <div class="snap-item">
+                <img src="https://picsum.photos/600/900?random=4" class="w-full h-full object-cover select-none" alt="Moment 4">
+            </div>
+            
+            <!-- PHOTO 5 -->
+            <div class="snap-item">
+                <img src="https://picsum.photos/600/900?random=5" class="w-full h-full object-cover select-none" alt="Moment 5">
+            </div>
+            
+            <!-- PHOTO 6 -->
+            <div class="snap-item">
+                <img src="https://picsum.photos/600/900?random=6" class="w-full h-full object-cover select-none" alt="Moment 6">
+            </div>
+
+        </div>
+        <p class="text-center text-xs text-gray-500 mt-4 tracking-wider">← Swipe or Scroll Horizontally to view all moments →</p>
+    </section>
+
+    <!-- FOOTER DESIGN -->
+    <footer class="text-center py-8 border-t border-white/5 text-[10px] uppercase tracking-[0.3em] font-royal text-gray-600">
+        Made With Love • Custom Invitation 2026
+    </footer>
+
+    <!-- JS LOGIC - ZERO EXTERNAL SERVER CALLS -->
     <script>
-        function startExperience() {
-            // Hide Overlay
-            document.getElementById('entry-overlay').style.display = 'none';
-            // Play Music
-            const music = document.getElementById('bgMusic');
-            music.play().catch(e => console.log("User interaction needed for audio"));
+        // 1. Entry Screen Animation & Audio Engine Unlock
+        function unlockInvitation() {
+            const overlay = document.getElementById('entry-overlay');
+            overlay.style.opacity = '0';
+            setTimeout(() => {
+                overlay.style.visibility = 'hidden';
+            }, 800);
+
+            // Auto-play ambient audio layer
+            const music = document.getElementById('invitationMusic');
+            music.play().catch(err => console.log("Audio play system triggered interaction rule."));
         }
 
-        function revealDate() {
-            document.getElementById('cover-layer').style.opacity = '0';
+        // 2. High-Performance Canvas Scratch-Off Algorithm
+        const canvas = document.getElementById('scratch-canvas');
+        const ctx = canvas.getContext('2d');
+        let isDrawing = false;
+
+        // Base Cover setup
+        ctx.fillStyle = '#2d3248'; // Solid premium matte color
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // Matte overlay dynamic pattern textures
+        ctx.fillStyle = 'rgba(212, 175, 55, 0.15)';
+        ctx.font = 'bold 14px Arial';
+        ctx.fillText('✨ SCRATCH HERE ✨', 90, 90);
+
+        function getCoordinates(e) {
+            const rect = canvas.getBoundingClientRect();
+            // Handle cross-platform client view mechanics (Touch vs Mouse)
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+            return {
+                x: clientX - rect.left,
+                y: clientY - rect.top
+            };
         }
+
+        function scratchStart(e) {
+            isDrawing = true;
+            scratchMove(e);
+        }
+
+        function scratchMove(e) {
+            if (!isDrawing) return;
+            e.preventDefault();
+            const coords = getCoordinates(e);
+            
+            // Core Graphic Alpha Composite Override (Clears canvas where cursor rubs)
+            ctx.globalCompositeOperation = 'destination-out';
+            ctx.beginPath();
+            ctx.arc(coords.x, coords.y, 24, 0, Math.PI * 2); // 24 is brush size diameter
+            ctx.fill();
+        }
+
+        function scratchEnd() {
+            isDrawing = false;
+        }
+
+        // Touch Listeners for High-End Mobile responsiveness
+        canvas.addEventListener('touchstart', scratchStart);
+        canvas.addEventListener('touchmove', scratchMove);
+        canvas.addEventListener('touchend', scratchEnd);
+
+        // Desktop Mouse fallback mapping
+        canvas.addEventListener('mousedown', scratchStart);
+        canvas.addEventListener('mousemove', scratchMove);
+        canvas.addEventListener('mouseup', scratchEnd);
+        canvas.addEventListener('mouseleave', scratchEnd);
     </script>
 </body>
-</html>
+        </html>
