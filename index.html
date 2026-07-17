@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Invifest | Premium Custom Wedding Invitation</title>
-    <!-- Tailwind CSS for perfect spacing and layout layout -->
+    <title>Invifest | Ultimate Premium Wedding Invitation</title>
+    <!-- Tailwind CSS for perfect UI layout -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
@@ -75,6 +75,21 @@
       <p class="font-luxury text-xs tracking-[0.5em] text-[#cfa851] mb-4 uppercase">The Celebration of Love</p>
       <h2 class="font-luxury text-5xl text-white font-light tracking-wider my-2">Rahul & Riya</h2>
       <div class="w-12 h-[1px] bg-[#cfa851]/40 my-6"></div>
+      
+      <!-- ⏳ LIVE COUNTDOWN TIMER WIDGET -->
+      <div class="mb-6 bg-white/5 backdrop-blur-md px-6 py-4 rounded-2xl border border-white/10 shadow-xl">
+        <p class="text-[10px] uppercase tracking-[0.2em] text-[#cfa851] mb-2 font-semibold">Counting Down To The Big Day</p>
+        <div class="flex gap-4 text-white text-center">
+          <div><span id="days" class="text-2xl font-bold text-white block">00</span><span class="text-[9px] text-gray-400 uppercase tracking-widest">Days</span></div>
+          <div class="text-[#cfa851] text-xl font-bold">:</div>
+          <div><span id="hours" class="text-2xl font-bold text-white block">00</span><span class="text-[9px] text-gray-400 uppercase tracking-widest">Hrs</span></div>
+          <div class="text-[#cfa851] text-xl font-bold">:</div>
+          <div><span id="minutes" class="text-2xl font-bold text-white block">00</span><span class="text-[9px] text-gray-400 uppercase tracking-widest">Min</span></div>
+          <div class="text-[#cfa851] text-xl font-bold">:</div>
+          <div><span id="seconds" class="text-2xl font-bold text-white block">00</span><span class="text-[9px] text-gray-400 uppercase tracking-widest">Sec</span></div>
+        </div>
+      </div>
+
       <p class="text-sm text-gray-400 max-w-xs leading-relaxed">
         Together with their families, joyfully invite you to celebrate the union of their lives.
       </p>
@@ -126,11 +141,20 @@
           </div>
         </div>
 
-        <!-- WEDDING CARD -->
+        <!-- WEDDING CARD + LIVE GOOGLE MAPS LINK -->
         <div class="p-6 rounded-2xl bg-[#161722] border border-[#cfa851]/20 relative">
           <div class="absolute top-4 right-4 text-xs font-luxury text-[#cfa851] tracking-wider">03</div>
           <h4 class="font-luxury text-lg text-[#cfa851] mb-2 tracking-wide">👑 Shubh Vivaah</h4>
           <p class="text-xs text-gray-300 font-light mb-4">The grand wedding ceremony followed by royal dinner reception.</p>
+          
+          <!-- Venue Info -->
+          <p class="text-xs text-[#cfa851] font-semibold mb-3">📍 Venue: Hotel Royal Palace, Main Road, City</p>
+          
+          <!-- EDIT HERE: href="ANPE_MAPS_LINK" me apna google map link daalein -->
+          <a href="https://maps.google.com" target="_blank" class="inline-flex items-center gap-2 mb-4 text-xs bg-white/5 border border-[#cfa851]/40 px-3 py-2 rounded-lg text-[#cfa851] hover:bg-[#cfa851] hover:text-black transition duration-300">
+             Open Live Location Map 🗺️
+          </a>
+
           <div class="border-t border-white/5 pt-3 flex justify-between text-xs text-[#cfa851]">
             <div>📅 15th Nov, 2026</div>
             <div>⏰ 07:00 PM Onwards</div>
@@ -149,14 +173,13 @@
       </div>
     </section>
 
-    <!-- ✍️ 6. INTERACTIVE RSVP SYSTEM (Name, Phone, Status Form) -->
+    <!-- ✍️ 6. INTERACTIVE RSVP SYSTEM -->
     <section class="py-20 px-6 max-w-md mx-auto bg-[#12131c] rounded-3xl my-10 border border-white/5">
       <div class="text-center mb-8">
         <p class="font-luxury text-[10px] tracking-[0.3em] text-[#cfa851] mb-2 uppercase">Confirm Presence</p>
         <h3 class="font-luxury text-xl text-white">Will You Attend? (RSVP)</h3>
       </div>
 
-      <!-- Action Form Setup -->
       <form id="rsvpForm" class="space-y-4">
         <div>
           <label class="block text-xs text-gray-400 mb-1 uppercase tracking-wide">Your Full Name</label>
@@ -196,10 +219,37 @@
       function unlockPortal() {
         document.getElementById('gate-block').style.display = 'none';
         const audio = document.getElementById('local-audio');
-        audio.play().catch(e => console.log("Audio waiting for system interaction"));
+        audio.play().catch(e => console.log("Audio activation bypass"));
       }
 
-      // WhatsApp Message Forwarder Handler
+      // ⏳ LIVE COUNTDOWN ENGINE LOGIC
+      // EDIT HERE: Apni Shaadi ki exact date & time set karein countdown ke liye
+      const weddingDate = new Date("November 15, 2026 19:00:00").getTime();
+
+      const timerInterval = setInterval(function() {
+        const now = new Date().getTime();
+        const distance = weddingDate - now;
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+        document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+        document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+        document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+
+        if (distance < 0) {
+          clearInterval(timerInterval);
+          document.getElementById("days").innerText = "00";
+          document.getElementById("hours").innerText = "00";
+          document.getElementById("minutes").innerText = "00";
+          document.getElementById("seconds").innerText = "00";
+        }
+      }, 1000);
+
+      // WhatsApp Message Sender
       function sendRSVPtoWhatsApp() {
         const name = document.getElementById('guestName').value.trim();
         const phone = document.getElementById('guestPhone').value.trim();
@@ -210,17 +260,12 @@
           return;
         }
 
-        // EDIT HERE: 91xxxxxxxxxx ki jagah apna asli WhatsApp number country code ke sath daalo
-        const myWhatsAppNumber = "919999999999"; 
-
-        // Dynamic Formatting text for message layout
+        const myWhatsAppNumber = "919999999999"; // Apna real WhatsApp number yahan daalna
         const textMessage = `*✨ NEW RSVP WEDDING INVITATION ✨*%0A%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Status:* ${status}`;
-        
-        // Open WhatsApp Interface url redirection
         window.open(`https://api.whatsapp.com/send?phone=${myWhatsAppNumber}&text=${textMessage}`, '_blank');
       }
 
-      // Dynamic Canvas Engine 
+      // Scratch Surface Logic
       const canvas = document.getElementById('scratch-surface');
       const ctx = canvas.getContext('2d');
       let active = false;
@@ -259,4 +304,4 @@
       canvas.addEventListener('mouseup', lift);
     </script>
   </body>
-  </html>
+                                                           </html>
