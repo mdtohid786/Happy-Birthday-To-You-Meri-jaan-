@@ -12,14 +12,14 @@
   
   <style>
     :root {
-      --bg-cream: #faf6f0;
-      --luxury-maroon: #824c4c;
-      --text-main: #6b4f4f;
-      --gold-accent: #c5a880;
+      --bg-pink: #fff0f3;       /* Elegant Soft Blush Pink Background */
+      --luxury-gold: #c59b27;   /* Rich Royal Golden Accent */
+      --text-main: #503737;     /* Deep Soft Cocoa for clear readability */
+      --gold-accent: #e5c158;   /* Bright Metallic Gold Details */
     }
 
     body {
-      background-color: var(--bg-cream);
+      background-color: var(--bg-pink);
       color: var(--text-main);
       font-family: 'Montserrat', sans-serif;
       overflow-x: hidden;
@@ -28,11 +28,11 @@
     .font-serif-title { font-family: 'Playfair Display', serif; }
     .font-royal { font-family: 'Cinzel', serif; }
 
-    /* ✉️ ENVELOPE WAX SEAL SYSTEM */
+    /* ✉️ ENVELOPE WAX SEAL SYSTEM (Deep Wine Red & Gold theme for premium look) */
     #envelope-portal {
       position: fixed;
       inset: 0;
-      background: #502222; 
+      background: #4a121a; 
       z-index: 99999;
       display: flex;
       flex-direction: column;
@@ -54,13 +54,13 @@
     .wax-seal {
       width: 140px;
       height: 140px;
-      background: #f4ebd9;
+      background: var(--gold-accent);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       box-shadow: 0 10px 25px rgba(0,0,0,0.4), inset 0 0 12px #d2c1a1;
-      border: 6px double #c5a880;
+      border: 6px double var(--luxury-gold);
       cursor: pointer;
       transition: transform 0.3s ease;
     }
@@ -93,7 +93,7 @@
       height: 140px;
       background: white;
       border-radius: 16px;
-      box-shadow: 0 8px 20px rgba(130, 76, 76, 0.1);
+      box-shadow: 0 8px 20px rgba(197, 155, 39, 0.15);
       overflow: hidden;
     }
     .scratch-canvas {
@@ -139,18 +139,18 @@
       scroll-snap-align: center;
       background: white;
       padding: 12px;
-      box-shadow: 0 10px 25px rgba(130, 76, 76, 0.15);
-      border: 1px solid #f3e5ab;
+      box-shadow: 0 10px 25px rgba(197, 155, 39, 0.15);
+      border: 1px solid var(--gold-accent);
       transform: rotate(var(--rot));
     }
 
-    /* Custom inputs style */
+    /* Custom inputs style with Gold Accents */
     input, select, textarea {
       outline: none !important;
-      border-bottom: 1px solid #dcd1c4 !important;
+      border-bottom: 1px solid #ebdcb9 !important;
     }
     input:focus, select:focus, textarea:focus {
-      border-bottom: 1px solid var(--luxury-maroon) !important;
+      border-bottom: 1px solid var(--luxury-gold) !important;
     }
     ::-webkit-scrollbar { display: none; }
   </style>
@@ -161,13 +161,13 @@
   <div class="petal-container" id="petals"></div>
 
   <!-- 🔊 FIXED SOUND BUTTON CONTROL -->
-  <button onclick="toggleAudio()" class="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-white shadow-xl border border-[#eaddcd] flex items-center justify-center z-50 text-slate-700 hover:scale-105 transition">
+  <button onclick="toggleAudio()" class="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-white shadow-xl border border-[var(--gold-accent)] flex items-center justify-center z-50 text-slate-700 hover:scale-105 transition">
     <svg id="audio-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="2 2 20 20" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
       <path stroke-linecap="round" stroke-linejoin="round" d="M19.114 5.636a9 9 0 0 1 0 12.728M16.463 8.288a5.25 5.25 0 0 1 0 7.424M6.75 8.25l4.72-4.72a.75.75 0 0 1 1.28.53v15.88a.75.75 0 0 1-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.009 9.009 0 0 1 2.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75Z" />
     </svg>
   </button>
   
-  <!-- 🎵 GITHUB MUSIC SOURCE ADDED HERE -->
+  <!-- 🎵 GITHUB MUSIC SOURCE -->
   <audio id="wedding-track" loop src="Shiddat___.__Shiddat__transl._Intensity__is_a_2021_Indian_Hindi-la.m4a"></audio>
 
   <!-- ✉️ ENVELOPE GATE COVER -->
@@ -177,7 +177,7 @@
       Tap to Reveal
     </div>
     <div class="wax-seal mt-8" onclick="openEnvelope()">
-      <span class="font-royal text-2xl font-bold tracking-wider text-[#824c4c] select-none">M & A</span>
+      <span class="font-royal text-2xl font-bold tracking-wider text-[#4a121a] select-none">M & A</span>
     </div>
   </div>
 
@@ -186,21 +186,21 @@
   <main class="max-w-md mx-auto px-4 pt-10 pb-24 space-y-24 relative z-10">
 
     <!-- 🌟 CLEAN ROYAL INTRO SECTION -->
-    <section class="text-center pt-12 pb-8 bg-white/40 p-6 rounded-[32px] border border-white/60 backdrop-blur-sm relative">
-      <div class="absolute top-4 left-4 w-6 h-6 border-t border-l border-amber-600/30"></div>
-      <div class="absolute top-4 right-4 w-6 h-6 border-t border-r border-amber-600/30"></div>
+    <section class="text-center pt-12 pb-8 bg-white/60 p-6 rounded-[32px] border border-white/80 backdrop-blur-sm relative shadow-sm">
+      <div class="absolute top-4 left-4 w-6 h-6 border-t border-l border-[var(--luxury-gold)]/40"></div>
+      <div class="absolute top-4 right-4 w-6 h-6 border-t border-r border-[var(--luxury-gold)]/40"></div>
       
-      <p class="text-[12px] uppercase tracking-[0.25em] text-[#824c4c] font-semibold mb-6">Together with their families</p>
+      <p class="text-[12px] uppercase tracking-[0.25em] text-[var(--luxury-gold)] font-semibold mb-6">Together with their families</p>
       
-      <h1 class="font-serif-title text-4xl text-[#824c4c] tracking-wide mb-2">Meenal</h1>
-      <div class="text-amber-600/70 font-serif-title italic text-xl my-3">&</div>
-      <h1 class="font-serif-title text-4xl text-[#824c4c] tracking-wide mb-8">Avinash</h1>
+      <h1 class="font-serif-title text-4xl text-[var(--luxury-gold)] tracking-wide mb-2">Meenal</h1>
+      <div class="text-[var(--luxury-gold)]/70 font-serif-title italic text-xl my-3">&</div>
+      <h1 class="font-serif-title text-4xl text-[var(--luxury-gold)] tracking-wide mb-8">Avinash</h1>
       
       <p class="text-[11px] text-slate-500 italic tracking-wider mb-8">
         Daughter of Mr. & Mrs. Sharma &nbsp;|&nbsp; Son of Mr. & Mrs. Patel
       </p>
 
-      <p class="text-[12px] uppercase tracking-[0.2em] text-slate-400 font-medium max-w-xs mx-auto leading-relaxed">
+      <p class="text-[12px] uppercase tracking-[0.2em] text-slate-500 font-medium max-w-xs mx-auto leading-relaxed">
         Request the honor of your presence to celebrate our beautiful journey of love and togetherness.
       </p>
 
@@ -213,8 +213,8 @@
     <!-- 🎫 TRIPLE SCRATCH WITH ROSE EXPLOSION -->
     <section class="text-center space-y-6">
       <div>
-        <p class="text-xs uppercase tracking-[0.2em] text-amber-700/80 font-bold mb-1">THE DATE</p>
-        <h2 class="font-serif-title text-3xl text-[#824c4c] font-semibold">Save the Date</h2>
+        <p class="text-xs uppercase tracking-[0.2em] text-[var(--luxury-gold)] font-bold mb-1">THE DATE</p>
+        <h2 class="font-serif-title text-3xl text-[var(--luxury-gold)] font-semibold">Save the Date</h2>
         <p class="text-xs text-slate-400 italic mt-1">Scratch below to reveal our wedding date</p>
       </div>
 
@@ -223,7 +223,7 @@
         <div class="flex flex-col items-center">
           <span class="text-[10px] uppercase font-bold tracking-widest text-slate-400 mb-1.5">Month</span>
           <div class="scratch-box">
-            <div class="absolute inset-0 flex items-center justify-center font-serif-title text-xl font-bold text-[#824c4c] tracking-wider bg-[#fffdfa]">
+            <div class="absolute inset-0 flex items-center justify-center font-serif-title text-xl font-bold text-[var(--luxury-gold)] tracking-wider bg-[#fffdfa]">
               JULY
             </div>
             <canvas class="scratch-canvas" width="95" height="140" id="c-month"></canvas>
@@ -234,7 +234,7 @@
         <div class="flex flex-col items-center">
           <span class="text-[10px] uppercase font-bold tracking-widest text-slate-400 mb-1.5">Day</span>
           <div class="scratch-box">
-            <div class="absolute inset-0 flex items-center justify-center font-serif-title text-2xl font-bold text-[#824c4c] bg-[#fffdfa]">
+            <div class="absolute inset-0 flex items-center justify-center font-serif-title text-2xl font-bold text-[var(--luxury-gold)] bg-[#fffdfa]">
               01
             </div>
             <canvas class="scratch-canvas" width="95" height="140" id="c-day"></canvas>
@@ -245,7 +245,7 @@
         <div class="flex flex-col items-center">
           <span class="text-[10px] uppercase font-bold tracking-widest text-slate-400 mb-1.5">Year</span>
           <div class="scratch-box">
-            <div class="absolute inset-0 flex items-center justify-center font-serif-title text-xl font-bold text-[#824c4c] bg-[#fffdfa]">
+            <div class="absolute inset-0 flex items-center justify-center font-serif-title text-xl font-bold text-[var(--luxury-gold)] bg-[#fffdfa]">
               2026
             </div>
             <canvas class="scratch-canvas" width="95" height="140" id="c-year"></canvas>
@@ -256,9 +256,9 @@
 
 
     <!-- ⏳ MODERN TIMER -->
-    <section class="bg-white/80 p-8 rounded-[32px] border border-stone-200/60 shadow-xl text-center space-y-6">
+    <section class="bg-white/90 p-8 rounded-[32px] border border-[var(--gold-accent)]/50 shadow-xl text-center space-y-6">
       <p class="text-xs italic text-slate-400">A lifetime of togetherness begins with one sacred step</p>
-      <h3 class="font-serif-title text-3xl text-[#824c4c]">The Wedding</h3>
+      <h3 class="font-serif-title text-3xl text-[var(--luxury-gold)]">The Wedding</h3>
       <p class="text-xs font-medium tracking-[0.2em] text-slate-500">01 . 07 . 2026</p>
 
       <div class="grid grid-cols-4 gap-2 pt-4 border-t border-stone-100 text-center">
@@ -286,7 +286,7 @@
     <section class="text-center space-y-6 overflow-hidden">
       <div>
         <p class="text-[10px] uppercase tracking-[0.2em] text-slate-400 font-bold mb-1">OUR STORY</p>
-        <h3 class="font-serif-title text-4xl text-[#824c4c]">Forever Us</h3>
+        <h3 class="font-serif-title text-4xl text-[var(--luxury-gold)]">Forever Us</h3>
         <p class="text-[11px] text-slate-400 italic">Swipe to see our beautiful memories</p>
       </div>
 
@@ -330,8 +330,8 @@
     <section class="space-y-8">
       
       <!-- Guest Details Card -->
-      <div class="bg-white/90 p-8 rounded-[28px] border border-stone-200/50 shadow-md space-y-6">
-        <h4 class="font-serif-title italic text-lg text-[#824c4c]">Your details</h4>
+      <div class="bg-white/90 p-8 rounded-[28px] border border-[var(--gold-accent)]/30 shadow-md space-y-6">
+        <h4 class="font-serif-title italic text-lg text-[var(--luxury-gold)]">Your details</h4>
         
         <div>
           <label class="block text-[10px] uppercase tracking-widest text-slate-400 font-bold mb-1">Your Name</label>
@@ -348,21 +348,21 @@
       </div>
 
       <!-- Accept / Decline Options -->
-      <div class="bg-white/90 p-8 rounded-[28px] border border-stone-200/50 shadow-md space-y-4">
-        <h4 class="font-serif-title italic text-lg text-[#824c4c] text-center">Will you join us?</h4>
+      <div class="bg-white/90 p-8 rounded-[28px] border border-[var(--gold-accent)]/30 shadow-md space-y-4">
+        <h4 class="font-serif-title italic text-lg text-[var(--luxury-gold)] text-center">Will you join us?</h4>
         <div class="space-y-2.5">
-          <label class="flex items-center justify-center w-full py-3.5 rounded-full bg-[#824c4c] text-white font-medium text-xs uppercase tracking-widest cursor-pointer shadow-md text-center select-none">
+          <label class="flex items-center justify-center w-full py-3.5 rounded-full bg-[var(--luxury-gold)] text-white font-medium text-xs uppercase tracking-widest cursor-pointer shadow-md text-center select-none hover:opacity-90 transition">
             <input type="radio" name="attending" value="Joyfully Accept 🎉" checked class="hidden"> JOYFULLY ACCEPT 🎉
           </label>
-          <label class="flex items-center justify-center w-full py-3.5 rounded-full bg-white border border-stone-200 text-slate-500 font-medium text-xs uppercase tracking-widest cursor-pointer text-center select-none">
+          <label class="flex items-center justify-center w-full py-3.5 rounded-full bg-white border border-stone-200 text-slate-500 font-medium text-xs uppercase tracking-widest cursor-pointer text-center select-none hover:bg-stone-50 transition">
             <input type="radio" name="attending" value="Regrettably Decline 😔" class="hidden"> REGRETTABLY DECLINE
           </label>
         </div>
       </div>
 
       <!-- Party Size Selector -->
-      <div class="bg-white/90 p-8 rounded-[28px] border border-stone-200/50 shadow-md space-y-3">
-        <h4 class="font-serif-title italic text-lg text-[#824c4c]">Party size</h4>
+      <div class="bg-white/90 p-8 rounded-[28px] border border-[var(--gold-accent)]/30 shadow-md space-y-3">
+        <h4 class="font-serif-title italic text-lg text-[var(--luxury-gold)]">Party size</h4>
         <select id="rsvp-size" class="w-full bg-transparent py-2.5 text-sm text-slate-700 bg-white/50">
           <option value="1">1 (Just me)</option>
           <option value="2">2 People</option>
@@ -373,8 +373,8 @@
       </div>
 
       <!-- Events List -->
-      <div class="bg-white/90 p-8 rounded-[28px] border border-stone-200/50 shadow-md space-y-4">
-        <h4 class="font-serif-title italic text-lg text-[#824c4c]">Events you'll attend</h4>
+      <div class="bg-white/90 p-8 rounded-[28px] border border-[var(--gold-accent)]/30 shadow-md space-y-4">
+        <h4 class="font-serif-title italic text-lg text-[var(--luxury-gold)]">Events you'll attend</h4>
         <div class="space-y-2">
           
           <label class="flex items-center justify-between p-4 bg-white border border-stone-200/60 rounded-xl cursor-pointer select-none">
@@ -382,7 +382,7 @@
               <p class="text-sm font-medium text-slate-800">Sangeet Night</p>
               <p class="text-[10px] text-slate-400">JUNE 30 - 7:00 PM</p>
             </div>
-            <input type="checkbox" name="events" value="Sangeet" checked class="w-4 h-4 accent-[#824c4c]">
+            <input type="checkbox" name="events" value="Sangeet" checked class="w-4 h-4 accent-[var(--luxury-gold)]">
           </label>
 
           <label class="flex items-center justify-between p-4 bg-white border border-stone-200/60 rounded-xl cursor-pointer select-none">
@@ -390,7 +390,7 @@
               <p class="text-sm font-medium text-slate-800">After Party</p>
               <p class="text-[10px] text-slate-400">JUNE 30 - 11:00 PM</p>
             </div>
-            <input type="checkbox" name="events" value="AfterParty" checked class="w-4 h-4 accent-[#824c4c]">
+            <input type="checkbox" name="events" value="AfterParty" checked class="w-4 h-4 accent-[var(--luxury-gold)]">
           </label>
 
           <label class="flex items-center justify-between p-4 bg-white border border-stone-200/60 rounded-xl cursor-pointer select-none">
@@ -398,7 +398,7 @@
               <p class="text-sm font-medium text-slate-800">Carnival</p>
               <p class="text-[10px] text-slate-400">JULY 01 - 11:00 AM</p>
             </div>
-            <input type="checkbox" name="events" value="Carnival" checked class="w-4 h-4 accent-[#824c4c]">
+            <input type="checkbox" name="events" value="Carnival" checked class="w-4 h-4 accent-[var(--luxury-gold)]">
           </label>
 
           <label class="flex items-center justify-between p-4 bg-white border border-stone-200/60 rounded-xl cursor-pointer select-none">
@@ -406,23 +406,23 @@
               <p class="text-sm font-medium text-slate-800">Reception & Phere</p>
               <p class="text-[10px] text-slate-400">JULY 01 - 7:00 PM Onwards</p>
             </div>
-            <input type="checkbox" name="events" value="Reception" checked class="w-4 h-4 accent-[#824c4c]">
+            <input type="checkbox" name="events" value="Reception" checked class="w-4 h-4 accent-[var(--luxury-gold)]">
           </label>
 
         </div>
       </div>
 
       <!-- Dance Song Request -->
-      <div class="bg-white/90 p-8 rounded-[28px] border border-stone-200/50 shadow-md space-y-4 relative">
-        <h4 class="font-serif-title italic text-lg text-[#824c4c]">A song for the dance floor</h4>
+      <div class="bg-white/90 p-8 rounded-[28px] border border-[var(--gold-accent)]/30 shadow-md space-y-4 relative">
+        <h4 class="font-serif-title italic text-lg text-[var(--luxury-gold)]">A song for the dance floor</h4>
         <div>
           <input type="text" id="rsvp-song" placeholder="e.g. Kala Chashma" class="w-full bg-transparent py-2 text-sm text-slate-700 placeholder-slate-300">
         </div>
       </div>
 
       <!-- Dietary Preferences -->
-      <div class="bg-white/90 p-8 rounded-[28px] border border-stone-200/50 shadow-md space-y-4">
-        <h4 class="font-serif-title italic text-lg text-[#824c4c] flex items-center gap-2">
+      <div class="bg-white/90 p-8 rounded-[28px] border border-[var(--gold-accent)]/30 shadow-md space-y-4">
+        <h4 class="font-serif-title italic text-lg text-[var(--luxury-gold)] flex items-center gap-2">
           <span>🍽️</span> Dietary preferences
         </h4>
         <div class="relative">
@@ -440,15 +440,15 @@
       </div>
 
       <!-- Marriage Advice -->
-      <div class="bg-white/90 p-8 rounded-[28px] border border-stone-200/50 shadow-md space-y-4">
-        <h4 class="font-serif-title italic text-lg text-[#824c4c]">Marriage advice for us</h4>
+      <div class="bg-white/90 p-8 rounded-[28px] border border-[var(--gold-accent)]/30 shadow-md space-y-4">
+        <h4 class="font-serif-title italic text-lg text-[var(--luxury-gold)]">Marriage advice for us</h4>
         <div>
           <textarea id="rsvp-advice" rows="3" placeholder="Share something sweet, funny, or wise..." class="w-full bg-transparent p-3 text-sm text-slate-700 placeholder-slate-300 border border-stone-200 rounded-xl resize-none"></textarea>
         </div>
       </div>
 
       <!-- SEND RSVP BUTTON -->
-      <button onclick="processRSVPEngine()" id="submit-btn" type="button" class="w-full bg-[#824c4c] text-white py-4 rounded-full text-xs font-bold uppercase tracking-widest shadow-xl active:scale-[0.99] transition mt-4">
+      <button onclick="processRSVPEngine()" id="submit-btn" type="button" class="w-full bg-[var(--luxury-gold)] text-white py-4 rounded-full text-xs font-bold uppercase tracking-widest shadow-xl active:scale-[0.99] hover:opacity-90 transition mt-4">
         SEND RSVP
       </button>
 
@@ -552,16 +552,17 @@
       }
     }
 
-    // 🎫 Scratch Card Core
+    // 🎫 Scratch Card Core with Gold scratch cover
     function initScratchCard(id) {
       const canvas = document.getElementById(id);
       const ctx = canvas.getContext('2d');
       
-      ctx.fillStyle = '#bfa3a3';
+      // Scratch surface changed to gold dust color
+      ctx.fillStyle = '#d4af37'; 
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       
       ctx.fillStyle = '#ffffff';
-      ctx.font = '10px Montserrat';
+      ctx.font = 'bold 10px Montserrat';
       ctx.textAlign = 'center';
       ctx.fillText('SCRATCH', canvas.width/2, canvas.height/2 + 3);
 
@@ -631,7 +632,7 @@
       submitBtn.disabled = true;
       submitBtn.innerText = "SENDING RSVP...";
 
-      // EmailJS parameter payload (Connected variables)
+      // EmailJS parameter payload
       const templateParams = {
         guest_name: name,
         guest_phone: phone,
@@ -668,4 +669,4 @@
     }
   </script>
 </body>
-        </html>
+  </html>
