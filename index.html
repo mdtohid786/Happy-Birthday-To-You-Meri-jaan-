@@ -7,6 +7,9 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght=0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
   
+  <!-- ✉️ EMAILJS SDK INTEGRATION -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  
   <style>
     :root {
       --bg-cream: #faf6f0;
@@ -77,7 +80,7 @@
       animation: fly 12s infinite linear;
     }
     @keyframes fly {
-      0 { transform: translateY(-10%) rotate(0deg); opacity: 0; }
+      0% { transform: translateY(-10%) rotate(0deg); opacity: 0; }
       10% { opacity: 0.6; }
       90% { opacity: 0.6; }
       100% { transform: translateY(110vh) translateX(100px) rotate(360deg); opacity: 0; }
@@ -180,7 +183,7 @@
   <!-- 🏛️ MAIN CARD CONTENT -->
   <main class="max-w-md mx-auto px-4 pt-10 pb-24 space-y-24 relative z-10">
 
-    <!-- 🌟 CLEAN ROYAL INTRO SECTION (No Ganesha/Religious Symbols) -->
+    <!-- 🌟 CLEAN ROYAL INTRO SECTION -->
     <section class="text-center pt-12 pb-8 bg-white/40 p-6 rounded-[32px] border border-white/60 backdrop-blur-sm relative">
       <div class="absolute top-4 left-4 w-6 h-6 border-t border-l border-amber-600/30"></div>
       <div class="absolute top-4 right-4 w-6 h-6 border-t border-r border-amber-600/30"></div>
@@ -205,7 +208,7 @@
     </section>
 
 
-    <!-- 🎫 TRIPLE SCRATCH WITH ROSE EXPLOSION (PATAKA EFFECT) -->
+    <!-- 🎫 TRIPLE SCRATCH WITH ROSE EXPLOSION -->
     <section class="text-center space-y-6">
       <div>
         <p class="text-xs uppercase tracking-[0.2em] text-amber-700/80 font-bold mb-1">THE DATE</p>
@@ -277,7 +280,7 @@
     </section>
 
 
-    <!-- 📸 SLIDING PHOTO ALBUM (Forever Us) -->
+    <!-- 📸 SLIDING PHOTO ALBUM -->
     <section class="text-center space-y-6 overflow-hidden">
       <div>
         <p class="text-[10px] uppercase tracking-[0.2em] text-slate-400 font-bold mb-1">OUR STORY</p>
@@ -321,7 +324,7 @@
     </section>
 
 
-    <!-- 👗 COMPLETE RSVP SYSTEM (SANGEET, CHECKLIST, SONGS & ADVICE) -->
+    <!-- 👗 COMPLETE RSVP SYSTEM WITH EMAILJS -->
     <section class="space-y-8">
       
       <!-- Guest Details Card -->
@@ -443,7 +446,7 @@
       </div>
 
       <!-- SEND RSVP BUTTON -->
-      <button onclick="processRSVPEngine()" type="button" class="w-full bg-[#824c4c] text-white py-4 rounded-full text-xs font-bold uppercase tracking-widest shadow-xl active:scale-[0.99] transition mt-4">
+      <button onclick="processRSVPEngine()" id="submit-btn" type="button" class="w-full bg-[#824c4c] text-white py-4 rounded-full text-xs font-bold uppercase tracking-widest shadow-xl active:scale-[0.99] transition mt-4">
         SEND RSVP
       </button>
 
@@ -452,6 +455,13 @@
 
   <!-- SYSTEMS SCRIPTS -->
   <script>
+    // ✉️ EMAILJS INITIALIZATION WITH YOUR GIVEN PUBLIC KEY
+    (function() {
+        emailjs.init({
+          publicKey: "287g46US2fGjoY4LL",
+        });
+    })();
+
     // ✉️ Open Envelope
     function openEnvelope() {
       const target = document.getElementById('envelope-portal');
@@ -583,37 +593,70 @@
     initScratchCard('c-day');
     initScratchCard('c-year');
 
-    // 📩 WhatsApp Submission Pipeline
+    // 📩 EMAILJS SUBMISSION PIPELINE WITH YOUR KEYS
     function processRSVPEngine() {
       const name = document.getElementById('rsvp-name').value.trim();
       const phone = document.getElementById('rsvp-phone').value.trim();
-      const attendance = document.querySelector('input[name="attending"]:checked').value;
+      
+      // Selected Attendance Option
+      const attendanceElement = document.querySelector('input[name="attending"]:checked');
+      const attendance = attendanceElement ? attendanceElement.value : 'Joyfully Accept 🎉';
+      
       const size = document.getElementById('rsvp-size').value;
       const song = document.getElementById('rsvp-song').value.trim();
       const diet = document.getElementById('rsvp-diet').value;
       const advice = document.getElementById('rsvp-advice').value.trim();
       
+      // Checkboxes checked events
       let checkedEvents = [];
       document.querySelectorAll('input[name="events"]:checked').forEach(cb => checkedEvents.push(cb.value));
 
+      // Validation check
       if(!name || !phone) {
         alert("Bhai, details fill up kar lo tabhi RSVP submit hoga!");
         return;
       }
 
-      const ownerWhatsApp = "919999999999"; 
-      const msg = `*✨ WEDDING RSVP RESPONSE ✨*%0A%0A` +
-                  `*Guest:* ${name}%0A` +
-                  `*Phone:* ${phone}%0A` +
-                  `*Status:* ${attendance}%0A` +
-                  `*Total Size:* ${size} person(s)%0A` +
-                  `*Events Attending:* ${checkedEvents.join(', ')}%0A` +
-                  `*Dietary Pref:* ${diet}%0A` +
-                  `*Dance Track:* ${song ? song : 'None'}%0A` +
-                  `*Advice:* ${advice ? advice : 'None'}`;
-      
-      window.open(`https://api.whatsapp.com/send?phone=${ownerWhatsApp}&text=${msg}`, '_blank');
+      // UI Feedback loader state
+      const submitBtn = document.getElementById('submit-btn');
+      submitBtn.disabled = true;
+      submitBtn.innerText = "SENDING RSVP...";
+
+      // EmailJS parameter payload (Connected variables)
+      const templateParams = {
+        guest_name: name,
+        guest_phone: phone,
+        attendance: attendance,
+        party_size: size,
+        events_attending: checkedEvents.length > 0 ? checkedEvents.join(', ') : 'None',
+        dietary_pref: diet,
+        dance_track: song ? song : 'None',
+        marriage_advice: advice ? advice : 'None'
+      };
+
+      // Real Keys Configured
+      const serviceID = "service_3ux49q7";
+      const templateID = "template_fn1apho";
+
+      emailjs.send(serviceID, templateID, templateParams)
+        .then(function(response) {
+           console.log('SUCCESS!', response.status, response.text);
+           alert("Shukriya! Aapka RSVP safaltapurwak bhej diya gaya hai. 🎉");
+           submitBtn.disabled = false;
+           submitBtn.innerText = "SEND RSVP";
+           
+           // Form input reset
+           document.getElementById('rsvp-name').value = "";
+           document.getElementById('rsvp-phone').value = "";
+           document.getElementById('rsvp-song').value = "";
+           document.getElementById('rsvp-advice').value = "";
+        }, function(error) {
+           console.log('FAILED...', error);
+           alert("Oops! Kuch gadbad ho gayi. Kripya thodi der baad koshish karne ka.");
+           submitBtn.disabled = false;
+           submitBtn.innerText = "SEND RSVP";
+        });
     }
   </script>
 </body>
-          </html>
+  </html>
