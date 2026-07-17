@@ -166,6 +166,8 @@
       <path stroke-linecap="round" stroke-linejoin="round" d="M19.114 5.636a9 9 0 0 1 0 12.728M16.463 8.288a5.25 5.25 0 0 1 0 7.424M6.75 8.25l4.72-4.72a.75.75 0 0 1 1.28.53v15.88a.75.75 0 0 1-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.009 9.009 0 0 1 2.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75Z" />
     </svg>
   </button>
+  
+  <!-- 🎵 GITHUB MUSIC SOURCE ADDED HERE -->
   <audio id="wedding-track" loop src="Shiddat___.__Shiddat__transl._Intensity__is_a_2021_Indian_Hindi-la.m4a"></audio>
 
   <!-- ✉️ ENVELOPE GATE COVER -->
@@ -455,26 +457,33 @@
 
   <!-- SYSTEMS SCRIPTS -->
   <script>
-    // ✉️ EMAILJS INITIALIZATION WITH YOUR GIVEN PUBLIC KEY
+    // ✉️ EMAILJS INITIALIZATION WITH YOUR PUBLIC KEY
     (function() {
         emailjs.init({
           publicKey: "287g46US2fGjoY4LL",
         });
     })();
 
-    // ✉️ Open Envelope
+    // ✉️ Open Envelope & Start Music
     function openEnvelope() {
       const target = document.getElementById('envelope-portal');
       target.style.transform = 'translateY(-100%)';
       setTimeout(() => { target.style.display = 'none'; }, 1050);
-      toggleAudio(); 
+      
+      // Forcefully start play when envelope is clicked
+      const track = document.getElementById('wedding-track');
+      track.play().then(() => {
+        document.getElementById('audio-icon').style.opacity = '1';
+      }).catch(e => {
+        console.log('Autoplay blocked by browser policy.', e);
+      });
     }
 
-    // 🔊 Audio Setup
+    // 🔊 Audio Setup Toggle
     const track = document.getElementById('wedding-track');
     function toggleAudio() {
       if(track.paused) {
-        track.play().catch(e => console.log('Audio playing.'));
+        track.play().catch(e => console.log('Audio playing error.'));
         document.getElementById('audio-icon').style.opacity = '1';
       } else {
         track.pause();
@@ -593,7 +602,7 @@
     initScratchCard('c-day');
     initScratchCard('c-year');
 
-    // 📩 EMAILJS SUBMISSION PIPELINE WITH YOUR KEYS
+    // 📩 EMAILJS SUBMISSION PIPELINE
     function processRSVPEngine() {
       const name = document.getElementById('rsvp-name').value.trim();
       const phone = document.getElementById('rsvp-phone').value.trim();
@@ -659,4 +668,4 @@
     }
   </script>
 </body>
-  </html>
+        </html>
