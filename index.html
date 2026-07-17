@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meenal & Avinash - Premium Royal Wedding Invitation</title>
+  <title>Meenal & Avinash - Premium Wedding Invitation</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght=0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
   
@@ -77,7 +77,7 @@
       animation: fly 12s infinite linear;
     }
     @keyframes fly {
-      0% { transform: translateY(-10%) rotate(0deg); opacity: 0; }
+      0 { transform: translateY(-10%) rotate(0deg); opacity: 0; }
       10% { opacity: 0.6; }
       90% { opacity: 0.6; }
       100% { transform: translateY(110vh) translateX(100px) rotate(360deg); opacity: 0; }
@@ -126,10 +126,10 @@
       scroll-snap-type: x mandatory;
       gap: 16px;
       padding: 10px 20px;
-      scrollbar-width: none; /* Firefox */
+      scrollbar-width: none;
     }
     .slider-container::-webkit-scrollbar {
-      display: none; /* Safari and Chrome */
+      display: none;
     }
     .slide-item {
       flex: 0 0 85%;
@@ -141,7 +141,7 @@
       transform: rotate(var(--rot));
     }
 
-    /* Custom form inputs focus */
+    /* Custom inputs style */
     input, select, textarea {
       outline: none !important;
       border-bottom: 1px solid #dcd1c4 !important;
@@ -165,7 +165,7 @@
   </button>
   <audio id="wedding-track" loop src="song.mp3"></audio>
 
-  <!-- ✉️ IMAGE 1: ENVELOPE GATE COVER -->
+  <!-- ✉️ ENVELOPE GATE COVER -->
   <div id="envelope-portal" class="text-center">
     <div class="embossed-flowers"></div>
     <div class="absolute top-[25%] text-amber-100/70 font-serif-title italic tracking-widest text-lg animate-pulse">
@@ -180,24 +180,23 @@
   <!-- 🏛️ MAIN CARD CONTENT -->
   <main class="max-w-md mx-auto px-4 pt-10 pb-24 space-y-24 relative z-10">
 
-    <!-- 🕉️ IMAGE 2: GANESHA CARD -->
-    <section class="text-center pt-8 bg-white/40 p-6 rounded-[32px] border border-white/60 backdrop-blur-sm relative">
+    <!-- 🌟 CLEAN ROYAL INTRO SECTION (No Ganesha/Religious Symbols) -->
+    <section class="text-center pt-12 pb-8 bg-white/40 p-6 rounded-[32px] border border-white/60 backdrop-blur-sm relative">
       <div class="absolute top-4 left-4 w-6 h-6 border-t border-l border-amber-600/30"></div>
       <div class="absolute top-4 right-4 w-6 h-6 border-t border-r border-amber-600/30"></div>
       
-      <img src="https://cdn-icons-png.flaticon.com/512/2414/2414275.png" class="w-16 h-16 mx-auto opacity-70 mb-4 object-contain" alt="Ganesha">
-      <p class="text-[11px] font-medium text-amber-900/80 max-w-xs mx-auto leading-relaxed font-serif-title tracking-wide mb-6">
-        ॥ श्री गणेशाय नमः ॥ वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ<br>निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा ॥
-      </p>
-      
-      <p class="text-[12px] uppercase tracking-[0.2em] text-slate-400 mb-8 font-medium">With the blessings of elders & family</p>
+      <p class="text-[12px] uppercase tracking-[0.25em] text-[#824c4c] font-semibold mb-6">Together with their families</p>
       
       <h1 class="font-serif-title text-4xl text-[#824c4c] tracking-wide mb-2">Meenal</h1>
       <div class="text-amber-600/70 font-serif-title italic text-xl my-3">&</div>
       <h1 class="font-serif-title text-4xl text-[#824c4c] tracking-wide mb-8">Avinash</h1>
       
-      <p class="text-[11px] text-slate-500 italic tracking-wider mt-4">
+      <p class="text-[11px] text-slate-500 italic tracking-wider mb-8">
         Daughter of Mr. & Mrs. Sharma &nbsp;|&nbsp; Son of Mr. & Mrs. Patel
+      </p>
+
+      <p class="text-[12px] uppercase tracking-[0.2em] text-slate-400 font-medium max-w-xs mx-auto leading-relaxed">
+        Request the honor of your presence to celebrate our beautiful journey of love and togetherness.
       </p>
 
       <div class="text-[10px] tracking-[0.3em] uppercase text-slate-400 mt-16 animate-bounce">
@@ -206,7 +205,7 @@
     </section>
 
 
-    <!-- 🎫 IMAGE 3 & 4: TRIPLE SCRATCH WITH ROSE EXPLOSION -->
+    <!-- 🎫 TRIPLE SCRATCH WITH ROSE EXPLOSION (PATAKA EFFECT) -->
     <section class="text-center space-y-6">
       <div>
         <p class="text-xs uppercase tracking-[0.2em] text-amber-700/80 font-bold mb-1">THE DATE</p>
@@ -251,11 +250,11 @@
     </section>
 
 
-    <!-- ⏳ IMAGE 5: MODERN TIMER -->
+    <!-- ⏳ MODERN TIMER -->
     <section class="bg-white/80 p-8 rounded-[32px] border border-stone-200/60 shadow-xl text-center space-y-6">
       <p class="text-xs italic text-slate-400">A lifetime of togetherness begins with one sacred step</p>
       <h3 class="font-serif-title text-3xl text-[#824c4c]">The Wedding</h3>
-      <p class="text-xs font-medium tracking-[0.2em] text-slate-500">07 . 01 . 2026</p>
+      <p class="text-xs font-medium tracking-[0.2em] text-slate-500">01 . 07 . 2026</p>
 
       <div class="grid grid-cols-4 gap-2 pt-4 border-t border-stone-100 text-center">
         <div>
@@ -278,7 +277,7 @@
     </section>
 
 
-    <!-- 📸 IMAGE 6: SLIDING PHOTO POLAROID ALBUM -->
+    <!-- 📸 SLIDING PHOTO ALBUM (Forever Us) -->
     <section class="text-center space-y-6 overflow-hidden">
       <div>
         <p class="text-[10px] uppercase tracking-[0.2em] text-slate-400 font-bold mb-1">OUR STORY</p>
@@ -286,7 +285,6 @@
         <p class="text-[11px] text-slate-400 italic">Swipe to see our beautiful memories</p>
       </div>
 
-      <!-- Horizontal Smooth Sliding Album Container -->
       <div class="slider-container">
         <!-- Photo 1 -->
         <div class="slide-item" style="--rot: -2deg">
@@ -323,30 +321,11 @@
     </section>
 
 
-    <!-- 👗 IMAGE 7, 8, 9, 10: COMPLETE RSVP SYSTEM -->
-    <section class="space-y-10 bg-white/70 p-6 rounded-[32px] border border-white shadow-md">
+    <!-- 👗 COMPLETE RSVP SYSTEM (SANGEET, CHECKLIST, SONGS & ADVICE) -->
+    <section class="space-y-8">
       
-      <!-- Event Info & Dress Code -->
-      <div class="text-center pb-6 border-b border-stone-200/60">
-        <p class="text-xs italic text-slate-500">"A vibrant burst of colors, games, and laughter!"</p>
-        <h4 class="text-xs font-bold uppercase tracking-[0.3em] text-amber-800 mt-4 mb-3">DRESS CODE</h4>
-        
-        <div class="flex justify-center gap-3 mb-2">
-          <span class="w-4 h-4 rounded-full bg-pink-300 block shadow-sm"></span>
-          <span class="w-4 h-4 rounded-full bg-orange-200 block shadow-sm"></span>
-          <span class="w-4 h-4 rounded-full bg-teal-200 block shadow-sm"></span>
-        </div>
-        <p class="text-xs italic text-slate-500">Pastel Pink • Peach • Mint</p>
-        <p class="text-[10px] uppercase tracking-wider text-slate-400 mt-1 font-semibold">Comfortable & Breezy Daywear</p>
-
-        <p class="text-xs font-medium text-slate-700 mt-6">Accord Wildlife Pench Resort • Poolside Lawns</p>
-        <a href="https://maps.google.com" target="_blank" class="mt-3 inline-block bg-[#824c4c] text-white text-[11px] uppercase tracking-widest font-medium px-5 py-2.5 rounded-full shadow-sm">
-          📍 GET DIRECTIONS
-        </a>
-      </div>
-
-      <!-- User Inputs -->
-      <div class="space-y-6">
+      <!-- Guest Details Card -->
+      <div class="bg-white/90 p-8 rounded-[28px] border border-stone-200/50 shadow-md space-y-6">
         <h4 class="font-serif-title italic text-lg text-[#824c4c]">Your details</h4>
         
         <div>
@@ -363,21 +342,21 @@
         </div>
       </div>
 
-      <!-- Accept/Decline Options -->
-      <div class="space-y-3">
-        <h4 class="font-serif-title italic text-lg text-[#824c4c]">Will you join us?</h4>
+      <!-- Accept / Decline Options -->
+      <div class="bg-white/90 p-8 rounded-[28px] border border-stone-200/50 shadow-md space-y-4">
+        <h4 class="font-serif-title italic text-lg text-[#824c4c] text-center">Will you join us?</h4>
         <div class="space-y-2.5">
-          <label class="flex items-center justify-center w-full py-3.5 rounded-full bg-[#824c4c] text-white font-medium text-xs uppercase tracking-widest cursor-pointer shadow-md text-center select-none has-[:checked]:ring-2 has-[:checked]:ring-amber-500">
+          <label class="flex items-center justify-center w-full py-3.5 rounded-full bg-[#824c4c] text-white font-medium text-xs uppercase tracking-widest cursor-pointer shadow-md text-center select-none">
             <input type="radio" name="attending" value="Joyfully Accept 🎉" checked class="hidden"> JOYFULLY ACCEPT 🎉
           </label>
-          <label class="flex items-center justify-center w-full py-3.5 rounded-full bg-white border border-stone-200 text-slate-500 font-medium text-xs uppercase tracking-widest cursor-pointer text-center select-none has-[:checked]:bg-stone-100">
+          <label class="flex items-center justify-center w-full py-3.5 rounded-full bg-white border border-stone-200 text-slate-500 font-medium text-xs uppercase tracking-widest cursor-pointer text-center select-none">
             <input type="radio" name="attending" value="Regrettably Decline 😔" class="hidden"> REGRETTABLY DECLINE
           </label>
         </div>
       </div>
 
-      <!-- Party Size -->
-      <div class="space-y-2">
+      <!-- Party Size Selector -->
+      <div class="bg-white/90 p-8 rounded-[28px] border border-stone-200/50 shadow-md space-y-3">
         <h4 class="font-serif-title italic text-lg text-[#824c4c]">Party size</h4>
         <select id="rsvp-size" class="w-full bg-transparent py-2.5 text-sm text-slate-700 bg-white/50">
           <option value="1">1 (Just me)</option>
@@ -388,12 +367,12 @@
         </select>
       </div>
 
-      <!-- Events Selection -->
-      <div class="space-y-3">
+      <!-- Events List -->
+      <div class="bg-white/90 p-8 rounded-[28px] border border-stone-200/50 shadow-md space-y-4">
         <h4 class="font-serif-title italic text-lg text-[#824c4c]">Events you'll attend</h4>
         <div class="space-y-2">
           
-          <label class="flex items-center justify-between p-4 bg-white/90 border border-stone-200/60 rounded-xl cursor-pointer select-none">
+          <label class="flex items-center justify-between p-4 bg-white border border-stone-200/60 rounded-xl cursor-pointer select-none">
             <div>
               <p class="text-sm font-medium text-slate-800">Sangeet Night</p>
               <p class="text-[10px] text-slate-400">JUNE 30 - 7:00 PM</p>
@@ -401,7 +380,7 @@
             <input type="checkbox" name="events" value="Sangeet" checked class="w-4 h-4 accent-[#824c4c]">
           </label>
 
-          <label class="flex items-center justify-between p-4 bg-white/90 border border-stone-200/60 rounded-xl cursor-pointer select-none">
+          <label class="flex items-center justify-between p-4 bg-white border border-stone-200/60 rounded-xl cursor-pointer select-none">
             <div>
               <p class="text-sm font-medium text-slate-800">After Party</p>
               <p class="text-[10px] text-slate-400">JUNE 30 - 11:00 PM</p>
@@ -409,7 +388,7 @@
             <input type="checkbox" name="events" value="AfterParty" checked class="w-4 h-4 accent-[#824c4c]">
           </label>
 
-          <label class="flex items-center justify-between p-4 bg-white/90 border border-stone-200/60 rounded-xl cursor-pointer select-none">
+          <label class="flex items-center justify-between p-4 bg-white border border-stone-200/60 rounded-xl cursor-pointer select-none">
             <div>
               <p class="text-sm font-medium text-slate-800">Carnival</p>
               <p class="text-[10px] text-slate-400">JULY 01 - 11:00 AM</p>
@@ -417,15 +396,7 @@
             <input type="checkbox" name="events" value="Carnival" checked class="w-4 h-4 accent-[#824c4c]">
           </label>
 
-          <label class="flex items-center justify-between p-4 bg-white/90 border border-stone-200/60 rounded-xl cursor-pointer select-none">
-            <div>
-              <p class="text-sm font-medium text-slate-800">Shera Bandi</p>
-              <p class="text-[10px] text-slate-400">JULY 01 - 5:00 PM</p>
-            </div>
-            <input type="checkbox" name="events" value="SheraBandi" checked class="w-4 h-4 accent-[#824c4c]">
-          </label>
-
-          <label class="flex items-center justify-between p-4 bg-white/90 border border-stone-200/60 rounded-xl cursor-pointer select-none">
+          <label class="flex items-center justify-between p-4 bg-white border border-stone-200/60 rounded-xl cursor-pointer select-none">
             <div>
               <p class="text-sm font-medium text-slate-800">Reception & Phere</p>
               <p class="text-[10px] text-slate-400">JULY 01 - 7:00 PM Onwards</p>
@@ -436,19 +407,42 @@
         </div>
       </div>
 
-      <!-- Advice and Song Requests -->
-      <div class="space-y-6 pt-2">
+      <!-- Dance Song Request -->
+      <div class="bg-white/90 p-8 rounded-[28px] border border-stone-200/50 shadow-md space-y-4 relative">
+        <h4 class="font-serif-title italic text-lg text-[#824c4c]">A song for the dance floor</h4>
         <div>
-          <h4 class="font-serif-title italic text-lg text-[#824c4c] mb-1">A song for the dance floor</h4>
-          <input type="text" id="rsvp-song" placeholder="e.g. Kala Chashma, Bhojpuri energetic track" class="w-full bg-transparent py-2 text-sm text-slate-700 placeholder-slate-300">
-        </div>
-
-        <div>
-          <h4 class="font-serif-title italic text-lg text-[#824c4c] mb-1">Marriage advice for us</h4>
-          <textarea id="rsvp-advice" rows="2" placeholder="Share something sweet, funny, or wise..." class="w-full bg-transparent py-2 text-sm text-slate-700 placeholder-slate-300 resize-none"></textarea>
+          <input type="text" id="rsvp-song" placeholder="e.g. Kala Chashma" class="w-full bg-transparent py-2 text-sm text-slate-700 placeholder-slate-300">
         </div>
       </div>
 
+      <!-- Dietary Preferences -->
+      <div class="bg-white/90 p-8 rounded-[28px] border border-stone-200/50 shadow-md space-y-4">
+        <h4 class="font-serif-title italic text-lg text-[#824c4c] flex items-center gap-2">
+          <span>🍽️</span> Dietary preferences
+        </h4>
+        <div class="relative">
+          <select id="rsvp-diet" class="w-full bg-transparent py-3 px-4 text-sm text-slate-700 bg-white border border-stone-200 rounded-xl appearance-none cursor-pointer">
+            <option value="No specific preferences" selected>No specific preferences</option>
+            <option value="Vegetarian">Vegetarian (शुद्ध शाकाहारी)</option>
+            <option value="Non-Vegetarian">Non-Vegetarian (मांसाहारी)</option>
+            <option value="Vegan">Vegan</option>
+            <option value="Gluten-Free">Gluten-Free</option>
+          </select>
+          <div class="pointer-events-none absolute inset-y-0 right-4 flex items-center text-slate-500">
+            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Marriage Advice -->
+      <div class="bg-white/90 p-8 rounded-[28px] border border-stone-200/50 shadow-md space-y-4">
+        <h4 class="font-serif-title italic text-lg text-[#824c4c]">Marriage advice for us</h4>
+        <div>
+          <textarea id="rsvp-advice" rows="3" placeholder="Share something sweet, funny, or wise..." class="w-full bg-transparent p-3 text-sm text-slate-700 placeholder-slate-300 border border-stone-200 rounded-xl resize-none"></textarea>
+        </div>
+      </div>
+
+      <!-- SEND RSVP BUTTON -->
       <button onclick="processRSVPEngine()" type="button" class="w-full bg-[#824c4c] text-white py-4 rounded-full text-xs font-bold uppercase tracking-widest shadow-xl active:scale-[0.99] transition mt-4">
         SEND RSVP
       </button>
@@ -493,7 +487,7 @@
       pContainer.appendChild(petal);
     }
 
-    // ⏳ Countdown Engine
+    // ⏳ Countdown Engine (Target Date set to July 01, 2026)
     const targetDate = new Date("July 01, 2026 19:00:00").getTime();
     setInterval(() => {
       const distance = targetDate - new Date().getTime();
@@ -506,26 +500,23 @@
 
     // 💥 DYNAMIC ROSE PETAL BURST SYSTEM (PATAKA EFFECT)
     function spawnRoseBurst(clientX, clientY) {
-      const count = 12; // Ek baar scratch par kitni rose petals futengi
+      const count = 12; 
       const petalColors = ['#ff4d6d', '#ff758c', '#ff8fa3', '#ffb3c1', '#fbc4cb'];
       
       for (let i = 0; i < count; i++) {
         const particle = document.createElement('div');
         particle.className = 'rose-burst-particle';
         
-        // Positining at brush tip
         particle.style.left = clientX + 'px';
         particle.style.top = clientY + 'px';
         
-        // Random dimensions for petals
         const size = Math.random() * 12 + 8;
         particle.style.width = size + 'px';
         particle.style.height = size + 'px';
         particle.style.background = petalColors[Math.floor(Math.random() * petalColors.length)];
 
-        // Generate custom angle projection vectors
         const angle = Math.random() * Math.PI * 2;
-        const radius = Math.random() * 120 + 60; // Kitna dur tak pataka phutega
+        const radius = Math.random() * 120 + 60; 
         const tx = Math.cos(angle) * radius;
         const ty = Math.sin(angle) * radius;
         const rot = (Math.random() * 360) + 'deg';
@@ -536,19 +527,17 @@
 
         document.body.appendChild(particle);
         
-        // Automatic cleanup to avoid lag
         setTimeout(() => {
           particle.remove();
         }, 1200);
       }
     }
 
-    // 🎫 Scratch Card Core setup with integrated explosion triggers
+    // 🎫 Scratch Card Core
     function initScratchCard(id) {
       const canvas = document.getElementById(id);
       const ctx = canvas.getContext('2d');
       
-      // Paint standard luxury rose gold cover
       ctx.fillStyle = '#bfa3a3';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       
@@ -564,7 +553,6 @@
         if(!isDrawing) return;
         const rect = canvas.getBoundingClientRect();
         
-        // Support both mobile and desktop coordinates
         const clientX = e.touches ? e.touches[0].clientX : e.clientX;
         const clientY = e.touches ? e.touches[0].clientY : e.clientY;
         
@@ -576,7 +564,6 @@
         ctx.arc(x, y, 16, 0, Math.PI * 2);
         ctx.fill();
 
-        // Burst rose petals with a tiny delay (throttled) so screen doesn't freeze
         const now = Date.now();
         if (now - lastExplosionTime > 75) { 
           spawnRoseBurst(clientX, clientY);
@@ -592,7 +579,6 @@
       canvas.addEventListener('touchmove', scratch);
     }
 
-    // Launch all 3 blocks
     initScratchCard('c-month');
     initScratchCard('c-day');
     initScratchCard('c-year');
@@ -604,6 +590,7 @@
       const attendance = document.querySelector('input[name="attending"]:checked').value;
       const size = document.getElementById('rsvp-size').value;
       const song = document.getElementById('rsvp-song').value.trim();
+      const diet = document.getElementById('rsvp-diet').value;
       const advice = document.getElementById('rsvp-advice').value.trim();
       
       let checkedEvents = [];
@@ -621,6 +608,7 @@
                   `*Status:* ${attendance}%0A` +
                   `*Total Size:* ${size} person(s)%0A` +
                   `*Events Attending:* ${checkedEvents.join(', ')}%0A` +
+                  `*Dietary Pref:* ${diet}%0A` +
                   `*Dance Track:* ${song ? song : 'None'}%0A` +
                   `*Advice:* ${advice ? advice : 'None'}`;
       
@@ -628,4 +616,4 @@
     }
   </script>
 </body>
-                                                                                     </html>
+          </html>
