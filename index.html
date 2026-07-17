@@ -3,260 +3,260 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Invifest | Custom Wedding Invitation</title>
+    <title>Invifest | Premium Custom Wedding Invitation</title>
+    <!-- Tailwind CSS for perfect spacing and layout layout -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-    <!-- UI Core Design Styles (Exact Clone) -->
     <style>
       :root {
-        --invifest-bg: #0b0c10;
+        --invifest-bg: #0a0b10;
         --invifest-gold: #cfa851;
         --invifest-dark: #12131c;
-        --invifest-text: #f3f4f6;
+        --invifest-card: #161722;
       }
-
-      * { box-sizing: border-box; margin: 0; padding: 0; }
       body {
         background-color: var(--invifest-bg);
-        color: var(--invifest-text);
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        color: #f3f4f6;
+        font-family: 'Montserrat', sans-serif;
         overflow-x: hidden;
       }
-
-      /* Entrance Gate Frame */
-      .gate-overlay {
+      .font-luxury { font-family: 'Cinzel', serif; }
+      
+      /* Gate Overlay */
+      #gate-block {
         position: fixed;
         inset: 0;
-        background: radial-gradient(circle at center, #151622 0%, #0b0c10 100%);
-        z-index: 9999;
+        background: radial-gradient(circle at center, #151622 0%, #0a0b10 100%);
+        z-index: 99999;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        text-align: center;
       }
-      .gate-title {
-        color: var(--invifest-gold);
-        font-size: 12px;
-        letter-spacing: 0.4em;
-        text-transform: uppercase;
-        margin-bottom: 10px;
-      }
-      .gate-names {
-        font-size: 2.8rem;
-        font-weight: 300;
-        color: #ffffff;
-        margin-bottom: 30px;
-      }
-      .gate-button {
-        background: transparent;
-        color: var(--invifest-gold);
-        border: 1px solid var(--invifest-gold);
-        padding: 12px 36px;
-        font-size: 12px;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        cursor: pointer;
-        border-radius: 4px;
-        transition: all 0.3s ease;
-      }
-      .gate-button:active {
-        background: var(--invifest-gold);
-        color: #000;
-      }
-
-      /* Hero Component */
-      .main-hero {
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        padding: 20px;
-      }
-      .hero-tag {
-        color: var(--invifest-gold);
-        font-size: 11px;
-        letter-spacing: 0.5em;
-        text-transform: uppercase;
-      }
-      .hero-names {
-        font-size: 4rem;
-        font-weight: 300;
-        margin: 20px 0;
-        color: #ffffff;
-      }
-      .hero-sub {
-        color: #8a8a93;
-        font-size: 14px;
-        max-width: 300px;
-        line-height: 1.6;
-      }
-
-      /* Card Reveal Area */
-      .scratch-section {
-        padding: 80px 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        background-color: #07070a;
-      }
-      .scratch-container {
-        position: relative;
-        width: 320px;
-        height: 160px;
-        background: var(--invifest-dark);
-        border: 1px solid rgba(207, 168, 81, 0.3);
-        border-radius: 12px;
-        overflow: hidden;
-        margin-top: 20px;
-      }
-      #scratch-surface {
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: 10;
-        touch-action: none;
-        cursor: pointer;
-      }
-      .secret-data {
-        position: absolute;
-        inset: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        z-index: 1;
-      }
-
-      /* Gallery Grid Rail */
-      .gallery-section {
-        padding: 80px 0;
-      }
-      .gallery-scroll-container {
+      
+      /* Horizontal Gallery Custom Rail */
+      .gallery-container {
         display: flex;
         overflow-x: auto;
         scroll-snap-type: x mandatory;
-        padding: 0 40px;
-        gap: 20px;
+        gap: 16px;
+        padding: 10px 20px;
       }
-      .gallery-scroll-container::-webkit-scrollbar {
-        display: none;
-      }
-      .gallery-card-item {
-        flex: 0 0 290px;
+      .gallery-container::-webkit-scrollbar { display: none; }
+      .gallery-item {
+        flex: 0 0 280px;
         scroll-snap-align: center;
-        height: 420px;
+        height: 380px;
         border-radius: 16px;
         overflow: hidden;
-        background: #151518;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-      }
-      .gallery-card-item img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+        border: 1px solid rgba(255,255,255,0.05);
       }
     </style>
   </head>
   <body>
 
-    <!-- 🌟 ROOT BLOCK INTERFACE -->
-    <div id="root">
-      
-      <!-- 1. ENTRY PORTAL -->
-      <div id="gate-block" class="gate-overlay">
-        <div class="gate-title">Wedding Invitation</div>
-        <div class="gate-names">Rahul & Riya</div>
-        <button class="gate-button" onclick="unlockPortal()">Tap To Open</button>
-      </div>
-
-      <!-- 🎵 AUDIO INTERFACE -->
-      <audio id="local-audio" loop>
-        <source src="song.mp3" type="audio/mpeg">
-      </audio>
-
-      <!-- 2. HOME SCREEN VIEW -->
-      <header class="main-hero">
-        <div class="hero-tag">The Celebration of Love</div>
-        <h1 class="hero-names">Rahul & Riya</h1>
-        <p class="hero-sub">Kindly request the honor of your presence at their wedding ceremony</p>
-      </header>
-
-      <!-- 3. INTERACTIVE SCRATCH COMPONENT -->
-      <section class="scratch-section">
-        <div class="hero-tag" style="font-size: 10px;">Save The Date</div>
-        <div class="scratch-container">
-          <div class="secret-data">
-            <p style="color: var(--invifest-gold); font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;">Shubh Vivaah</p>
-            <h3 style="font-size: 24px; font-weight: 600; margin: 4px 0;">NOV 15, 2026</h3>
-            <p style="color: #66666e; font-size: 11px;">Join Us to Celebrate</p>
-          </div>
-          <canvas id="scratch-surface" width="320" height="160"></canvas>
-        </div>
-      </section>
-
-      <!-- 4. SNAP TRACK SLIDER -->
-      <section class="gallery-section">
-        <div class="hero-tag" style="text-align: center; margin-bottom: 30px;">Captured Moments</div>
-        <div class="gallery-scroll-container">
-          <div class="gallery-card-item"><img src="https://picsum.photos/600/900?random=1"></div>
-          <div class="gallery-card-item"><img src="https://picsum.photos/600/900?random=2"></div>
-          <div class="gallery-card-item"><img src="https://picsum.photos/600/900?random=3"></div>
-          <div class="gallery-card-item"><img src="https://picsum.photos/600/900?random=4"></div>
-          <div class="gallery-card-item"><img src="https://picsum.photos/600/900?random=5"></div>
-        </div>
-      </section>
-
+    <!-- 🌟 1. PORTAL GATE (Tap to Open) -->
+    <div id="gate-block" class="text-center px-6">
+      <p class="font-luxury tracking-[0.4em] text-xs text-[#cfa851] mb-3 uppercase">Wedding Invitation</p>
+      <h1 class="font-luxury text-3xl text-white font-light tracking-wide mb-8">Rahul & Riya</h1>
+      <button onclick="unlockPortal()" class="px-8 py-3 rounded-md border border-[#cfa851] text-[#cfa851] font-luxury text-xs tracking-widest uppercase hover:bg-[#cfa851] hover:text-black transition-all duration-300">
+        Open Invitation
+      </button>
     </div>
 
-    <!-- ENGINE RUNNERS -->
+    <!-- 🎵 BACKGROUND AUDIO LAYER -->
+    <audio id="local-audio" loop>
+      <source src="song.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- 🏛️ 2. MAIN HERO TOP SCREEN -->
+    <header class="h-screen flex flex-col justify-center items-center text-center px-6 relative">
+      <p class="font-luxury text-xs tracking-[0.5em] text-[#cfa851] mb-4 uppercase">The Celebration of Love</p>
+      <h2 class="font-luxury text-5xl text-white font-light tracking-wider my-2">Rahul & Riya</h2>
+      <div class="w-12 h-[1px] bg-[#cfa851]/40 my-6"></div>
+      <p class="text-sm text-gray-400 max-w-xs leading-relaxed">
+        Together with their families, joyfully invite you to celebrate the union of their lives.
+      </p>
+      <div class="absolute bottom-10 animate-bounce text-xs text-gray-600 tracking-widest">SCROLL DOWN ↓</div>
+    </header>
+
+    <!-- 🎫 3. SCRATCH CARD DATE MODULE -->
+    <section class="py-16 bg-[#07080c] flex flex-col items-center justify-center border-y border-white/5">
+      <p class="font-luxury text-[10px] tracking-[0.3em] text-[#cfa851] mb-2 uppercase">Save The Date</p>
+      <div class="relative w-[310px] h-[150px] rounded-xl overflow-hidden border border-[#cfa851]/30 bg-[#12131c]">
+        <!-- Secret Layer Inside -->
+        <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-4">
+          <p style="color: var(--invifest-gold); font-size: 11px; letter-spacing: 0.2em; uppercase">Wedding Celebration</p>
+          <h3 class="font-luxury text-xl font-bold text-white tracking-wide my-1">NOVEMBER 15, 2026</h3>
+          <p class="text-[11px] text-gray-500 font-light">Join us to make this day memorable</p>
+        </div>
+        <!-- Canvas Mask Surface -->
+        <canvas id="scratch-surface" width="310" height="150" class="absolute inset-0 z-10 touch-none cursor-pointer"></canvas>
+      </div>
+    </section>
+
+    <!-- 🗓️ 4. EVENTS TIMELINE DETAILS (Mehndi, Haldi & Wedding Functions) -->
+    <section class="py-20 px-6 max-w-md mx-auto">
+      <div class="text-center mb-12">
+        <p class="font-luxury text-[10px] tracking-[0.3em] text-[#cfa851] mb-2 uppercase">Wedding Schedule</p>
+        <h3 class="font-luxury text-2xl text-white">Events Timeline</h3>
+      </div>
+
+      <div class="space-y-6">
+        <!-- HALDI CARD -->
+        <div class="p-6 rounded-2xl bg-[#161722] border border-white/5 relative">
+          <div class="absolute top-4 right-4 text-xs font-luxury text-[#cfa851] tracking-wider">01</div>
+          <h4 class="font-luxury text-lg text-white mb-2 tracking-wide">✨ Haldi Ceremony</h4>
+          <p class="text-xs text-gray-400 font-light mb-4">Lagane peeli haldi, aayenge saare rishtedaar aur yaar!</p>
+          <div class="border-t border-white/5 pt-3 flex justify-between text-xs text-gray-300">
+            <div>📅 13th Nov, 2026</div>
+            <div>⏰ 10:00 AM Onwards</div>
+          </div>
+        </div>
+
+        <!-- MEHNDI CARD -->
+        <div class="p-6 rounded-2xl bg-[#161722] border border-white/5 relative">
+          <div class="absolute top-4 right-4 text-xs font-luxury text-[#cfa851] tracking-wider">02</div>
+          <h4 class="font-luxury text-lg text-white mb-2 tracking-wide">🌿 Mehndi Night</h4>
+          <p class="text-xs text-gray-400 font-light mb-4">Sajegi dulhan ke haathon mein mehndi, goonjenge geet baarat ke!</p>
+          <div class="border-t border-white/5 pt-3 flex justify-between text-xs text-gray-300">
+            <div>📅 14th Nov, 2026</div>
+            <div>⏰ 04:00 PM Onwards</div>
+          </div>
+        </div>
+
+        <!-- WEDDING CARD -->
+        <div class="p-6 rounded-2xl bg-[#161722] border border-[#cfa851]/20 relative">
+          <div class="absolute top-4 right-4 text-xs font-luxury text-[#cfa851] tracking-wider">03</div>
+          <h4 class="font-luxury text-lg text-[#cfa851] mb-2 tracking-wide">👑 Shubh Vivaah</h4>
+          <p class="text-xs text-gray-300 font-light mb-4">The grand wedding ceremony followed by royal dinner reception.</p>
+          <div class="border-t border-white/5 pt-3 flex justify-between text-xs text-[#cfa851]">
+            <div>📅 15th Nov, 2026</div>
+            <div>⏰ 07:00 PM Onwards</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 🖼️ 5. SLIDER PHOTO RAIL -->
+    <section class="py-12 bg-[#07080c]">
+      <div class="gallery-container">
+        <div class="gallery-item"><img src="https://picsum.photos/600/900?random=21" class="w-full h-full object-cover"></div>
+        <div class="gallery-item"><img src="https://picsum.photos/600/900?random=22" class="w-full h-full object-cover"></div>
+        <div class="gallery-item"><img src="https://picsum.photos/600/900?random=23" class="w-full h-full object-cover"></div>
+        <div class="gallery-item"><img src="https://picsum.photos/600/900?random=24" class="w-full h-full object-cover"></div>
+      </div>
+    </section>
+
+    <!-- ✍️ 6. INTERACTIVE RSVP SYSTEM (Name, Phone, Status Form) -->
+    <section class="py-20 px-6 max-w-md mx-auto bg-[#12131c] rounded-3xl my-10 border border-white/5">
+      <div class="text-center mb-8">
+        <p class="font-luxury text-[10px] tracking-[0.3em] text-[#cfa851] mb-2 uppercase">Confirm Presence</p>
+        <h3 class="font-luxury text-xl text-white">Will You Attend? (RSVP)</h3>
+      </div>
+
+      <!-- Action Form Setup -->
+      <form id="rsvpForm" class="space-y-4">
+        <div>
+          <label class="block text-xs text-gray-400 mb-1 uppercase tracking-wide">Your Full Name</label>
+          <input type="text" id="guestName" required placeholder="Enter your name here..." class="w-full bg-[#1c1d29] border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#cfa851] transition">
+        </div>
+
+        <div>
+          <label class="block text-xs text-gray-400 mb-1 uppercase tracking-wide">Phone Number</label>
+          <input type="tel" id="guestPhone" required placeholder="Enter your mobile number..." class="w-full bg-[#1c1d29] border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#cfa851] transition">
+        </div>
+
+        <div>
+          <label class="block text-xs text-gray-400 mb-2 uppercase tracking-wide">Are You Coming?</label>
+          <div class="grid grid-cols-2 gap-3">
+            <label class="flex items-center justify-center p-3 bg-[#1c1d29] border border-white/10 rounded-xl cursor-pointer text-sm select-none has-[:checked]:border-[#cfa851] has-[:checked]:text-[#cfa851] transition">
+              <input type="radio" name="attendance" value="Yes, I am coming! 🎉" checked class="hidden"> Haan, Main Aaunga!
+            </label>
+            <label class="flex items-center justify-center p-3 bg-[#1c1d29] border border-white/10 rounded-xl cursor-pointer text-sm select-none has-[:checked]:border-[#cfa851] has-[:checked]:text-[#cfa851] transition">
+              <input type="radio" name="attendance" value="Sorry, I cannot attend 😔" class="hidden"> Nahi Aa Paunga
+            </label>
+          </div>
+        </div>
+
+        <button type="button" onclick="sendRSVPtoWhatsApp()" class="w-full mt-6 bg-gradient-to-r from-[#bf953f] to-[#b38728] text-black text-xs font-semibold uppercase tracking-widest py-4 rounded-xl shadow-lg active:scale-[0.98] transition">
+          Submit Response via WhatsApp
+        </button>
+      </form>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-12 text-center text-[10px] text-gray-600 tracking-[0.3em] font-luxury">
+      CUSTOM CELEBRATIONS • IN VIFEST ARCHITECTURE 2026
+    </footer>
+
+    <!-- ENGINE SCRIPTS -->
     <script>
       function unlockPortal() {
         document.getElementById('gate-block').style.display = 'none';
         const audio = document.getElementById('local-audio');
-        audio.play().catch(e => console.log("Audio waiting for user handshake."));
+        audio.play().catch(e => console.log("Audio waiting for system interaction"));
       }
 
-      // Scratch Surface Logic
+      // WhatsApp Message Forwarder Handler
+      function sendRSVPtoWhatsApp() {
+        const name = document.getElementById('guestName').value.trim();
+        const phone = document.getElementById('guestPhone').value.trim();
+        const status = document.querySelector('input[name="attendance"]:checked').value;
+
+        if(!name || !phone) {
+          alert("Bhai, please Name aur Phone Number sahi se fill karo!");
+          return;
+        }
+
+        // EDIT HERE: 91xxxxxxxxxx ki jagah apna asli WhatsApp number country code ke sath daalo
+        const myWhatsAppNumber = "919999999999"; 
+
+        // Dynamic Formatting text for message layout
+        const textMessage = `*✨ NEW RSVP WEDDING INVITATION ✨*%0A%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Status:* ${status}`;
+        
+        // Open WhatsApp Interface url redirection
+        window.open(`https://api.whatsapp.com/send?phone=${myWhatsAppNumber}&text=${textMessage}`, '_blank');
+      }
+
+      // Dynamic Canvas Engine 
       const canvas = document.getElementById('scratch-surface');
       const ctx = canvas.getContext('2d');
-      let isDrawing = false;
+      let active = false;
 
-      ctx.fillStyle = '#25262e';
+      ctx.fillStyle = '#22232c';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-
       ctx.fillStyle = '#cfa851';
       ctx.font = '12px sans-serif';
       ctx.textAlign = 'center';
-      ctx.fillText('✨ SCRATCH TO REVEAL ✨', canvas.width / 2, canvas.height / 2 + 4);
+      ctx.fillText('✨ SCRATCH CARD TO REVEAL DATE ✨', canvas.width / 2, canvas.height / 2 + 4);
 
-      function getPos(e) {
-        const rect = canvas.getBoundingClientRect();
+      function getCoordinate(e) {
+        const bound = canvas.getBoundingClientRect();
         const clientX = e.touches ? e.touches[0].clientX : e.clientX;
         const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-        return { x: clientX - rect.left, y: clientY - rect.top };
+        return { x: clientX - bound.left, y: clientY - bound.top };
       }
 
-      function start(e) { isDrawing = true; move(e); }
-      function end() { isDrawing = false; }
-      function move(e) {
-        if (!isDrawing) return;
+      function press(e) { active = true; drag(e); }
+      function lift() { active = false; }
+      function drag(e) {
+        if (!active) return;
         e.preventDefault();
-        const pos = getPos(e);
+        const p = getCoordinate(e);
         ctx.globalCompositeOperation = 'destination-out';
         ctx.beginPath();
-        ctx.arc(pos.x, pos.y, 22, 0, Math.PI * 2);
+        ctx.arc(p.x, p.y, 22, 0, Math.PI * 2);
         ctx.fill();
       }
 
-      canvas.addEventListener('touchstart', start);
-      canvas.addEventListener('touchmove', move);
-      canvas.addEventListener('touchend', end);
-      canvas.addEventListener('mousedown', start);
-      canvas.addEventListener('mousemove', move);
-      canvas.addEventListener('mouseup', end);
+      canvas.addEventListener('touchstart', press);
+      canvas.addEventListener('touchmove', drag);
+      canvas.addEventListener('touchend', lift);
+      canvas.addEventListener('mousedown', press);
+      canvas.addEventListener('mousemove', drag);
+      canvas.addEventListener('mouseup', lift);
     </script>
   </body>
-          </html>
+  </html>
