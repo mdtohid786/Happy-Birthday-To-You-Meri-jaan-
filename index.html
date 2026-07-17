@@ -1,140 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InviFest</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wedding Invitation</title>
 
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
 
-    <!-- Remix Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
-    <!-- AOS Animation -->
-    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 </head>
 
 <body>
 
-<header>
-    <nav class="navbar">
-        <div class="logo">InviFest</div>
+<!-- Flower Animation -->
+<div class="petals"></div>
 
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#gallery">Gallery</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+<!-- Envelope -->
 
-        <a href="#" class="btn">Get Started</a>
-    </nav>
-</header>
+<section class="envelope-section">
 
-<section id="home" class="hero">
+<div class="envelope" id="envelope">
 
-<div class="hero-left" data-aos="fade-right">
+<div class="flap"></div>
 
-<h1>
-Create Amazing <br>
-Digital Experiences
-</h1>
+<div class="letter">
+
+<h2>You're Invited</h2>
+
+<p>Tap to Open</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- Invitation -->
+
+<section class="invite hidden" id="invite">
+
+<div class="card">
+
+<h3>With the Blessings of God</h3>
+
+<h1>Bride Name</h1>
+
+<span>&</span>
+
+<h1>Groom Name</h1>
+
+<p>01 July 2026</p>
+
+</div>
+
+</section>
+
+<!-- Save Date -->
+
+<section class="save-date">
+
+<h2>Save The Date</h2>
+
+<div class="scratch-card">
+
+<div class="cover" id="cover">
+
+SCRATCH
+
+</div>
+
+<div class="date">
+
+01 July 2026
+
+</div>
+
+</div>
+
+</section>
+
+<!-- Story -->
+
+<section class="story">
+
+<h2>Our Story</h2>
+
+<img src="images/story.jpg">
 
 <p>
-Modern landing page with smooth animation,
-glassmorphism UI and responsive layout.
+
+Write Your Story Here...
+
 </p>
 
-<a href="#" class="hero-btn">
-Explore Now
-</a>
+</section>
 
-</div>
+<!-- Gallery -->
 
-<div class="hero-right" data-aos="zoom-in">
+<section class="gallery">
 
-<div class="glass-card">
+<h2>Gallery</h2>
 
-<i class="ri-rocket-2-fill"></i>
+<div class="grid">
 
-<h2>Fast Performance</h2>
+<img src="images/img1.jpg">
 
-<p>Optimized website for all devices.</p>
+<img src="images/img2.jpg">
 
-</div>
+<img src="images/img3.jpg">
+
+<img src="images/img4.jpg">
 
 </div>
 
 </section>
 
-<section id="features" class="features">
+<!-- RSVP -->
 
-<h2 data-aos="fade-up">Features</h2>
+<section class="rsvp">
 
-<div class="cards">
+<h2>RSVP</h2>
 
-<div class="card" data-aos="fade-up">
-<i class="ri-flashlight-fill"></i>
-<h3>Lightning Fast</h3>
-<p>Optimized performance with smooth animation.</p>
-</div>
+<form>
 
-<div class="card" data-aos="fade-up" data-aos-delay="200">
-<i class="ri-smartphone-fill"></i>
-<h3>Responsive</h3>
-<p>Works perfectly on mobile, tablet and desktop.</p>
-</div>
+<input type="text" placeholder="Your Name">
 
-<div class="card" data-aos="fade-up" data-aos-delay="400">
-<i class="ri-shield-check-fill"></i>
-<h3>Secure</h3>
-<p>Modern and reliable interface for users.</p>
-</div>
+<input type="number" placeholder="Phone">
 
-</div>
+<select>
 
-</section>
+<option>Joyfully Accept</option>
 
-<section id="gallery" class="gallery">
+<option>Regretfully Decline</option>
 
-<h2 data-aos="fade-up">Gallery</h2>
+</select>
 
-<div class="gallery-grid">
+<textarea placeholder="Message"></textarea>
 
-<div class="box"></div>
-<div class="box"></div>
-<div class="box"></div>
-<div class="box"></div>
+<button>Send RSVP</button>
 
-</div>
+</form>
 
 </section>
 
-<section id="contact" class="contact">
+<!-- Music -->
 
-<h2>Let's Work Together</h2>
+<button id="musicBtn">
 
-<p>
-Build your next amazing project with us.
-</p>
+🎵
 
-<a href="#" class="btn">
-Contact Now
-</a>
+</button>
 
-</section>
+<audio id="music" loop>
 
-<footer>
+<source src="audio/music.mp3" type="audio/mpeg">
 
-<p>
-© 2026 InviFest. All Rights Reserved.
-</p>
-
-</footer>
-
-<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+</audio>
 
 <script src="script.js"></script>
 
 </body>
-  </html>
+</html>
