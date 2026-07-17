@@ -3,37 +3,48 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Invifest | Master Ultimate Wedding Invitation</title>
-    <!-- Tailwind CSS for perfect UI layout -->
+    <title>Invifest | Royal Gold & Pink Wedding Invitation</title>
+    <!-- Tailwind CSS for layout building -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
       :root {
-        --invifest-bg: #0a0b10;
-        --invifest-gold: #cfa851;
-        --invifest-dark: #12131c;
-        --invifest-card: #161722;
+        --royal-pink-bg: linear-gradient(135deg, #fff0f3 0%, #fbc4cb 50%, #f9a8b6 100%);
+        --bright-gold: #d4af37;
+        --dark-gold: #aa7c11;
+        --text-maroon: #5c061e;
       }
       body {
-        background-color: var(--invifest-bg);
-        color: #f3f4f6;
+        background: var(--royal-pink-bg);
+        color: var(--text-maroon);
         font-family: 'Montserrat', sans-serif;
         overflow-x: hidden;
         position: relative;
       }
       .font-luxury { font-family: 'Cinzel', serif; }
       
-      /* Gate Overlay */
+      /* Dynamic Premium Cards */
+      .premium-gold-card {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(10px);
+        border: 2px solid var(--bright-gold);
+        box-shadow: 0 10px 25px rgba(92, 6, 30, 0.1);
+      }
+
+      /* Gate Overlay Custom Styling */
       #gate-block {
         position: fixed;
         inset: 0;
-        background: radial-gradient(circle at center, #151622 0%, #0a0b10 100%);
+        background: linear-gradient(135deg, #ffe3e8 0%, #f9a8b6 100%);
         z-index: 99999;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        border: 10px double var(--bright-gold);
+        margin: 10px;
+        border-radius: 20px;
       }
       
       /* Horizontal Gallery Custom Rail */
@@ -42,51 +53,53 @@
         overflow-x: auto;
         scroll-snap-type: x mandatory;
         gap: 16px;
-        padding: 10px 20px;
+        padding: 20px;
       }
       .gallery-container::-webkit-scrollbar { display: none; }
       .gallery-item {
         flex: 0 0 280px;
         scroll-snap-align: center;
         height: 380px;
-        border-radius: 16px;
+        border-radius: 20px;
         overflow: hidden;
-        border: 1px solid rgba(255,255,255,0.05);
+        border: 3px solid var(--bright-gold);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
       }
 
-      /* ✨ FLOATING BACKGROUND PARTICLES SYSTEM */
-      .bg-particle {
+      /* ✨ FLOATING BRIGHT GOLDEN SPARKLES */
+      .bg-sparkle {
         position: fixed;
-        background: radial-gradient(circle, rgba(207,168,81,0.4) 0%, transparent 70%);
+        background: radial-gradient(circle, rgba(212,175,55,1) 0%, rgba(170,124,17,0.2) 60%, transparent 100%);
         border-radius: 50%;
         pointer-events: none;
         z-index: 0;
-        animation: floatAnim 12px infinite linear;
+        animation: floatSparkle 10s infinite linear;
+        box-shadow: 0 0 8px rgba(212,175,55,0.6);
       }
-      @keyframes floatAnim {
-        0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
-        50% { opacity: 0.8; }
-        100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+      @keyframes floatSparkle {
+        0% { transform: translateY(100vh) scale(0.3); opacity: 0; }
+        30% { opacity: 1; }
+        100% { transform: translateY(-10vh) scale(1); opacity: 0; }
       }
     </style>
   </head>
   <body>
 
-    <!-- BACKGROUND ENGINE INJECTOR (Dynamic Dots) -->
-    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden" id="particle-container">
-      <div class="bg-particle w-2 h-2" style="left: 10%; animation-delay: 0s; animation-duration: 14s;"></div>
-      <div class="bg-particle w-3 h-3" style="left: 30%; animation-delay: 3s; animation-duration: 18s;"></div>
-      <div class="bg-particle w-1 h-1" style="left: 55%; animation-delay: 1s; animation-duration: 12s;"></div>
-      <div class="bg-particle w-2 h-2" style="left: 75%; animation-delay: 5s; animation-duration: 16s;"></div>
-      <div class="bg-particle w-3 h-3" style="left: 90%; animation-delay: 2s; animation-duration: 20s;"></div>
+    <!-- GOLD SPARKLE ENGINE INJECTOR -->
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden" id="sparkle-container">
+      <div class="bg-sparkle w-3 h-3" style="left: 15%; animation-delay: 0s; animation-duration: 12s;"></div>
+      <div class="bg-sparkle w-2 h-2" style="left: 35%; animation-delay: 3s; animation-duration: 15s;"></div>
+      <div class="bg-sparkle w-4 h-4" style="left: 50%; animation-delay: 1s; animation-duration: 10s;"></div>
+      <div class="bg-sparkle w-2 h-2" style="left: 70%; animation-delay: 5s; animation-duration: 14s;"></div>
+      <div class="bg-sparkle w-3 h-3" style="left: 85%; animation-delay: 2s; animation-duration: 16s;"></div>
     </div>
 
-    <!-- 🌟 1. PORTAL GATE (Tap to Open) -->
+    <!-- 🌟 1. PORTAL GATE (Royal Entry) -->
     <div id="gate-block" class="text-center px-6 z-50">
-      <p class="font-luxury tracking-[0.4em] text-xs text-[#cfa851] mb-3 uppercase">Wedding Invitation</p>
-      <h1 class="font-luxury text-3xl text-white font-light tracking-wide mb-8">Rahul & Riya</h1>
-      <button onclick="unlockPortal()" class="px-8 py-3 rounded-md border border-[#cfa851] text-[#cfa851] font-luxury text-xs tracking-widest uppercase hover:bg-[#cfa851] hover:text-black transition-all duration-300">
-        Open Invitation
+      <p class="font-luxury tracking-[0.4em] text-sm text-amber-800 mb-3 uppercase font-bold">Shubh Vivaah Invitation</p>
+      <h1 class="font-luxury text-4xl text-[#5c061e] font-bold tracking-wide mb-8">Rahul & Riya</h1>
+      <button onclick="unlockPortal()" class="px-8 py-3.5 rounded-full border-2 border-[#d4af37] bg-gradient-to-r from-[#d4af37] to-[#aa7c11] text-white font-luxury text-xs font-bold tracking-widest uppercase shadow-lg hover:scale-105 transition-all duration-300">
+        ✨ Open Invitation ✨
       </button>
     </div>
 
@@ -97,95 +110,92 @@
 
     <!-- 🏛️ 2. MAIN HERO TOP SCREEN -->
     <header class="h-screen flex flex-col justify-center items-center text-center px-6 relative z-10">
-      <p class="font-luxury text-xs tracking-[0.5em] text-[#cfa851] mb-4 uppercase">The Celebration of Love</p>
-      <h2 class="font-luxury text-5xl text-white font-light tracking-wider my-2">Rahul & Riya</h2>
+      <p class="font-luxury text-xs tracking-[0.5em] text-amber-800 font-bold mb-3 uppercase">The Celebration of Love</p>
+      <h2 class="font-luxury text-5xl text-[#5c061e] font-bold tracking-wider my-2">Rahul & Riya</h2>
       
-      <!-- 📸 NEW INSTAGRAM HASHTAG WIDGET -->
-      <!-- EDIT HERE: href="...hashtag/name" me apna real tag url daalein -->
-      <a href="https://www.instagram.com/explore/tags/rahulkiriya" target="_blank" class="mt-2 mb-6 inline-block border border-white/10 bg-white/5 hover:border-[#cfa851]/40 px-4 py-1.5 rounded-full text-[11px] text-gray-300 tracking-wider">
-        📸 Share Moments: <span class="text-[#cfa851] font-semibold">#RahulKiRiya</span>
+      <!-- 📸 INSTAGRAM HASHTAG WIDGET -->
+      <a href="https://www.instagram.com/explore/tags/rahulkiriya" target="_blank" class="mt-3 mb-6 inline-block border-2 border-[#d4af37] bg-white/70 px-5 py-2 rounded-full text-xs text-[#5c061e] font-medium tracking-wide shadow-sm">
+        📸 Share Moments: <span class="text-amber-700 font-bold">#RahulKiRiya</span>
       </a>
 
-      <div class="w-12 h-[1px] bg-[#cfa851]/40 mb-6"></div>
-      
-      <!-- ⏳ LIVE COUNTDOWN TIMER WIDGET -->
-      <div class="mb-6 bg-white/5 backdrop-blur-md px-6 py-4 rounded-2xl border border-white/10 shadow-xl">
-        <p class="text-[10px] uppercase tracking-[0.2em] text-[#cfa851] mb-2 font-semibold">Counting Down To The Big Day</p>
-        <div class="flex gap-4 text-white text-center">
-          <div><span id="days" class="text-2xl font-bold text-white block">00</span><span class="text-[9px] text-gray-400 uppercase tracking-widest">Days</span></div>
-          <div class="text-[#cfa851] text-xl font-bold">:</div>
-          <div><span id="hours" class="text-2xl font-bold text-white block">00</span><span class="text-[9px] text-gray-400 uppercase tracking-widest">Hrs</span></div>
-          <div class="text-[#cfa851] text-xl font-bold">:</div>
-          <div><span id="minutes" class="text-2xl font-bold text-white block">00</span><span class="text-[9px] text-gray-400 uppercase tracking-widest">Min</span></div>
-          <div class="text-[#cfa851] text-xl font-bold">:</div>
-          <div><span id="seconds" class="text-2xl font-bold text-white block">00</span><span class="text-[9px] text-gray-400 uppercase tracking-widest">Sec</span></div>
+      <!-- ⏳ PREMIUM LIVE COUNTDOWN TIMER -->
+      <div class="mb-8 bg-white/90 px-6 py-5 rounded-3xl border-2 border-[#d4af37] shadow-xl max-w-sm">
+        <p class="text-[11px] uppercase tracking-[0.2em] text-[#5c061e] mb-3 font-bold">Days Left For Celebrations</p>
+        <div class="flex gap-4 justify-center text-center">
+          <div><span id="days" class="text-3xl font-bold text-[#5c061e] block">00</span><span class="text-[10px] text-amber-800 font-medium uppercase tracking-wider">Days</span></div>
+          <div class="text-[#d4af37] text-2xl font-bold animate-pulse">:</div>
+          <div><span id="hours" class="text-3xl font-bold text-[#5c061e] block">00</span><span class="text-[10px] text-amber-800 font-medium uppercase tracking-wider">Hrs</span></div>
+          <div class="text-[#d4af37] text-2xl font-bold animate-pulse">:</div>
+          <div><span id="minutes" class="text-3xl font-bold text-[#5c061e] block">00</span><span class="text-[10px] text-amber-800 font-medium uppercase tracking-wider">Min</span></div>
+          <div class="text-[#d4af37] text-2xl font-bold animate-pulse">:</div>
+          <div><span id="seconds" class="text-3xl font-bold text-[#5c061e] block">00</span><span class="text-[10px] text-amber-800 font-medium uppercase tracking-wider">Sec</span></div>
         </div>
       </div>
 
-      <p class="text-sm text-gray-400 max-w-xs leading-relaxed">
+      <p class="text-sm text-amber-950 font-medium max-w-xs leading-relaxed bg-white/40 backdrop-blur-sm p-4 rounded-xl">
         Together with their families, joyfully invite you to celebrate the union of their lives.
       </p>
-      <div class="absolute bottom-10 animate-bounce text-xs text-gray-600 tracking-widest">SCROLL DOWN ↓</div>
+      <div class="absolute bottom-10 animate-bounce text-xs text-amber-900 font-bold tracking-widest">SCROLL DOWN ↓</div>
     </header>
 
-    <!-- 🎫 3. SCRATCH CARD DATE MODULE -->
-    <section class="py-16 bg-[#07080c] flex flex-col items-center justify-center border-y border-white/5 relative z-10">
-      <p class="font-luxury text-[10px] tracking-[0.3em] text-[#cfa851] mb-2 uppercase">Save The Date</p>
-      <div class="relative w-[310px] h-[150px] rounded-xl overflow-hidden border border-[#cfa851]/30 bg-[#12131c]">
-        <!-- Secret Layer Inside -->
-        <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-4">
-          <p style="color: var(--invifest-gold); font-size: 11px; letter-spacing: 0.2em; uppercase">Wedding Celebration</p>
-          <h3 class="font-luxury text-xl font-bold text-white tracking-wide my-1">NOVEMBER 15, 2026</h3>
-          <p class="text-[11px] text-gray-500 font-light">Join us to make this day memorable</p>
+    <!-- 🎫 3. GOLD SCRATCH CARD DATE MODULE -->
+    <section class="py-16 bg-white/40 flex flex-col items-center justify-center border-y-2 border-[#d4af37]/30 relative z-10">
+      <p class="font-luxury text-xs tracking-[0.3em] text-amber-800 font-bold mb-3 uppercase">Save The Date</p>
+      <div class="relative w-[310px] h-[150px] rounded-2xl overflow-hidden border-4 border-[#d4af37] bg-white shadow-2xl">
+        <!-- Inside Golden Layer -->
+        <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-4 bg-gradient-to-b from-amber-50 to-orange-50">
+          <p class="text-amber-700 font-bold text-[11px] tracking-widest uppercase">Wedding Celebration</p>
+          <h3 class="font-luxury text-2xl font-bold text-[#5c061e] tracking-wide my-1">NOVEMBER 15, 2026</h3>
+          <p class="text-[11px] text-amber-900 font-medium">Join us to make this day memorable</p>
         </div>
-        <!-- Canvas Mask Surface -->
+        <!-- Golden Scratch Mask Surface -->
         <canvas id="scratch-surface" width="310" height="150" class="absolute inset-0 z-10 touch-none cursor-pointer"></canvas>
       </div>
     </section>
 
-    <!-- 🗓️ 4. EVENTS TIMELINE DETAILS -->
+    <!-- 🗓️ 4. EVENTS TIMELINE (Beautiful Golden Layout) -->
     <section class="py-20 px-6 max-w-md mx-auto relative z-10">
       <div class="text-center mb-12">
-        <p class="font-luxury text-[10px] tracking-[0.3em] text-[#cfa851] mb-2 uppercase">Wedding Schedule</p>
-        <h3 class="font-luxury text-2xl text-white">Events Timeline</h3>
+        <p class="font-luxury text-xs tracking-[0.3em] text-amber-800 font-bold mb-1 uppercase">Wedding Schedule</p>
+        <h3 class="font-luxury text-3xl text-[#5c061e] font-bold">Events Timeline</h3>
       </div>
 
       <div class="space-y-6">
         <!-- HALDI CARD -->
-        <div class="p-6 rounded-2xl bg-[#161722] border border-white/5 relative">
-          <div class="absolute top-4 right-4 text-xs font-luxury text-[#cfa851] tracking-wider">01</div>
-          <h4 class="font-luxury text-lg text-white mb-2 tracking-wide">✨ Haldi Ceremony</h4>
-          <p class="text-xs text-gray-400 font-light mb-4">Lagane peeli haldi, aayenge saare rishtedaar aur yaar!</p>
-          <div class="border-t border-white/5 pt-3 flex justify-between text-xs text-gray-300">
+        <div class="p-6 rounded-2xl premium-gold-card relative">
+          <div class="absolute top-4 right-4 text-xs font-luxury text-[#d4af37] font-bold tracking-wider">01</div>
+          <h4 class="font-luxury text-xl text-[#5c061e] font-bold mb-1 tracking-wide">✨ Haldi Ceremony</h4>
+          <p class="text-xs text-amber-950 font-medium mb-4">Lagane peeli haldi, aayenge saare rishtedaar aur yaar!</p>
+          <div class="border-t border-[#d4af37]/30 pt-3 flex justify-between text-xs font-bold text-amber-900">
             <div>📅 13th Nov, 2026</div>
             <div>⏰ 10:00 AM Onwards</div>
           </div>
         </div>
 
         <!-- MEHNDI CARD -->
-        <div class="p-6 rounded-2xl bg-[#161722] border border-white/5 relative">
-          <div class="absolute top-4 right-4 text-xs font-luxury text-[#cfa851] tracking-wider">02</div>
-          <h4 class="font-luxury text-lg text-white mb-2 tracking-wide">🌿 Mehndi Night</h4>
-          <p class="text-xs text-gray-400 font-light mb-4">Sajegi dulhan ke haathon mein mehndi, goonjenge geet baarat ke!</p>
-          <div class="border-t border-white/5 pt-3 flex justify-between text-xs text-gray-300">
+        <div class="p-6 rounded-2xl premium-gold-card relative">
+          <div class="absolute top-4 right-4 text-xs font-luxury text-[#d4af37] font-bold tracking-wider">02</div>
+          <h4 class="font-luxury text-xl text-[#5c061e] font-bold mb-1 tracking-wide">🌿 Mehndi Night</h4>
+          <p class="text-xs text-amber-950 font-medium mb-4">Sajegi dulhan ke haathon mein mehndi, goonjenge geet baarat ke!</p>
+          <div class="border-t border-[#d4af37]/30 pt-3 flex justify-between text-xs font-bold text-amber-900">
             <div>📅 14th Nov, 2026</div>
             <div>⏰ 04:00 PM Onwards</div>
           </div>
         </div>
 
-        <!-- WEDDING CARD + LIVE GOOGLE MAPS LINK -->
-        <div class="p-6 rounded-2xl bg-[#161722] border border-[#cfa851]/20 relative">
-          <div class="absolute top-4 right-4 text-xs font-luxury text-[#cfa851] tracking-wider">03</div>
-          <h4 class="font-luxury text-lg text-[#cfa851] mb-2 tracking-wide">👑 Shubh Vivaah</h4>
-          <p class="text-xs text-gray-300 font-light mb-4">The grand wedding ceremony followed by royal dinner reception.</p>
+        <!-- SHUBH VIVAAH CARD -->
+        <div class="p-6 rounded-2xl bg-gradient-to-b from-amber-50 to-orange-100 border-4 border-[#d4af37] shadow-xl relative">
+          <div class="absolute top-4 right-4 text-xs font-luxury text-[#d4af37] font-bold tracking-wider">03</div>
+          <h4 class="font-luxury text-2xl text-[#5c061e] font-bold mb-1 tracking-wide">👑 Shubh Vivaah</h4>
+          <p class="text-xs text-amber-950 font-medium mb-4">The grand wedding ceremony followed by royal dinner reception.</p>
           
-          <p class="text-xs text-[#cfa851] font-semibold mb-3">📍 Venue: Hotel Royal Palace, Main Road, City</p>
+          <p class="text-xs text-[#5c061e] font-bold mb-3">📍 Venue: Hotel Royal Palace, Main Road, City</p>
           
-          <a href="https://maps.google.com" target="_blank" class="inline-flex items-center gap-2 mb-4 text-xs bg-white/5 border border-[#cfa851]/40 px-3 py-2 rounded-lg text-[#cfa851] hover:bg-[#cfa851] hover:text-black transition duration-300">
+          <a href="https://maps.google.com" target="_blank" class="inline-flex items-center gap-2 mb-4 text-xs bg-gradient-to-r from-[#d4af37] to-[#aa7c11] text-white px-4 py-2.5 rounded-xl font-bold shadow-md hover:scale-105 transition duration-300">
              Open Live Location Map 🗺️
           </a>
 
-          <div class="border-t border-white/5 pt-3 flex justify-between text-xs text-[#cfa851]">
+          <div class="border-t border-[#d4af37]/40 pt-3 flex justify-between text-xs font-bold text-[#5c061e]">
             <div>📅 15th Nov, 2026</div>
             <div>⏰ 07:00 PM Onwards</div>
           </div>
@@ -194,7 +204,7 @@
     </section>
 
     <!-- 🖼️ 5. SLIDER PHOTO RAIL -->
-    <section class="py-12 bg-[#07080c] relative z-10">
+    <section class="py-12 bg-white/30 relative z-10 border-y-2 border-[#d4af37]/20">
       <div class="gallery-container">
         <div class="gallery-item"><img src="https://picsum.photos/600/900?random=21" class="w-full h-full object-cover"></div>
         <div class="gallery-item"><img src="https://picsum.photos/600/900?random=22" class="w-full h-full object-cover"></div>
@@ -203,12 +213,11 @@
       </div>
     </section>
 
-    <!-- 🌟 6. NEW SHUBH CHINTAK / FAMILY COMPLIMENTS PANEL -->
-    <section class="py-16 px-6 max-w-md mx-auto text-center border-t border-white/5 relative z-10">
-      <p class="font-luxury text-[10px] tracking-[0.3em] text-[#cfa851] mb-4 uppercase">With Best Compliments From</p>
-      <!-- EDIT HERE: Apne Parivaar ke badon ke naam daalein -->
-      <div class="space-y-2 text-sm text-gray-300 font-light tracking-wide">
-        <p class="font-medium text-white text-base">✨ Near & Dear Family Members ✨</p>
+    <!-- 🌟 6. SHUBH CHINTAK / FAMILY COMPLIMENTS PANEL -->
+    <section class="py-16 px-6 max-w-md mx-auto text-center relative z-10">
+      <p class="font-luxury text-xs tracking-[0.3em] text-amber-800 font-bold mb-4 uppercase">With Best Compliments From</p>
+      <div class="space-y-2 text-sm text-amber-950 font-medium bg-white/60 p-6 rounded-2xl border-2 border-[#d4af37]/30 shadow-md">
+        <p class="font-bold text-[#5c061e] text-base">✨ Near & Dear Family Members ✨</p>
         <p>Late Shri R. P. Sharma (Grandfather)</p>
         <p>Shri Manoj Kumar Sharma & Family</p>
         <p>All Friends & Relatives</p>
@@ -216,43 +225,43 @@
     </section>
 
     <!-- ✍️ 7. INTERACTIVE RSVP SYSTEM -->
-    <section class="py-20 px-6 max-w-md mx-auto bg-[#12131c] rounded-3xl my-10 border border-white/5 relative z-10">
+    <section class="py-16 px-6 max-w-md mx-auto premium-gold-card rounded-3xl my-10 relative z-10">
       <div class="text-center mb-8">
-        <p class="font-luxury text-[10px] tracking-[0.3em] text-[#cfa851] mb-2 uppercase">Confirm Presence</p>
-        <h3 class="font-luxury text-xl text-white">Will You Attend? (RSVP)</h3>
+        <p class="font-luxury text-xs tracking-[0.3em] text-amber-800 font-bold mb-1 uppercase">Confirm Presence</p>
+        <h3 class="font-luxury text-xl text-[#5c061e] font-bold">Will You Attend? (RSVP)</h3>
       </div>
 
       <form id="rsvpForm" class="space-y-4">
         <div>
-          <label class="block text-xs text-gray-400 mb-1 uppercase tracking-wide">Your Full Name</label>
-          <input type="text" id="guestName" required placeholder="Enter your name here..." class="w-full bg-[#1c1d29] border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#cfa851] transition">
+          <label class="block text-xs font-bold text-amber-900 mb-1 uppercase tracking-wide">Your Full Name</label>
+          <input type="text" id="guestName" required placeholder="Enter your name..." class="w-full bg-white border-2 border-[#d4af37]/40 rounded-xl px-4 py-3 text-sm text-[#5c061e] focus:outline-none focus:border-[#d4af37] transition font-medium shadow-inner">
         </div>
 
         <div>
-          <label class="block text-xs text-gray-400 mb-1 uppercase tracking-wide">Phone Number</label>
-          <input type="tel" id="guestPhone" required placeholder="Enter your mobile number..." class="w-full bg-[#1c1d29] border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#cfa851] transition">
+          <label class="block text-xs font-bold text-amber-900 mb-1 uppercase tracking-wide">Phone Number</label>
+          <input type="tel" id="guestPhone" required placeholder="Enter number..." class="w-full bg-white border-2 border-[#d4af37]/40 rounded-xl px-4 py-3 text-sm text-[#5c061e] focus:outline-none focus:border-[#d4af37] transition font-medium shadow-inner">
         </div>
 
         <div>
-          <label class="block text-xs text-gray-400 mb-2 uppercase tracking-wide">Are You Coming?</label>
+          <label class="block text-xs font-bold text-amber-900 mb-2 uppercase tracking-wide">Are You Coming?</label>
           <div class="grid grid-cols-2 gap-3">
-            <label class="flex items-center justify-center p-3 bg-[#1c1d29] border border-white/10 rounded-xl cursor-pointer text-sm select-none has-[:checked]:border-[#cfa851] has-[:checked]:text-[#cfa851] transition">
+            <label class="flex items-center justify-center p-3 bg-white border-2 border-[#d4af37]/30 rounded-xl cursor-pointer text-sm font-bold select-none has-[:checked]:border-[#d4af37] has-[:checked]:bg-gradient-to-r has-[:checked]:from-[#d4af37] has-[:checked]:to-[#aa7c11] has-[:checked]:text-white transition shadow-sm">
               <input type="radio" name="attendance" value="Yes, I am coming! 🎉" checked class="hidden"> Haan, Main Aaunga!
             </label>
-            <label class="flex items-center justify-center p-3 bg-[#1c1d29] border border-white/10 rounded-xl cursor-pointer text-sm select-none has-[:checked]:border-[#cfa851] has-[:checked]:text-[#cfa851] transition">
+            <label class="flex items-center justify-center p-3 bg-white border-2 border-[#d4af37]/30 rounded-xl cursor-pointer text-sm font-bold select-none has-[:checked]:border-[#d4af37] has-[:checked]:bg-gradient-to-r has-[:checked]:from-[#d4af37] has-[:checked]:to-[#aa7c11] has-[:checked]:text-white transition shadow-sm">
               <input type="radio" name="attendance" value="Sorry, I cannot attend 😔" class="hidden"> Nahi Aa Paunga
             </label>
           </div>
         </div>
 
-        <button type="button" onclick="sendRSVPtoWhatsApp()" class="w-full mt-6 bg-gradient-to-r from-[#bf953f] to-[#b38728] text-black text-xs font-semibold uppercase tracking-widest py-4 rounded-xl shadow-lg active:scale-[0.98] transition">
+        <button type="button" onclick="sendRSVPtoWhatsApp()" class="w-full mt-6 bg-gradient-to-r from-[#d4af37] via-[#f3e5ab] to-[#aa7c11] text-[#5c061e] text-xs font-bold uppercase tracking-widest py-4 rounded-xl shadow-lg active:scale-[0.98] transition border-2 border-[#d4af37]">
           Submit Response via WhatsApp
         </button>
       </form>
     </section>
 
     <!-- FOOTER -->
-    <footer class="py-12 text-center text-[10px] text-gray-600 tracking-[0.3em] font-luxury relative z-10">
+    <footer class="py-12 text-center text-[11px] text-amber-900 font-bold tracking-[0.3em] font-luxury relative z-10">
       CUSTOM CELEBRATIONS • INVIFEST ARCHITECTURE 2026
     </footer>
 
@@ -261,10 +270,10 @@
       function unlockPortal() {
         document.getElementById('gate-block').style.display = 'none';
         const audio = document.getElementById('local-audio');
-        audio.play().catch(e => console.log("Audio activation bypass"));
+        audio.play().catch(e => console.log("Audio system trigger bypass"));
       }
 
-      // ⏳ LIVE COUNTDOWN ENGINE LOGIC
+      // ⏳ LIVE COUNTDOWN LOGIC
       const weddingDate = new Date("November 15, 2026 19:00:00").getTime();
 
       const timerInterval = setInterval(function() {
@@ -290,7 +299,7 @@
         }
       }, 1000);
 
-      // WhatsApp Message Sender
+      // WhatsApp Engine Form Handler
       function sendRSVPtoWhatsApp() {
         const name = document.getElementById('guestName').value.trim();
         const phone = document.getElementById('guestPhone').value.trim();
@@ -301,20 +310,29 @@
           return;
         }
 
-        const myWhatsAppNumber = "919999999999"; // Apna real WhatsApp number yahan daalna
+        const myWhatsAppNumber = "919999999999"; 
         const textMessage = `*✨ NEW RSVP WEDDING INVITATION ✨*%0A%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Status:* ${status}`;
         window.open(`https://api.whatsapp.com/send?phone=${myWhatsAppNumber}&text=${textMessage}`, '_blank');
       }
 
-      // Scratch Surface Logic
+      // Royal Gold Scratch Surface Canvas Engine
       const canvas = document.getElementById('scratch-surface');
       const ctx = canvas.getContext('2d');
       let active = false;
 
-      ctx.fillStyle = '#22232c';
+      // Creating Metallic Gold Surface Coat
+      const goldGrad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+      goldGrad.addColorStop(0, '#bf953f');
+      goldGrad.addColorStop(0.25, '#fcf6ba');
+      goldGrad.addColorStop(0.5, '#b38728');
+      goldGrad.addColorStop(0.75, '#fbf5b7');
+      goldGrad.addColorStop(1, '#aa7c11');
+      
+      ctx.fillStyle = goldGrad;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = '#cfa851';
-      ctx.font = '12px sans-serif';
+      
+      ctx.fillStyle = '#5c061e';
+      ctx.font = 'bold 12px Montserrat';
       ctx.textAlign = 'center';
       ctx.fillText('✨ SCRATCH CARD TO REVEAL DATE ✨', canvas.width / 2, canvas.height / 2 + 4);
 
@@ -333,7 +351,7 @@
         const p = getCoordinate(e);
         ctx.globalCompositeOperation = 'destination-out';
         ctx.beginPath();
-        ctx.arc(p.x, p.y, 22, 0, Math.PI * 2);
+        ctx.arc(p.x, p.y, 24, 0, Math.PI * 2);
         ctx.fill();
       }
 
@@ -345,4 +363,4 @@
       canvas.addEventListener('mouseup', lift);
     </script>
   </body>
-  </html>
+          </html>
