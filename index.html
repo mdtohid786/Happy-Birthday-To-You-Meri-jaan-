@@ -2,33 +2,261 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Primary Meta Tags -->
-    <title>Invifest | Demo Wedding Invitation</title>
-    <meta name="title" content="Invifest | Demo Wedding Invitation" />
-    <meta name="description" content="Beautiful digital invitations for every celebration ✨ Weddings · Birthdays · All occasions. Design in minutes, share on WhatsApp." />
+    <title>Invifest | Custom Wedding Invitation</title>
 
-    <!-- Open Graph / Facebook / WhatsApp -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://invifest-demo.vercel.app/" />
-    <meta property="og:title" content="Invifest | Demo Wedding Invitation" />
-    <meta property="og:description" content="Beautiful digital invitations for every celebration ✨ Weddings · Birthdays · All occasions. Design in minutes, share on WhatsApp." />
-    <!-- High-res image for WhatsApp preview -->
-    <meta property="og:image" content="https://i.ibb.co/Z6mZjgyj/INVIFEST-BY-AASTHA-1.jpg" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
+    <!-- UI Core Design Styles (Exact Clone) -->
+    <style>
+      :root {
+        --invifest-bg: #0b0c10;
+        --invifest-gold: #cfa851;
+        --invifest-dark: #12131c;
+        --invifest-text: #f3f4f6;
+      }
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://invifest-demo.vercel.app/" />
-    <meta property="twitter:title" content="Invifest | Demo Wedding Invitation" />
-    <meta property="twitter:description" content="Beautiful digital invitations for every celebration ✨ Weddings · Birthdays · All occasions. Design in minutes, share on WhatsApp." />
-    <meta property="twitter:image" content="https://i.ibb.co/Z6mZjgyj/INVIFEST-BY-AASTHA-1.jpg" />
-    <script type="module" crossorigin src="/assets/index-Bcc8A_gg.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-B-b92nF0.css">
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        background-color: var(--invifest-bg);
+        color: var(--invifest-text);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        overflow-x: hidden;
+      }
+
+      /* Entrance Gate Frame */
+      .gate-overlay {
+        position: fixed;
+        inset: 0;
+        background: radial-gradient(circle at center, #151622 0%, #0b0c10 100%);
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+      .gate-title {
+        color: var(--invifest-gold);
+        font-size: 12px;
+        letter-spacing: 0.4em;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+      }
+      .gate-names {
+        font-size: 2.8rem;
+        font-weight: 300;
+        color: #ffffff;
+        margin-bottom: 30px;
+      }
+      .gate-button {
+        background: transparent;
+        color: var(--invifest-gold);
+        border: 1px solid var(--invifest-gold);
+        padding: 12px 36px;
+        font-size: 12px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+      }
+      .gate-button:active {
+        background: var(--invifest-gold);
+        color: #000;
+      }
+
+      /* Hero Component */
+      .main-hero {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+      }
+      .hero-tag {
+        color: var(--invifest-gold);
+        font-size: 11px;
+        letter-spacing: 0.5em;
+        text-transform: uppercase;
+      }
+      .hero-names {
+        font-size: 4rem;
+        font-weight: 300;
+        margin: 20px 0;
+        color: #ffffff;
+      }
+      .hero-sub {
+        color: #8a8a93;
+        font-size: 14px;
+        max-width: 300px;
+        line-height: 1.6;
+      }
+
+      /* Card Reveal Area */
+      .scratch-section {
+        padding: 80px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #07070a;
+      }
+      .scratch-container {
+        position: relative;
+        width: 320px;
+        height: 160px;
+        background: var(--invifest-dark);
+        border: 1px solid rgba(207, 168, 81, 0.3);
+        border-radius: 12px;
+        overflow: hidden;
+        margin-top: 20px;
+      }
+      #scratch-surface {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        touch-action: none;
+        cursor: pointer;
+      }
+      .secret-data {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        z-index: 1;
+      }
+
+      /* Gallery Grid Rail */
+      .gallery-section {
+        padding: 80px 0;
+      }
+      .gallery-scroll-container {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding: 0 40px;
+        gap: 20px;
+      }
+      .gallery-scroll-container::-webkit-scrollbar {
+        display: none;
+      }
+      .gallery-card-item {
+        flex: 0 0 290px;
+        scroll-snap-align: center;
+        height: 420px;
+        border-radius: 16px;
+        overflow: hidden;
+        background: #151518;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      }
+      .gallery-card-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+
+    <!-- 🌟 ROOT BLOCK INTERFACE -->
+    <div id="root">
+      
+      <!-- 1. ENTRY PORTAL -->
+      <div id="gate-block" class="gate-overlay">
+        <div class="gate-title">Wedding Invitation</div>
+        <div class="gate-names">Rahul & Riya</div>
+        <button class="gate-button" onclick="unlockPortal()">Tap To Open</button>
+      </div>
+
+      <!-- 🎵 AUDIO INTERFACE -->
+      <audio id="local-audio" loop>
+        <source src="song.mp3" type="audio/mpeg">
+      </audio>
+
+      <!-- 2. HOME SCREEN VIEW -->
+      <header class="main-hero">
+        <div class="hero-tag">The Celebration of Love</div>
+        <h1 class="hero-names">Rahul & Riya</h1>
+        <p class="hero-sub">Kindly request the honor of your presence at their wedding ceremony</p>
+      </header>
+
+      <!-- 3. INTERACTIVE SCRATCH COMPONENT -->
+      <section class="scratch-section">
+        <div class="hero-tag" style="font-size: 10px;">Save The Date</div>
+        <div class="scratch-container">
+          <div class="secret-data">
+            <p style="color: var(--invifest-gold); font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;">Shubh Vivaah</p>
+            <h3 style="font-size: 24px; font-weight: 600; margin: 4px 0;">NOV 15, 2026</h3>
+            <p style="color: #66666e; font-size: 11px;">Join Us to Celebrate</p>
+          </div>
+          <canvas id="scratch-surface" width="320" height="160"></canvas>
+        </div>
+      </section>
+
+      <!-- 4. SNAP TRACK SLIDER -->
+      <section class="gallery-section">
+        <div class="hero-tag" style="text-align: center; margin-bottom: 30px;">Captured Moments</div>
+        <div class="gallery-scroll-container">
+          <div class="gallery-card-item"><img src="https://picsum.photos/600/900?random=1"></div>
+          <div class="gallery-card-item"><img src="https://picsum.photos/600/900?random=2"></div>
+          <div class="gallery-card-item"><img src="https://picsum.photos/600/900?random=3"></div>
+          <div class="gallery-card-item"><img src="https://picsum.photos/600/900?random=4"></div>
+          <div class="gallery-card-item"><img src="https://picsum.photos/600/900?random=5"></div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ENGINE RUNNERS -->
+    <script>
+      function unlockPortal() {
+        document.getElementById('gate-block').style.display = 'none';
+        const audio = document.getElementById('local-audio');
+        audio.play().catch(e => console.log("Audio waiting for user handshake."));
+      }
+
+      // Scratch Surface Logic
+      const canvas = document.getElementById('scratch-surface');
+      const ctx = canvas.getContext('2d');
+      let isDrawing = false;
+
+      ctx.fillStyle = '#25262e';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = '#cfa851';
+      ctx.font = '12px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('✨ SCRATCH TO REVEAL ✨', canvas.width / 2, canvas.height / 2 + 4);
+
+      function getPos(e) {
+        const rect = canvas.getBoundingClientRect();
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        return { x: clientX - rect.left, y: clientY - rect.top };
+      }
+
+      function start(e) { isDrawing = true; move(e); }
+      function end() { isDrawing = false; }
+      function move(e) {
+        if (!isDrawing) return;
+        e.preventDefault();
+        const pos = getPos(e);
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.beginPath();
+        ctx.arc(pos.x, pos.y, 22, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      canvas.addEventListener('touchstart', start);
+      canvas.addEventListener('touchmove', move);
+      canvas.addEventListener('touchend', end);
+      canvas.addEventListener('mousedown', start);
+      canvas.addEventListener('mousemove', move);
+      canvas.addEventListener('mouseup', end);
+    </script>
   </body>
-</html>
+          </html>
