@@ -16,6 +16,7 @@
       --luxury-gold: #c59b27;   /* Rich Royal Golden Accent */
       --text-main: #503737;     /* Deep Soft Cocoa for clear readability */
       --gold-accent: #e5c158;   /* Bright Metallic Gold Details */
+      --kathak-color: #4a121a;  /* Pure Traditional Kathak / Deep Wine Red Brown */
     }
 
     body {
@@ -28,11 +29,11 @@
     .font-serif-title { font-family: 'Playfair Display', serif; }
     .font-royal { font-family: 'Cinzel', serif; }
 
-    /* ✉️ ENVELOPE WAX SEAL SYSTEM (Deep Wine Red & Gold theme for premium look) */
+    /* ✉️ ENVELOPE WAX SEAL SYSTEM */
     #envelope-portal {
       position: fixed;
       inset: 0;
-      background: #4a121a; 
+      background: var(--kathak-color); 
       z-index: 99999;
       display: flex;
       flex-direction: column;
@@ -52,8 +53,8 @@
     }
 
     .wax-seal {
-      width: 160px; /* Increased from 140px */
-      height: 160px; /* Increased from 140px */
+      width: 160px; 
+      height: 160px; 
       background: var(--gold-accent);
       border-radius: 50%;
       display: flex;
@@ -89,8 +90,8 @@
     /* 💥 SCRATCH CARD & EXPLODING ROSE PETAL PARTICLES */
     .scratch-box {
       position: relative;
-      width: 110px; /* Increased from 95px */
-      height: 160px; /* Increased from 140px */
+      width: 110px; 
+      height: 160px; 
       background: white;
       border-radius: 20px;
       box-shadow: 0 10px 25px rgba(197, 155, 39, 0.2);
@@ -192,9 +193,9 @@
       
       <p class="text-[14px] uppercase tracking-[0.25em] text-[var(--luxury-gold)] font-bold mb-8">Together with their families</p>
       
-      <h1 class="font-serif-title text-5xl text-[var(--luxury-gold)] tracking-wide mb-3">Nujhat</h1>
+      <h1 class="font-serif-title text-5xl text-[var(--luxury-gold)] tracking-wide mb-3">Meenal</h1>
       <div class="text-[var(--luxury-gold)]/80 font-serif-title italic text-2xl my-4">&</div>
-      <h1 class="font-serif-title text-5xl text-[var(--luxury-gold)] tracking-wide mb-10">Sajid</h1>
+      <h1 class="font-serif-title text-5xl text-[var(--luxury-gold)] tracking-wide mb-10">Avinash</h1>
       
       <p class="text-xs md:text-sm text-slate-500 italic tracking-wider mb-10">
         Daughter of Mr. & Mrs. Sharma &nbsp;|&nbsp; Son of Mr. & Mrs. Patel
@@ -210,7 +211,7 @@
     </section>
 
 
-    <!-- 📅 DYNAMIC EVENTS SCHEDULE (Mehndi, Haldi, Baarat) -->
+    <!-- 📅 DYNAMIC EVENTS SCHEDULE -->
     <section class="space-y-8">
       <div class="text-center">
         <p class="text-xs uppercase tracking-[0.2em] text-[var(--luxury-gold)] font-bold mb-1">CELEBRATIONS</p>
@@ -219,7 +220,6 @@
       </div>
 
       <div class="space-y-6">
-        <!-- Event 1: Mehndi Ceremony -->
         <div class="bg-white/95 p-8 rounded-[28px] border-l-8 border-[var(--luxury-gold)] shadow-lg flex items-start gap-5">
           <div class="text-3xl pt-1">🌿</div>
           <div class="flex-1">
@@ -230,7 +230,6 @@
           </div>
         </div>
 
-        <!-- Event 2: Haldi Ceremony -->
         <div class="bg-white/95 p-8 rounded-[28px] border-l-8 border-[var(--luxury-gold)] shadow-lg flex items-start gap-5">
           <div class="text-3xl pt-1">💛</div>
           <div class="flex-1">
@@ -241,7 +240,6 @@
           </div>
         </div>
 
-        <!-- Event 3: Baarat, Reception & Phere -->
         <div class="bg-white/95 p-8 rounded-[28px] border-l-8 border-[var(--luxury-gold)] shadow-lg flex items-start gap-5">
           <div class="text-3xl pt-1">🥁</div>
           <div class="flex-1">
@@ -264,7 +262,6 @@
       </div>
 
       <div class="flex justify-center gap-4 pt-4">
-        <!-- MONTH CARD -->
         <div class="flex flex-col items-center">
           <span class="text-xs uppercase font-bold tracking-widest text-slate-400 mb-2">Month</span>
           <div class="scratch-box">
@@ -275,7 +272,6 @@
           </div>
         </div>
 
-        <!-- DAY CARD -->
         <div class="flex flex-col items-center">
           <span class="text-xs uppercase font-bold tracking-widest text-slate-400 mb-2">Day</span>
           <div class="scratch-box">
@@ -286,7 +282,6 @@
           </div>
         </div>
 
-        <!-- YEAR CARD -->
         <div class="flex flex-col items-center">
           <span class="text-xs uppercase font-bold tracking-widest text-slate-400 mb-2">Year</span>
           <div class="scratch-box">
@@ -336,7 +331,6 @@
       </div>
 
       <div class="slider-container">
-        <!-- Photo 1 -->
         <div class="slide-item" style="--rot: -2deg">
           <div class="w-full aspect-[3/4] overflow-hidden bg-stone-100">
             <img src="https://picsum.photos/600/800?random=11" class="w-full h-full object-cover" alt="Memory 1">
@@ -344,7 +338,6 @@
           <p class="font-serif-title italic text-lg text-slate-600 mt-5 tracking-wide">Together we laugh</p>
         </div>
         
-        <!-- Photo 2 -->
         <div class="slide-item" style="--rot: 1.5deg">
           <div class="w-full aspect-[3/4] overflow-hidden bg-stone-100">
             <img src="https://picsum.photos/600/800?random=12" class="w-full h-full object-cover" alt="Memory 2">
@@ -352,7 +345,6 @@
           <p class="font-serif-title italic text-lg text-slate-600 mt-5 tracking-wide">Moments of joy</p>
         </div>
 
-        <!-- Photo 3 -->
         <div class="slide-item" style="--rot: -1deg">
           <div class="w-full aspect-[3/4] overflow-hidden bg-stone-100">
             <img src="https://picsum.photos/600/800?random=13" class="w-full h-full object-cover" alt="Memory 3">
@@ -360,7 +352,6 @@
           <p class="font-serif-title italic text-lg text-slate-600 mt-5 tracking-wide">Pure bliss</p>
         </div>
 
-        <!-- Photo 4 -->
         <div class="slide-item" style="--rot: 2deg">
           <div class="w-full aspect-[3/4] overflow-hidden bg-stone-100">
             <img src="https://picsum.photos/600/800?random=14" class="w-full h-full object-cover" alt="Memory 4">
@@ -371,10 +362,9 @@
     </section>
 
 
-    <!-- 👗 COMPLETE RSVP SYSTEM WITH EMAILJS -->
+    <!-- 👗 COMPLETE RSVP SYSTEM -->
     <section class="space-y-10">
       
-      <!-- Guest Details Card -->
       <div class="bg-white/90 p-10 rounded-[36px] border-2 border-[var(--gold-accent)]/30 shadow-lg space-y-8">
         <h4 class="font-serif-title italic text-xl text-[var(--luxury-gold)]">Your details</h4>
         
@@ -392,7 +382,6 @@
         </div>
       </div>
 
-      <!-- Accept / Decline Options -->
       <div class="bg-white/90 p-10 rounded-[36px] border-2 border-[var(--gold-accent)]/30 shadow-lg space-y-6">
         <h4 class="font-serif-title italic text-xl text-[var(--luxury-gold)] text-center">Will you join us?</h4>
         <div class="space-y-4">
@@ -405,7 +394,6 @@
         </div>
       </div>
 
-      <!-- Party Size Selector -->
       <div class="bg-white/90 p-10 rounded-[36px] border-2 border-[var(--gold-accent)]/30 shadow-lg space-y-4">
         <h4 class="font-serif-title italic text-xl text-[var(--luxury-gold)]">Party size</h4>
         <select id="rsvp-size" class="w-full bg-transparent py-3 text-base text-slate-700 bg-white/50">
@@ -417,11 +405,9 @@
         </select>
       </div>
 
-      <!-- Events List -->
       <div class="bg-white/90 p-10 rounded-[36px] border-2 border-[var(--gold-accent)]/30 shadow-lg space-y-6">
         <h4 class="font-serif-title italic text-xl text-[var(--luxury-gold)]">Events you'll attend</h4>
         <div class="space-y-3">
-          
           <label class="flex items-center justify-between p-5 bg-white border border-stone-200/80 rounded-2xl cursor-pointer select-none">
             <div>
               <p class="text-base font-semibold text-slate-800">Mehndi Ceremony</p>
@@ -453,11 +439,9 @@
             </div>
             <input type="checkbox" name="events" value="Reception" checked class="w-5 h-5 accent-[var(--luxury-gold)]">
           </label>
-
         </div>
       </div>
 
-      <!-- Dance Song Request -->
       <div class="bg-white/90 p-10 rounded-[36px] border-2 border-[var(--gold-accent)]/30 shadow-lg space-y-6 relative">
         <h4 class="font-serif-title italic text-xl text-[var(--luxury-gold)]">A song for the dance floor</h4>
         <div>
@@ -465,7 +449,6 @@
         </div>
       </div>
 
-      <!-- Dietary Preferences -->
       <div class="bg-white/90 p-10 rounded-[36px] border-2 border-[var(--gold-accent)]/30 shadow-lg space-y-6">
         <h4 class="font-serif-title italic text-xl text-[var(--luxury-gold)] flex items-center gap-2">
           <span>🍽️</span> Dietary preferences
@@ -484,7 +467,6 @@
         </div>
       </div>
 
-      <!-- Marriage Advice -->
       <div class="bg-white/90 p-10 rounded-[36px] border-2 border-[var(--gold-accent)]/30 shadow-lg space-y-6">
         <h4 class="font-serif-title italic text-xl text-[var(--luxury-gold)]">Marriage advice for us</h4>
         <div>
@@ -492,43 +474,60 @@
         </div>
       </div>
 
-      <!-- SEND RSVP BUTTON -->
       <button onclick="processRSVPEngine()" id="submit-btn" type="button" class="w-full bg-[var(--luxury-gold)] text-white py-5 rounded-full text-sm font-bold uppercase tracking-widest shadow-2xl active:scale-[0.99] hover:opacity-90 transition mt-6">
         SEND RSVP
       </button>
 
     </section>
+
+    <!-- 👤 DYNAMIC TRADITIONAL KATHAK COLORED ABOUT ME & INSTAGRAM SECTION -->
+    <section class="bg-[#4a121a] p-12 rounded-[40px] border-4 border-[var(--gold-accent)] shadow-2xl mt-16 text-center space-y-8 relative overflow-hidden">
+      <!-- Royal Corner Accents inside the section -->
+      <div class="absolute top-4 left-4 w-6 h-6 border-t-2 border-l-2 border-[var(--gold-accent)]/40"></div>
+      <div class="absolute top-4 right-4 w-6 h-6 border-t-2 border-r-2 border-[var(--gold-accent)]/40"></div>
+      
+      <p class="text-[13px] uppercase tracking-[0.25em] text-[var(--gold-accent)] font-bold">CREATOR PROFILE</p>
+      <h4 class="font-serif-title italic text-4xl text-amber-100">About Me</h4>
+      
+      <!-- Text area designed to fit 100+ characters elegantly -->
+      <p class="text-base text-stone-200/90 font-medium leading-relaxed max-w-md mx-auto px-2">
+        Aapka swagat hai! Maine is digital aamantran patra ko poore dil aur premium cinematic design ke sath taiyar kiya hai taaki aapka ye khaas din hamesha ke liye yaadgaar ban jaye. Design aur technology ka ye ek khoobsurat sangam hai.
+      </p>
+
+      <div class="pt-6 border-t border-stone-700/50 max-w-xs mx-auto">
+        <p class="text-xs uppercase tracking-widest text-stone-400 font-bold mb-4">Let's stay connected</p>
+        <!-- Replace 'mr_tohid_handle' with your exact original Instagram user ID -->
+        <a href="https://instagram.com/mr_tohid_handle" target="_blank" class="inline-flex items-center justify-center gap-3 w-full py-4 rounded-full bg-[var(--gold-accent)] text-[#4a121a] font-bold text-lg shadow-xl hover:scale-[1.03] active:scale-[0.98] transition">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.18.055 1.897.252 2.342.417.588.228 1.008.503 1.448.944.441.441.716.861.944 1.448.165.445.362 1.162.417 2.342.058 1.267.07 1.647.07 4.85s-.012 3.584-.07 4.85c-.055 1.18-.252 1.897-.417 2.342-.228.588-.503 1.008-.944 1.448-.441.441-.861.716-1.448.944-.445.165-1.162.362-2.342.417-1.267.058-1.647.07-4.85.07s-3.584-.012-4.85-.07c-1.18-.055-1.897-.252-2.342-.417-.588-.228-1.008-.503-1.448-.944-.441-.441-.716-.861-.944-1.448-.165-.445-.362-1.162-.417-2.342-.058-1.267-.07-1.647-.07-4.85s.012-3.584.07-4.85c.055-1.18.252-1.897.417-2.342.228-.588.503-1.008.944-1.448.441-.441.861-.716 1.448-.944.445-.165 1.162-.362 2.342-.417 1.267-.058 1.647-.07 4.85-.07zm0 1.583c-3.14 0-3.513.012-4.757.068-1.144.053-1.765.236-2.179.398-.548.212-.943.468-1.356.881-.413.413-.669.808-.881 1.356-.162.414-.345 1.035-.398 2.179-.056 1.244-.068 1.617-.068 4.757s.012 3.513.068 4.757c.053 1.144.236 1.765.398 2.179.212.548.468.943.881 1.356.413.413.808.669 1.356.881.414.162 1.035.345 2.179.398 1.244.056 1.617.068 4.757.068s3.513-.012 4.757-.068c1.144-.053 1.765-.236 2.179-.398.548-.212.943-.468 1.356-.881.413-.413.669-.808.881-1.356.162-.414.345-1.035.398-2.179.056-1.244.068-1.617.068-4.757s-.012-3.513-.068-4.757c-.053-1.144-.236-1.765-.398-2.179-.212-.548-.468-.943-.881-1.356-.413-.413-.808-.669-1.356-.881-.414-.162-1.035-.345-2.179-.398-1.244-.056-1.617-.068-4.757-.068zm0 3.327c-3.664 0-6.634 2.97-6.634 6.634s2.97 6.634 6.634 6.634 6.634-2.97 6.634-6.634-2.97-6.634-6.634-6.634zm0 1.583c2.78 0 5.051 2.271 5.051 5.051s-2.271 5.051-5.051 5.051-5.051-2.271-5.051-5.051 2.271-5.051 5.051-5.051zm5.35-4.476c0 .72-.584 1.304-1.304 1.304s-1.304-.584-1.304-1.304.584-1.304 1.304-1.304 1.304.584 1.304 1.304z"/></svg>
+          @mr_tohid
+        </a>
+      </div>
+    </section>
+
   </main>
 
   <!-- SYSTEMS SCRIPTS -->
   <script>
-    // ✉️ EMAILJS INITIALIZATION WITH YOUR PUBLIC KEY
+    // ✉️ EMAILJS INITIALIZATION
     (function() {
         emailjs.init({
           publicKey: "287g46US2fGjoY4LL",
         });
     })();
 
-    // ✉️ Open Envelope & Start Music
+    // ✉️ Envelope logic
     function openEnvelope() {
       const target = document.getElementById('envelope-portal');
       target.style.transform = 'translateY(-100%)';
       setTimeout(() => { target.style.display = 'none'; }, 1050);
-      
-      // Forcefully start play when envelope is clicked
       const track = document.getElementById('wedding-track');
-      track.play().then(() => {
-        document.getElementById('audio-icon').style.opacity = '1';
-      }).catch(e => {
-        console.log('Autoplay blocked by browser policy.', e);
-      });
+      track.play().catch(e => console.log('Autoplay blocked', e));
     }
 
-    // 🔊 Audio Setup Toggle
-    const track = document.getElementById('wedding-track');
     function toggleAudio() {
+      const track = document.getElementById('wedding-track');
       if(track.paused) {
-        track.play().catch(e => console.log('Audio playing error.'));
+        track.play();
         document.getElementById('audio-icon').style.opacity = '1';
       } else {
         track.pause();
@@ -536,7 +535,7 @@
       }
     }
 
-    // 🌸 Ambient Petals Flow
+    // 🌸 Petals
     const pContainer = document.getElementById('petals');
     const colors = ['#ffccd5', '#fbc4cb', '#f9a8b6', '#f3e5ab'];
     for (let i = 0; i < 25; i++) {
@@ -551,7 +550,7 @@
       pContainer.appendChild(petal);
     }
 
-    // ⏳ Countdown Engine (Target Date set to July 01, 2026)
+    // ⏳ Timer
     const targetDate = new Date("July 01, 2026 19:00:00").getTime();
     setInterval(() => {
       const distance = targetDate - new Date().getTime();
@@ -562,80 +561,46 @@
       document.getElementById('timer-s').innerText = String(Math.floor((distance % 60000) / 1000)).padStart(2, '0');
     }, 1000);
 
-    // 💥 DYNAMIC ROSE PETAL BURST SYSTEM (PATAKA EFFECT)
+    // 💥 Burst Effect
     function spawnRoseBurst(clientX, clientY) {
       const count = 12; 
       const petalColors = ['#ff4d6d', '#ff758c', '#ff8fa3', '#ffb3c1', '#fbc4cb'];
-      
       for (let i = 0; i < count; i++) {
         const particle = document.createElement('div');
         particle.className = 'rose-burst-particle';
-        
-        particle.style.left = clientX + 'px';
-        particle.style.top = clientY + 'px';
-        
+        particle.style.left = clientX + 'px'; particle.style.top = clientY + 'px';
         const size = Math.random() * 12 + 8;
-        particle.style.width = size + 'px';
-        particle.style.height = size + 'px';
+        particle.style.width = size + 'px'; particle.style.height = size + 'px';
         particle.style.background = petalColors[Math.floor(Math.random() * petalColors.length)];
-
         const angle = Math.random() * Math.PI * 2;
         const radius = Math.random() * 120 + 60; 
-        const tx = Math.cos(angle) * radius;
-        const ty = Math.sin(angle) * radius;
-        const rot = (Math.random() * 360) + 'deg';
-
-        particle.style.setProperty('--tx', tx + 'px');
-        particle.style.setProperty('--ty', ty + 'px');
-        particle.style.setProperty('--rot', rot);
-
+        particle.style.setProperty('--tx', (Math.cos(angle) * radius) + 'px');
+        particle.style.setProperty('--ty', (Math.sin(angle) * radius) + 'px');
+        particle.style.setProperty('--rot', (Math.random() * 360) + 'deg');
         document.body.appendChild(particle);
-        
-        setTimeout(() => {
-          particle.remove();
-        }, 1200);
+        setTimeout(() => particle.remove(), 1200);
       }
     }
 
-    // 🎫 Scratch Card Core with Gold scratch cover (Adjusted to larger 110x160 dimensions)
+    // 🎫 Scratch Card
     function initScratchCard(id) {
       const canvas = document.getElementById(id);
       const ctx = canvas.getContext('2d');
-      
-      // Scratch surface changed to gold dust color
-      ctx.fillStyle = '#d4af37'; 
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      
-      ctx.fillStyle = '#ffffff';
-      ctx.font = 'bold 12px Montserrat'; // Slightly larger font inside card
-      ctx.textAlign = 'center';
+      ctx.fillStyle = '#d4af37'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#ffffff'; ctx.font = 'bold 12px Montserrat'; ctx.textAlign = 'center';
       ctx.fillText('SCRATCH', canvas.width/2, canvas.height/2 + 4);
-
       let isDrawing = false;
-      let lastExplosionTime = 0;
-
       function scratch(e) {
         if(!isDrawing) return;
         const rect = canvas.getBoundingClientRect();
-        
         const clientX = e.touches ? e.touches[0].clientX : e.clientX;
         const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-        
-        const x = clientX - rect.left;
-        const y = clientY - rect.top;
-
         ctx.globalCompositeOperation = 'destination-out';
         ctx.beginPath();
-        ctx.arc(x, y, 18, 0, Math.PI * 2); // Increased brush size for easier scratch
+        ctx.arc(clientX - rect.left, clientY - rect.top, 18, 0, Math.PI * 2);
         ctx.fill();
-
-        const now = Date.now();
-        if (now - lastExplosionTime > 75) { 
-          spawnRoseBurst(clientX, clientY);
-          lastExplosionTime = now;
-        }
+        spawnRoseBurst(clientX, clientY);
       }
-
       canvas.addEventListener('mousedown', () => isDrawing = true);
       canvas.addEventListener('mouseup', () => isDrawing = false);
       canvas.addEventListener('mousemove', scratch);
@@ -643,75 +608,36 @@
       canvas.addEventListener('touchend', () => isDrawing = false);
       canvas.addEventListener('touchmove', scratch);
     }
+    initScratchCard('c-month'); initScratchCard('c-day'); initScratchCard('c-year');
 
-    initScratchCard('c-month');
-    initScratchCard('c-day');
-    initScratchCard('c-year');
-
-    // 📩 EMAILJS SUBMISSION PIPELINE
+    // 📩 RSVP Logic
     function processRSVPEngine() {
       const name = document.getElementById('rsvp-name').value.trim();
       const phone = document.getElementById('rsvp-phone').value.trim();
-      
-      // Selected Attendance Option
-      const attendanceElement = document.querySelector('input[name="attending"]:checked');
-      const attendance = attendanceElement ? attendanceElement.value : 'Joyfully Accept 🎉';
-      
+      const attendance = document.querySelector('input[name="attending"]:checked').value;
       const size = document.getElementById('rsvp-size').value;
       const song = document.getElementById('rsvp-song').value.trim();
       const diet = document.getElementById('rsvp-diet').value;
       const advice = document.getElementById('rsvp-advice').value.trim();
-      
-      // Checkboxes checked events
       let checkedEvents = [];
       document.querySelectorAll('input[name="events"]:checked').forEach(cb => checkedEvents.push(cb.value));
 
-      // Validation check
-      if(!name || !phone) {
-        alert("Bhai, details fill up kar lo tabhi RSVP submit hoga!");
-        return;
-      }
+      if(!name || !phone) { alert("Bhai, details fill up kar lo!"); return; }
 
-      // UI Feedback loader state
       const submitBtn = document.getElementById('submit-btn');
-      submitBtn.disabled = true;
-      submitBtn.innerText = "SENDING RSVP...";
+      submitBtn.disabled = true; submitBtn.innerText = "SENDING RSVP...";
 
-      // EmailJS parameter payload
-      const templateParams = {
-        guest_name: name,
-        guest_phone: phone,
-        attendance: attendance,
-        party_size: size,
-        events_attending: checkedEvents.length > 0 ? checkedEvents.join(', ') : 'None',
-        dietary_pref: diet,
-        dance_track: song ? song : 'None',
-        marriage_advice: advice ? advice : 'None'
-      };
-
-      // Real Keys Configured
-      const serviceID = "service_3ux49q7";
-      const templateID = "template_fn1apho";
-
-      emailjs.send(serviceID, templateID, templateParams)
-        .then(function(response) {
-           console.log('SUCCESS!', response.status, response.text);
-           alert("Shukriya! Aapka RSVP safaltapurwak bhej diya gaya hai. 🎉");
-           submitBtn.disabled = false;
-           submitBtn.innerText = "SEND RSVP";
-           
-           // Form input reset
-           document.getElementById('rsvp-name').value = "";
-           document.getElementById('rsvp-phone').value = "";
-           document.getElementById('rsvp-song').value = "";
-           document.getElementById('rsvp-advice').value = "";
-        }, function(error) {
-           console.log('FAILED...', error);
-           alert("Oops! Kuch gadbad ho gayi. Kripya thodi der baad koshish karne ka.");
-           submitBtn.disabled = false;
-           submitBtn.innerText = "SEND RSVP";
-        });
+      emailjs.send("service_3ux49q7", "template_fn1apho", {
+        guest_name: name, guest_phone: phone, attendance: attendance, party_size: size,
+        events_attending: checkedEvents.join(', '), dietary_pref: diet, dance_track: song || 'None', marriage_advice: advice || 'None'
+      }).then(function(res) {
+           alert("Shukriya! Aapka RSVP bhej diya gaya hai. 🎉");
+           submitBtn.disabled = false; submitBtn.innerText = "SEND RSVP";
+      }, function(err) {
+           alert("Oops! Kuch gadbad ho gayi.");
+           submitBtn.disabled = false; submitBtn.innerText = "SEND RSVP";
+      });
     }
   </script>
 </body>
-    </html>
+              </html>
