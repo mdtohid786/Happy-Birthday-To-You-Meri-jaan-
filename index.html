@@ -1,164 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wedding Invitation</title>
-
-<link rel="stylesheet" href="style.css">
-
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
-
+<title>Shaadi ka Nimantran</title>
+<style>
+body { margin:0; background:#f8f3f0; font-family:'Georgia'; text-align:center; color:#5a2a2a; }
+.envelope { background:#8B4513; height:100vh; display:flex; justify-content:center; align-items:center; cursor:pointer; }
+.seal { width:100px; height:100px; background:#f5e6c4; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:2rem; }
+.card { display:none; padding:30px; max-width:650px; margin:auto; }
+h1 { color:#b8860b; }
+.scratch { width:150px; height:80px; background:#c2185b; color:white; margin:10px; display:inline-block; line-height:80px; border-radius:10px; }
+.confetti { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; }
+</style>
 </head>
-
 <body>
 
-<!-- Flower Animation -->
-<div class="petals"></div>
-
-<!-- Envelope -->
-
-<section class="envelope-section">
-
-<div class="envelope" id="envelope">
-
-<div class="flap"></div>
-
-<div class="letter">
-
-<h2>You're Invited</h2>
-
-<p>Tap to Open</p>
-
+<!-- 1. ENVELOPE SCREEN -->
+<div class="envelope" onclick="openCard()">
+  <div class="seal">R&P</div>
+  <p style="color:white; position:absolute; bottom:100px;">Tap to Reveal</p>
 </div>
 
+<!-- 2. MAIN INVITE CARD -->
+<div class="card" id="mainCard">
+  <h1>Meenal & Avinash</h1>
+  <p>With the blessings of our families, we invite you</p>
+  
+  <h2>Save the Date</h2>
+  <div>
+    <div class="scratch" onclick="this.innerHTML='JULY'">SCRATCH</div>
+    <div class="scratch" onclick="this.innerHTML='01'">SCRATCH</div>
+    <div class="scratch" onclick="this.innerHTML='2026'">SCRATCH</div>
+  </div>
+
+  <h2>Our Story</h2>
+  <img src="couple1.jpg" width="90%" style="border-radius:15px; margin:10px 0;">
+  <img src="couple2.jpg" width="90%" style="border-radius:15px; margin:10px 0;">
+
+  <h2>The Venue</h2>
+  <p>Rajalakshmi Kalyana Mandapam</p>
+  <a href="https://maps.google.com" target="_blank">View on Maps</a>
+
+  <h2>RSVP</h2>
+  <input placeholder="Your Name"><br><br>
+  <input placeholder="Phone"><br><br>
+  <button>Joyfully Accept</button>
+
+  <audio autoplay loop>
+    <source src="shaadi.mp3" type="audio/mpeg">
+  </audio>
 </div>
 
-</section>
-
-<!-- Invitation -->
-
-<section class="invite hidden" id="invite">
-
-<div class="card">
-
-<h3>With the Blessings of God</h3>
-
-<h1>Bride Name</h1>
-
-<span>&</span>
-
-<h1>Groom Name</h1>
-
-<p>01 July 2026</p>
-
-</div>
-
-</section>
-
-<!-- Save Date -->
-
-<section class="save-date">
-
-<h2>Save The Date</h2>
-
-<div class="scratch-card">
-
-<div class="cover" id="cover">
-
-SCRATCH
-
-</div>
-
-<div class="date">
-
-01 July 2026
-
-</div>
-
-</div>
-
-</section>
-
-<!-- Story -->
-
-<section class="story">
-
-<h2>Our Story</h2>
-
-<img src="images/story.jpg">
-
-<p>
-
-Write Your Story Here...
-
-</p>
-
-</section>
-
-<!-- Gallery -->
-
-<section class="gallery">
-
-<h2>Gallery</h2>
-
-<div class="grid">
-
-<img src="images/img1.jpg">
-
-<img src="images/img2.jpg">
-
-<img src="images/img3.jpg">
-
-<img src="images/img4.jpg">
-
-</div>
-
-</section>
-
-<!-- RSVP -->
-
-<section class="rsvp">
-
-<h2>RSVP</h2>
-
-<form>
-
-<input type="text" placeholder="Your Name">
-
-<input type="number" placeholder="Phone">
-
-<select>
-
-<option>Joyfully Accept</option>
-
-<option>Regretfully Decline</option>
-
-</select>
-
-<textarea placeholder="Message"></textarea>
-
-<button>Send RSVP</button>
-
-</form>
-
-</section>
-
-<!-- Music -->
-
-<button id="musicBtn">
-
-🎵
-
-</button>
-
-<audio id="music" loop>
-
-<source src="audio/music.mp3" type="audio/mpeg">
-
-</audio>
-
-<script src="script.js"></script>
-
+<script>
+function openCard(){
+  document.querySelector('.envelope').style.display='none';
+  document.getElementById('mainCard').style.display='block';
+  // Confetti effect
+  for(let i=0;i<100;i++){
+    let conf = document.createElement('div');
+    conf.style = `position:fixed; width:10px; height:10px; background:hsl(${Math.random()*360},100%,50%); top:-10px; left:${Math.random()*100}%; animation:fall 3s linear;`;
+    document.body.appendChild(conf);
+  }
+}
+</script>
+<style>@keyframes fall { to { transform:translateY(100vh) rotate(720deg); } }</style>
 </body>
 </html>
