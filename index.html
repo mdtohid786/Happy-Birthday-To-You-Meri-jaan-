@@ -1,106 +1,717 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wedding Invitation</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600&display=swap');
-  body { font-family: 'Poppins', sans-serif; background: #FDF8F5; }
-  .cursive { font-family: 'Great Vibes', cursive; }
-  .envelope { transition: all 0.8s ease; }
-  .scratch-box { position: relative; background: #C2185B; color: white; border-radius: 12px; cursor: pointer; user-select: none; }
-  .scratch-box canvas { position: absolute; top:0; left:0; border-radius: 12px; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meenal & Avinash - Premium Wedding Invitation</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght=0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- ✉️ EMAILJS SDK INTEGRATION -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  
+  <style>
+    :root {
+      --bg-pink: #fff0f3;       /* Elegant Soft Blush Pink Background */
+      --luxury-gold: #c59b27;   /* Rich Royal Golden Accent */
+      --text-main: #503737;     /* Deep Soft Cocoa for clear readability */
+      --gold-accent: #e5c158;   /* Bright Metallic Gold Details */
+    }
+
+    body {
+      background-color: var(--bg-pink);
+      color: var(--text-main);
+      font-family: 'Montserrat', sans-serif;
+      overflow-x: hidden;
+    }
+
+    .font-serif-title { font-family: 'Playfair Display', serif; }
+    .font-royal { font-family: 'Cinzel', serif; }
+
+    /* ✉️ ENVELOPE WAX SEAL SYSTEM (Deep Wine Red & Gold theme for premium look) */
+    #envelope-portal {
+      position: fixed;
+      inset: 0;
+      background: #4a121a; 
+      z-index: 99999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+      box-shadow: inset 0 0 100px rgba(0,0,0,0.5);
+    }
+    
+    .embossed-flowers {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0.08;
+      background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+      pointer-events: none;
+    }
+
+    .wax-seal {
+      width: 160px; /* Increased from 140px */
+      height: 160px; /* Increased from 140px */
+      background: var(--gold-accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.4), inset 0 0 15px #d2c1a1;
+      border: 8px double var(--luxury-gold);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .wax-seal:hover { transform: scale(1.05); }
+
+    /* 🌸 BACKGROUND FLOATING ROSE PETALS */
+    .petal-container {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none; z-index: 5; overflow: hidden;
+    }
+    .petal {
+      position: absolute;
+      background: linear-gradient(to bottom right, #ffccd5, #fbc4cb);
+      border-radius: 150% 0 150% 50%;
+      opacity: 0.7;
+      animation: fly 12s infinite linear;
+    }
+    @keyframes fly {
+      0% { transform: translateY(-10%) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.6; }
+      90% { opacity: 0.6; }
+      100% { transform: translateY(110vh) translateX(100px) rotate(360deg); opacity: 0; }
+    }
+
+    /* 💥 SCRATCH CARD & EXPLODING ROSE PETAL PARTICLES */
+    .scratch-box {
+      position: relative;
+      width: 110px; /* Increased from 95px */
+      height: 160px; /* Increased from 140px */
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(197, 155, 39, 0.2);
+      overflow: hidden;
+    }
+    .scratch-canvas {
+      position: absolute;
+      top: 0; left: 0; z-index: 10;
+      cursor: pointer;
+      touch-action: none;
+    }
+    .rose-burst-particle {
+      position: fixed;
+      pointer-events: none;
+      background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+      border-radius: 100% 0% 100% 0%;
+      z-index: 9999;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      animation: burst-fly 1.2s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+    }
+    @keyframes burst-fly {
+      0% {
+        transform: translate(0, 0) scale(1.5) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(var(--tx), var(--ty)) scale(0) rotate(var(--rot));
+        opacity: 0;
+      }
+    }
+
+    /* 📸 MODERN HORIZONTAL SNAP SLIDER */
+    .slider-container {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 20px;
+      padding: 15px 24px;
+      scrollbar-width: none;
+    }
+    .slider-container::-webkit-scrollbar {
+      display: none;
+    }
+    .slide-item {
+      flex: 0 0 88%;
+      scroll-snap-align: center;
+      background: white;
+      padding: 16px;
+      box-shadow: 0 12px 30px rgba(197, 155, 39, 0.18);
+      border: 1.5px solid var(--gold-accent);
+      transform: rotate(var(--rot));
+    }
+
+    /* Custom inputs style with Gold Accents */
+    input, select, textarea {
+      outline: none !important;
+      border-bottom: 2px solid #ebdcb9 !important;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-bottom: 2px solid var(--luxury-gold) !important;
+    }
+    ::-webkit-scrollbar { display: none; }
+  </style>
 </head>
 <body>
 
-<!-- 1. ENVELOPE SCREEN -->
-<div id="envelopeScreen" class="envelope h-screen w-screen bg-[#8B3A3A] flex-col items-center justify-center cursor-pointer" onclick="openInvite()">
-  <div class="w-24 h-24 rounded-full bg-[#F5E6C4] flex items-center justify-center text-3xl shadow-2xl animate-pulse">R&P</div>
-  <p class="text-white mt-6 text-lg">Tap to Reveal</p>
-</div>
+  <!-- 🌸 FLOATING BACKGROUND PETALS LAYER -->
+  <div class="petal-container" id="petals"></div>
 
-<!-- 2. MAIN INVITE -->
-<div id="mainInvite" class="hidden max-w-2xl mx-auto p-6 text-center">
+  <!-- 🔊 FIXED SOUND BUTTON CONTROL -->
+  <button onclick="toggleAudio()" class="fixed bottom-8 right-8 w-14 h-14 rounded-full bg-white shadow-2xl border-2 border-[var(--gold-accent)] flex items-center justify-center z-50 text-slate-700 hover:scale-105 transition">
+    <svg id="audio-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="2 2 20 20" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M19.114 5.636a9 9 0 0 1 0 12.728M16.463 8.288a5.25 5.25 0 0 1 0 7.424M6.75 8.25l4.72-4.72a.75.75 0 0 1 1.28.53v15.88a.75.75 0 0 1-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.009 9.009 0 0 1 2.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75Z" />
+    </svg>
+  </button>
   
-  <h1 class="cursive text-5xl text-[#8B3A3A]">Aryan & Priya</h1>
-  <p class="mt-2 text-gray-600">With the blessings of our families</p>
+  <!-- 🎵 GITHUB MUSIC SOURCE -->
+  <audio id="wedding-track" loop src="Shiddat___.__Shiddat__transl._Intensity__is_a_2021_Indian_Hindi-la.m4a"></audio>
 
-  <h2 class="text-2xl mt-10 mb-4 font-semibold">Save the Date</h2>
-  <div class="flex justify-center gap-4">
-    <div class="scratch-box w-28 h-20" data-value="DEC">
-      <canvas id="c1" width="112" height="80"></canvas>
-      <div class="pt-2 text-xs">MONTH</div><div id="v1" class="text-xl font-bold hidden">DEC</div>
+  <!-- ✉️ ENVELOPE GATE COVER -->
+  <div id="envelope-portal" class="text-center">
+    <div class="embossed-flowers"></div>
+    <div class="absolute top-[25%] text-amber-100/80 font-serif-title italic tracking-widest text-2xl animate-pulse">
+      Tap to Reveal
     </div>
-    <div class="scratch-box w-28 h-20" data-value="15">
-      <canvas id="c2" width="112" height="80"></canvas>
-      <div class="pt-2 text-xs">DAY</div><div id="v2" class="text-xl font-bold hidden">15</div>
-    </div>
-    <div class="scratch-box w-28 h-20" data-value="2026">
-      <canvas id="c3" width="112" height="80"></canvas>
-      <div class="pt-2 text-xs">YEAR</div><div id="v3" class="text-xl font-bold hidden">2026</div>
+    <div class="wax-seal mt-8" onclick="openEnvelope()">
+      <span class="font-royal text-3xl font-bold tracking-wider text-[#4a121a] select-none">M & A</span>
     </div>
   </div>
 
-  <h2 class="text-2xl mt-10 font-semibold">Our Story</h2>
-  <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=800" class="rounded-xl my-4 shadow-lg w-full">
-  <img src="https://images.unsplash.com/photo-1606214174585-fe31582dc6ee?q=80&w=800" class="rounded-xl my-4 shadow-lg w-full">
 
-  <h2 class="text-2xl mt-10 font-semibold">Venue</h2>
-  <p>Royal Garden Banquet Hall, Garbada, Gujarat</p>
-  <a href="https://maps.google.com" target="_blank" class="bg-[#8B3A3A] text-white px-6 py-2 rounded-full inline-block mt-2">📍 View on Maps</a>
+  <!-- 🏛️ MAIN CARD CONTENT -->
+  <main class="max-w-lg mx-auto px-6 pt-12 pb-32 space-y-28 relative z-10">
 
-  <h3 class="mt-10">🎵 Background Music 🎵</h3>
-  <audio id="bgMusic" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" loop controls></audio>
+    <!-- 🌟 CLEAN ROYAL INTRO SECTION -->
+    <section class="text-center pt-16 pb-12 bg-white/60 p-8 rounded-[40px] border border-white/90 backdrop-blur-sm relative shadow-md">
+      <div class="absolute top-6 left-6 w-8 h-8 border-t-2 border-l-2 border-[var(--luxury-gold)]/50"></div>
+      <div class="absolute top-6 right-6 w-8 h-8 border-t-2 border-r-2 border-[var(--luxury-gold)]/50"></div>
+      
+      <p class="text-[14px] uppercase tracking-[0.25em] text-[var(--luxury-gold)] font-bold mb-8">Together with their families</p>
+      
+      <h1 class="font-serif-title text-5xl text-[var(--luxury-gold)] tracking-wide mb-3">Nujhat</h1>
+      <div class="text-[var(--luxury-gold)]/80 font-serif-title italic text-2xl my-4">&</div>
+      <h1 class="font-serif-title text-5xl text-[var(--luxury-gold)] tracking-wide mb-10">Sajid</h1>
+      
+      <p class="text-xs md:text-sm text-slate-500 italic tracking-wider mb-10">
+        Daughter of Mr. & Mrs. Sharma &nbsp;|&nbsp; Son of Mr. & Mrs. Patel
+      </p>
 
-</div>
+      <p class="text-[14px] uppercase tracking-[0.2em] text-slate-600 font-semibold max-w-sm mx-auto leading-relaxed">
+        Request the honor of your presence to celebrate our beautiful journey of love and togetherness.
+      </p>
 
-<script>
-let opened = false;
-let scratchCount = 0;
+      <div class="text-xs tracking-[0.3em] uppercase text-slate-400 mt-20 animate-bounce">
+        SCROLL TO SEE MAGIC <br> ↓
+      </div>
+    </section>
 
-function openInvite(){
-  document.getElementById('envelopeScreen').style.display = 'none';
-  document.getElementById('mainInvite').classList.remove('hidden');
-  document.getElementById('bgMusic').play();
-}
 
-// SCRATCH LOGIC
-document.querySelectorAll('.scratch-box').forEach((box, index) => {
-  const canvas = box.querySelector('canvas');
-  const ctx = canvas.getContext('2d');
-  ctx.fillStyle = '#C2185B';
-  ctx.fillRect(0,0,canvas.width,canvas.height);
-  ctx.fillStyle = 'white';
-  ctx.font = '14px Poppins';
-  ctx.fillText('SCRATCH', 25, 45);
+    <!-- 📅 DYNAMIC EVENTS SCHEDULE (Mehndi, Haldi, Baarat) -->
+    <section class="space-y-8">
+      <div class="text-center">
+        <p class="text-xs uppercase tracking-[0.2em] text-[var(--luxury-gold)] font-bold mb-1">CELEBRATIONS</p>
+        <h3 class="font-serif-title text-4xl text-[var(--luxury-gold)]">Wedding Events</h3>
+        <p class="text-sm text-slate-400 italic">Join us on our special days</p>
+      </div>
 
-  let isDrawing = false;
-  canvas.addEventListener('mousedown', ()=>isDrawing=true);
-  canvas.addEventListener('mouseup', ()=>isDrawing=false);
-  canvas.addEventListener('mousemove', (e)=>{
-    if(!isDrawing) return;
-    const rect = canvas.getBoundingClientRect();
-    ctx.globalCompositeOperation = 'destination-out';
-    ctx.beginPath();
-    ctx.arc(e.clientX - rect.left, e.clientY - rect.top, 15, 0, Math.PI*2);
-    ctx.fill();
-  });
-  canvas.addEventListener('touchend', ()=>{
-    scratchCount++;
-    box.querySelector('div:last-child').classList.remove('hidden');
-    canvas.style.display = 'none';
-    if(scratchCount === 3) fireConfetti();
-  });
-});
+      <div class="space-y-6">
+        <!-- Event 1: Mehndi Ceremony -->
+        <div class="bg-white/95 p-8 rounded-[28px] border-l-8 border-[var(--luxury-gold)] shadow-lg flex items-start gap-5">
+          <div class="text-3xl pt-1">🌿</div>
+          <div class="flex-1">
+            <h4 class="font-serif-title text-xl font-bold text-[var(--luxury-gold)]">Mehndi Ceremony</h4>
+            <p class="text-sm text-slate-500 font-semibold mt-1">JUNE 29, 2026 &bull; 02:00 PM onwards</p>
+            <p class="text-xs md:text-sm text-slate-400 italic mt-3">"Deep mehndi colors, beautiful rhythms, and sweet smiles."</p>
+            <p class="text-xs text-slate-600 font-semibold mt-2.5 bg-amber-50 inline-block px-3 py-1 rounded border border-amber-100">Venue: Grand Celebration Hall</p>
+          </div>
+        </div>
 
-function fireConfetti(){
-  confetti({ particleCount: 200, spread: 120, origin: { y: 0.6 } });
-}
-</script>
+        <!-- Event 2: Haldi Ceremony -->
+        <div class="bg-white/95 p-8 rounded-[28px] border-l-8 border-[var(--luxury-gold)] shadow-lg flex items-start gap-5">
+          <div class="text-3xl pt-1">💛</div>
+          <div class="flex-1">
+            <h4 class="font-serif-title text-xl font-bold text-[var(--luxury-gold)]">Haldi Ceremony</h4>
+            <p class="text-sm text-slate-500 font-semibold mt-1">JUNE 30, 2026 &bull; 10:00 AM onwards</p>
+            <p class="text-xs md:text-sm text-slate-400 italic mt-3">"Let the splash of yellow bring the touch of blessing and love."</p>
+            <p class="text-xs text-slate-600 font-semibold mt-2.5 bg-amber-50 inline-block px-3 py-1 rounded border border-amber-100">Venue: Royal Lawn Garden</p>
+          </div>
+        </div>
 
+        <!-- Event 3: Baarat, Reception & Phere -->
+        <div class="bg-white/95 p-8 rounded-[28px] border-l-8 border-[var(--luxury-gold)] shadow-lg flex items-start gap-5">
+          <div class="text-3xl pt-1">🥁</div>
+          <div class="flex-1">
+            <h4 class="font-serif-title text-xl font-bold text-[var(--luxury-gold)]">Baarat & Royal Wedding</h4>
+            <p class="text-sm text-slate-500 font-semibold mt-1">JULY 01, 2026 &bull; 06:00 PM onwards</p>
+            <p class="text-xs md:text-sm text-slate-400 italic mt-3">"Dancing to the beats of Baarat, leading into the sacred Phere."</p>
+            <p class="text-xs text-slate-600 font-semibold mt-2.5 bg-amber-50 inline-block px-3 py-1 rounded border border-amber-100">Venue: Golden Palace Resort</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- 🎫 TRIPLE SCRATCH WITH ROSE EXPLOSION -->
+    <section class="text-center space-y-8">
+      <div>
+        <p class="text-sm uppercase tracking-[0.2em] text-[var(--luxury-gold)] font-bold mb-1">THE DATE</p>
+        <h2 class="font-serif-title text-4xl text-[var(--luxury-gold)] font-semibold">Save the Date</h2>
+        <p class="text-sm text-slate-400 italic mt-1">Scratch below to reveal our wedding date</p>
+      </div>
+
+      <div class="flex justify-center gap-4 pt-4">
+        <!-- MONTH CARD -->
+        <div class="flex flex-col items-center">
+          <span class="text-xs uppercase font-bold tracking-widest text-slate-400 mb-2">Month</span>
+          <div class="scratch-box">
+            <div class="absolute inset-0 flex items-center justify-center font-serif-title text-2xl font-bold text-[var(--luxury-gold)] tracking-wider bg-[#fffdfa]">
+              JULY
+            </div>
+            <canvas class="scratch-canvas" width="110" height="160" id="c-month"></canvas>
+          </div>
+        </div>
+
+        <!-- DAY CARD -->
+        <div class="flex flex-col items-center">
+          <span class="text-xs uppercase font-bold tracking-widest text-slate-400 mb-2">Day</span>
+          <div class="scratch-box">
+            <div class="absolute inset-0 flex items-center justify-center font-serif-title text-3xl font-bold text-[var(--luxury-gold)] bg-[#fffdfa]">
+              01
+            </div>
+            <canvas class="scratch-canvas" width="110" height="160" id="c-day"></canvas>
+          </div>
+        </div>
+
+        <!-- YEAR CARD -->
+        <div class="flex flex-col items-center">
+          <span class="text-xs uppercase font-bold tracking-widest text-slate-400 mb-2">Year</span>
+          <div class="scratch-box">
+            <div class="absolute inset-0 flex items-center justify-center font-serif-title text-2xl font-bold text-[var(--luxury-gold)] bg-[#fffdfa]">
+              2026
+            </div>
+            <canvas class="scratch-canvas" width="110" height="160" id="c-year"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ⏳ MODERN TIMER -->
+    <section class="bg-white/90 p-10 rounded-[40px] border-2 border-[var(--gold-accent)]/50 shadow-2xl text-center space-y-8">
+      <p class="text-sm italic text-slate-400">A lifetime of togetherness begins with one sacred step</p>
+      <h3 class="font-serif-title text-4xl text-[var(--luxury-gold)]">The Wedding</h3>
+      <p class="text-sm font-semibold tracking-[0.2em] text-slate-500">01 . 07 . 2026</p>
+
+      <div class="grid grid-cols-4 gap-3 pt-6 border-t border-stone-150 text-center">
+        <div>
+          <span id="timer-d" class="text-4xl font-light text-slate-800 block">00</span>
+          <span class="text-[10px] uppercase tracking-widest text-slate-400 font-bold">Days</span>
+        </div>
+        <div>
+          <span id="timer-h" class="text-4xl font-light text-slate-800 block">00</span>
+          <span class="text-[10px] uppercase tracking-widest text-slate-400 font-bold">Hours</span>
+        </div>
+        <div>
+          <span id="timer-m" class="text-4xl font-light text-slate-800 block">00</span>
+          <span class="text-[10px] uppercase tracking-widest text-slate-400 font-bold">Mins</span>
+        </div>
+        <div>
+          <span id="timer-s" class="text-4xl font-light text-slate-800 block">00</span>
+          <span class="text-[10px] uppercase tracking-widest text-slate-400 font-bold">Secs</span>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- 📸 SLIDING PHOTO ALBUM -->
+    <section class="text-center space-y-8 overflow-hidden">
+      <div>
+        <p class="text-xs uppercase tracking-[0.2em] text-slate-400 font-bold mb-1">OUR STORY</p>
+        <h3 class="font-serif-title text-5xl text-[var(--luxury-gold)]">Forever Us</h3>
+        <p class="text-sm text-slate-400 italic">Swipe to see our beautiful memories</p>
+      </div>
+
+      <div class="slider-container">
+        <!-- Photo 1 -->
+        <div class="slide-item" style="--rot: -2deg">
+          <div class="w-full aspect-[3/4] overflow-hidden bg-stone-100">
+            <img src="https://picsum.photos/600/800?random=11" class="w-full h-full object-cover" alt="Memory 1">
+          </div>
+          <p class="font-serif-title italic text-lg text-slate-600 mt-5 tracking-wide">Together we laugh</p>
+        </div>
+        
+        <!-- Photo 2 -->
+        <div class="slide-item" style="--rot: 1.5deg">
+          <div class="w-full aspect-[3/4] overflow-hidden bg-stone-100">
+            <img src="https://picsum.photos/600/800?random=12" class="w-full h-full object-cover" alt="Memory 2">
+          </div>
+          <p class="font-serif-title italic text-lg text-slate-600 mt-5 tracking-wide">Moments of joy</p>
+        </div>
+
+        <!-- Photo 3 -->
+        <div class="slide-item" style="--rot: -1deg">
+          <div class="w-full aspect-[3/4] overflow-hidden bg-stone-100">
+            <img src="https://picsum.photos/600/800?random=13" class="w-full h-full object-cover" alt="Memory 3">
+          </div>
+          <p class="font-serif-title italic text-lg text-slate-600 mt-5 tracking-wide">Pure bliss</p>
+        </div>
+
+        <!-- Photo 4 -->
+        <div class="slide-item" style="--rot: 2deg">
+          <div class="w-full aspect-[3/4] overflow-hidden bg-stone-100">
+            <img src="https://picsum.photos/600/800?random=14" class="w-full h-full object-cover" alt="Memory 4">
+          </div>
+          <p class="font-serif-title italic text-lg text-slate-600 mt-5 tracking-wide">Forever & Always</p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- 👗 COMPLETE RSVP SYSTEM WITH EMAILJS -->
+    <section class="space-y-10">
+      
+      <!-- Guest Details Card -->
+      <div class="bg-white/90 p-10 rounded-[36px] border-2 border-[var(--gold-accent)]/30 shadow-lg space-y-8">
+        <h4 class="font-serif-title italic text-xl text-[var(--luxury-gold)]">Your details</h4>
+        
+        <div>
+          <label class="block text-xs uppercase tracking-widest text-slate-400 font-bold mb-2">Your Name</label>
+          <input type="text" id="rsvp-name" placeholder="Full name" class="w-full bg-transparent py-3 text-base text-slate-800 font-medium placeholder-slate-300">
+        </div>
+
+        <div>
+          <label class="block text-xs uppercase tracking-widest text-slate-400 font-bold mb-2">Phone Number</label>
+          <div class="flex items-center gap-3">
+            <span class="text-base text-slate-400 font-medium">🇮🇳 +91</span>
+            <input type="tel" id="rsvp-phone" placeholder="Enter 10 digit number" class="w-full bg-transparent py-3 text-base text-slate-800 font-medium placeholder-slate-300">
+          </div>
+        </div>
+      </div>
+
+      <!-- Accept / Decline Options -->
+      <div class="bg-white/90 p-10 rounded-[36px] border-2 border-[var(--gold-accent)]/30 shadow-lg space-y-6">
+        <h4 class="font-serif-title italic text-xl text-[var(--luxury-gold)] text-center">Will you join us?</h4>
+        <div class="space-y-4">
+          <label class="flex items-center justify-center w-full py-5 rounded-full bg-[var(--luxury-gold)] text-white font-bold text-sm uppercase tracking-widest cursor-pointer shadow-md text-center select-none hover:opacity-90 transition">
+            <input type="radio" name="attending" value="Joyfully Accept 🎉" checked class="hidden"> JOYFULLY ACCEPT 🎉
+          </label>
+          <label class="flex items-center justify-center w-full py-5 rounded-full bg-white border-2 border-stone-200 text-slate-500 font-bold text-sm uppercase tracking-widest cursor-pointer text-center select-none hover:bg-stone-50 transition">
+            <input type="radio" name="attending" value="Regrettably Decline 😔" class="hidden"> REGRETTABLY DECLINE
+          </label>
+        </div>
+      </div>
+
+      <!-- Party Size Selector -->
+      <div class="bg-white/90 p-10 rounded-[36px] border-2 border-[var(--gold-accent)]/30 shadow-lg space-y-4">
+        <h4 class="font-serif-title italic text-xl text-[var(--luxury-gold)]">Party size</h4>
+        <select id="rsvp-size" class="w-full bg-transparent py-3 text-base text-slate-700 bg-white/50">
+          <option value="1">1 (Just me)</option>
+          <option value="2">2 People</option>
+          <option value="3">3 People</option>
+          <option value="4">4 People</option>
+          <option value="5">5+ (Family Pack)</option>
+        </select>
+      </div>
+
+      <!-- Events List -->
+      <div class="bg-white/90 p-10 rounded-[36px] border-2 border-[var(--gold-accent)]/30 shadow-lg space-y-6">
+        <h4 class="font-serif-title italic text-xl text-[var(--luxury-gold)]">Events you'll attend</h4>
+        <div class="space-y-3">
+          
+          <label class="flex items-center justify-between p-5 bg-white border border-stone-200/80 rounded-2xl cursor-pointer select-none">
+            <div>
+              <p class="text-base font-semibold text-slate-800">Mehndi Ceremony</p>
+              <p class="text-xs text-slate-400">JUNE 29 - 02:00 PM onwards</p>
+            </div>
+            <input type="checkbox" name="events" value="Mehndi" checked class="w-5 h-5 accent-[var(--luxury-gold)]">
+          </label>
+
+          <label class="flex items-center justify-between p-5 bg-white border border-stone-200/80 rounded-2xl cursor-pointer select-none">
+            <div>
+              <p class="text-base font-semibold text-slate-800">Haldi Ceremony</p>
+              <p class="text-xs text-slate-400">JUNE 30 - 10:00 AM onwards</p>
+            </div>
+            <input type="checkbox" name="events" value="Haldi" checked class="w-5 h-5 accent-[var(--luxury-gold)]">
+          </label>
+
+          <label class="flex items-center justify-between p-5 bg-white border border-stone-200/80 rounded-2xl cursor-pointer select-none">
+            <div>
+              <p class="text-base font-semibold text-slate-800">Sangeet & After Party</p>
+              <p class="text-xs text-slate-400">JUNE 30 - 07:00 PM onwards</p>
+            </div>
+            <input type="checkbox" name="events" value="Sangeet" checked class="w-5 h-5 accent-[var(--luxury-gold)]">
+          </label>
+
+          <label class="flex items-center justify-between p-5 bg-white border border-stone-200/80 rounded-2xl cursor-pointer select-none">
+            <div>
+              <p class="text-base font-semibold text-slate-800">Baarat & Phere</p>
+              <p class="text-xs text-slate-400">JULY 01 - 06:00 PM Onwards</p>
+            </div>
+            <input type="checkbox" name="events" value="Reception" checked class="w-5 h-5 accent-[var(--luxury-gold)]">
+          </label>
+
+        </div>
+      </div>
+
+      <!-- Dance Song Request -->
+      <div class="bg-white/90 p-10 rounded-[36px] border-2 border-[var(--gold-accent)]/30 shadow-lg space-y-6 relative">
+        <h4 class="font-serif-title italic text-xl text-[var(--luxury-gold)]">A song for the dance floor</h4>
+        <div>
+          <input type="text" id="rsvp-song" placeholder="e.g. Kala Chashma" class="w-full bg-transparent py-3 text-base text-slate-700 placeholder-slate-300">
+        </div>
+      </div>
+
+      <!-- Dietary Preferences -->
+      <div class="bg-white/90 p-10 rounded-[36px] border-2 border-[var(--gold-accent)]/30 shadow-lg space-y-6">
+        <h4 class="font-serif-title italic text-xl text-[var(--luxury-gold)] flex items-center gap-2">
+          <span>🍽️</span> Dietary preferences
+        </h4>
+        <div class="relative">
+          <select id="rsvp-diet" class="w-full bg-transparent py-4 px-5 text-base text-slate-700 bg-white border border-stone-200 rounded-2xl appearance-none cursor-pointer">
+            <option value="No specific preferences" selected>No specific preferences</option>
+            <option value="Vegetarian">Vegetarian (शुद्ध शाकाहारी)</option>
+            <option value="Non-Vegetarian">Non-Vegetarian (मांसाहारी)</option>
+            <option value="Vegan">Vegan</option>
+            <option value="Gluten-Free">Gluten-Free</option>
+          </select>
+          <div class="pointer-events-none absolute inset-y-0 right-5 flex items-center text-slate-500">
+            <svg class="fill-current h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Marriage Advice -->
+      <div class="bg-white/90 p-10 rounded-[36px] border-2 border-[var(--gold-accent)]/30 shadow-lg space-y-6">
+        <h4 class="font-serif-title italic text-xl text-[var(--luxury-gold)]">Marriage advice for us</h4>
+        <div>
+          <textarea id="rsvp-advice" rows="4" placeholder="Share something sweet, funny, or wise..." class="w-full bg-transparent p-4 text-base text-slate-700 placeholder-slate-300 border border-stone-200 rounded-2xl resize-none"></textarea>
+        </div>
+      </div>
+
+      <!-- SEND RSVP BUTTON -->
+      <button onclick="processRSVPEngine()" id="submit-btn" type="button" class="w-full bg-[var(--luxury-gold)] text-white py-5 rounded-full text-sm font-bold uppercase tracking-widest shadow-2xl active:scale-[0.99] hover:opacity-90 transition mt-6">
+        SEND RSVP
+      </button>
+
+    </section>
+  </main>
+
+  <!-- SYSTEMS SCRIPTS -->
+  <script>
+    // ✉️ EMAILJS INITIALIZATION WITH YOUR PUBLIC KEY
+    (function() {
+        emailjs.init({
+          publicKey: "287g46US2fGjoY4LL",
+        });
+    })();
+
+    // ✉️ Open Envelope & Start Music
+    function openEnvelope() {
+      const target = document.getElementById('envelope-portal');
+      target.style.transform = 'translateY(-100%)';
+      setTimeout(() => { target.style.display = 'none'; }, 1050);
+      
+      // Forcefully start play when envelope is clicked
+      const track = document.getElementById('wedding-track');
+      track.play().then(() => {
+        document.getElementById('audio-icon').style.opacity = '1';
+      }).catch(e => {
+        console.log('Autoplay blocked by browser policy.', e);
+      });
+    }
+
+    // 🔊 Audio Setup Toggle
+    const track = document.getElementById('wedding-track');
+    function toggleAudio() {
+      if(track.paused) {
+        track.play().catch(e => console.log('Audio playing error.'));
+        document.getElementById('audio-icon').style.opacity = '1';
+      } else {
+        track.pause();
+        document.getElementById('audio-icon').style.opacity = '0.4';
+      }
+    }
+
+    // 🌸 Ambient Petals Flow
+    const pContainer = document.getElementById('petals');
+    const colors = ['#ffccd5', '#fbc4cb', '#f9a8b6', '#f3e5ab'];
+    for (let i = 0; i < 25; i++) {
+      let petal = document.createElement('div');
+      petal.className = 'petal';
+      petal.style.left = Math.random() * 100 + '%';
+      petal.style.width = Math.random() * 12 + 8 + 'px';
+      petal.style.height = Math.random() * 12 + 8 + 'px';
+      petal.style.animationDelay = Math.random() * 8 + 's';
+      petal.style.animationDuration = Math.random() * 6 + 8 + 's';
+      petal.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      pContainer.appendChild(petal);
+    }
+
+    // ⏳ Countdown Engine (Target Date set to July 01, 2026)
+    const targetDate = new Date("July 01, 2026 19:00:00").getTime();
+    setInterval(() => {
+      const distance = targetDate - new Date().getTime();
+      if (distance < 0) return;
+      document.getElementById('timer-d').innerText = String(Math.floor(distance / 86400000)).padStart(2, '0');
+      document.getElementById('timer-h').innerText = String(Math.floor((distance % 86400000) / 3600000)).padStart(2, '0');
+      document.getElementById('timer-m').innerText = String(Math.floor((distance % 3600000) / 60000)).padStart(2, '0');
+      document.getElementById('timer-s').innerText = String(Math.floor((distance % 60000) / 1000)).padStart(2, '0');
+    }, 1000);
+
+    // 💥 DYNAMIC ROSE PETAL BURST SYSTEM (PATAKA EFFECT)
+    function spawnRoseBurst(clientX, clientY) {
+      const count = 12; 
+      const petalColors = ['#ff4d6d', '#ff758c', '#ff8fa3', '#ffb3c1', '#fbc4cb'];
+      
+      for (let i = 0; i < count; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'rose-burst-particle';
+        
+        particle.style.left = clientX + 'px';
+        particle.style.top = clientY + 'px';
+        
+        const size = Math.random() * 12 + 8;
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
+        particle.style.background = petalColors[Math.floor(Math.random() * petalColors.length)];
+
+        const angle = Math.random() * Math.PI * 2;
+        const radius = Math.random() * 120 + 60; 
+        const tx = Math.cos(angle) * radius;
+        const ty = Math.sin(angle) * radius;
+        const rot = (Math.random() * 360) + 'deg';
+
+        particle.style.setProperty('--tx', tx + 'px');
+        particle.style.setProperty('--ty', ty + 'px');
+        particle.style.setProperty('--rot', rot);
+
+        document.body.appendChild(particle);
+        
+        setTimeout(() => {
+          particle.remove();
+        }, 1200);
+      }
+    }
+
+    // 🎫 Scratch Card Core with Gold scratch cover (Adjusted to larger 110x160 dimensions)
+    function initScratchCard(id) {
+      const canvas = document.getElementById(id);
+      const ctx = canvas.getContext('2d');
+      
+      // Scratch surface changed to gold dust color
+      ctx.fillStyle = '#d4af37'; 
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 12px Montserrat'; // Slightly larger font inside card
+      ctx.textAlign = 'center';
+      ctx.fillText('SCRATCH', canvas.width/2, canvas.height/2 + 4);
+
+      let isDrawing = false;
+      let lastExplosionTime = 0;
+
+      function scratch(e) {
+        if(!isDrawing) return;
+        const rect = canvas.getBoundingClientRect();
+        
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        
+        const x = clientX - rect.left;
+        const y = clientY - rect.top;
+
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.beginPath();
+        ctx.arc(x, y, 18, 0, Math.PI * 2); // Increased brush size for easier scratch
+        ctx.fill();
+
+        const now = Date.now();
+        if (now - lastExplosionTime > 75) { 
+          spawnRoseBurst(clientX, clientY);
+          lastExplosionTime = now;
+        }
+      }
+
+      canvas.addEventListener('mousedown', () => isDrawing = true);
+      canvas.addEventListener('mouseup', () => isDrawing = false);
+      canvas.addEventListener('mousemove', scratch);
+      canvas.addEventListener('touchstart', (e) => { isDrawing = true; scratch(e); });
+      canvas.addEventListener('touchend', () => isDrawing = false);
+      canvas.addEventListener('touchmove', scratch);
+    }
+
+    initScratchCard('c-month');
+    initScratchCard('c-day');
+    initScratchCard('c-year');
+
+    // 📩 EMAILJS SUBMISSION PIPELINE
+    function processRSVPEngine() {
+      const name = document.getElementById('rsvp-name').value.trim();
+      const phone = document.getElementById('rsvp-phone').value.trim();
+      
+      // Selected Attendance Option
+      const attendanceElement = document.querySelector('input[name="attending"]:checked');
+      const attendance = attendanceElement ? attendanceElement.value : 'Joyfully Accept 🎉';
+      
+      const size = document.getElementById('rsvp-size').value;
+      const song = document.getElementById('rsvp-song').value.trim();
+      const diet = document.getElementById('rsvp-diet').value;
+      const advice = document.getElementById('rsvp-advice').value.trim();
+      
+      // Checkboxes checked events
+      let checkedEvents = [];
+      document.querySelectorAll('input[name="events"]:checked').forEach(cb => checkedEvents.push(cb.value));
+
+      // Validation check
+      if(!name || !phone) {
+        alert("Bhai, details fill up kar lo tabhi RSVP submit hoga!");
+        return;
+      }
+
+      // UI Feedback loader state
+      const submitBtn = document.getElementById('submit-btn');
+      submitBtn.disabled = true;
+      submitBtn.innerText = "SENDING RSVP...";
+
+      // EmailJS parameter payload
+      const templateParams = {
+        guest_name: name,
+        guest_phone: phone,
+        attendance: attendance,
+        party_size: size,
+        events_attending: checkedEvents.length > 0 ? checkedEvents.join(', ') : 'None',
+        dietary_pref: diet,
+        dance_track: song ? song : 'None',
+        marriage_advice: advice ? advice : 'None'
+      };
+
+      // Real Keys Configured
+      const serviceID = "service_3ux49q7";
+      const templateID = "template_fn1apho";
+
+      emailjs.send(serviceID, templateID, templateParams)
+        .then(function(response) {
+           console.log('SUCCESS!', response.status, response.text);
+           alert("Shukriya! Aapka RSVP safaltapurwak bhej diya gaya hai. 🎉");
+           submitBtn.disabled = false;
+           submitBtn.innerText = "SEND RSVP";
+           
+           // Form input reset
+           document.getElementById('rsvp-name').value = "";
+           document.getElementById('rsvp-phone').value = "";
+           document.getElementById('rsvp-song').value = "";
+           document.getElementById('rsvp-advice').value = "";
+        }, function(error) {
+           console.log('FAILED...', error);
+           alert("Oops! Kuch gadbad ho gayi. Kripya thodi der baad koshish karne ka.");
+           submitBtn.disabled = false;
+           submitBtn.innerText = "SEND RSVP";
+        });
+    }
+  </script>
 </body>
-</html>
+    </html>
