@@ -3,67 +3,104 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shaadi ka Nimantran</title>
+<title>Wedding Invitation</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 <style>
-body { margin:0; background:#f8f3f0; font-family:'Georgia'; text-align:center; color:#5a2a2a; }
-.envelope { background:#8B4513; height:100vh; display:flex; justify-content:center; align-items:center; cursor:pointer; }
-.seal { width:100px; height:100px; background:#f5e6c4; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:2rem; }
-.card { display:none; padding:30px; max-width:650px; margin:auto; }
-h1 { color:#b8860b; }
-.scratch { width:150px; height:80px; background:#c2185b; color:white; margin:10px; display:inline-block; line-height:80px; border-radius:10px; }
-.confetti { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; }
+  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600&display=swap');
+  body { font-family: 'Poppins', sans-serif; background: #FDF8F5; }
+  .cursive { font-family: 'Great Vibes', cursive; }
+  .envelope { transition: all 0.8s ease; }
+  .scratch-box { position: relative; background: #C2185B; color: white; border-radius: 12px; cursor: pointer; user-select: none; }
+  .scratch-box canvas { position: absolute; top:0; left:0; border-radius: 12px; }
 </style>
 </head>
 <body>
 
 <!-- 1. ENVELOPE SCREEN -->
-<div class="envelope" onclick="openCard()">
-  <div class="seal">R&P</div>
-  <p style="color:white; position:absolute; bottom:100px;">Tap to Reveal</p>
+<div id="envelopeScreen" class="envelope h-screen w-screen bg-[#8B3A3A] flex-col items-center justify-center cursor-pointer" onclick="openInvite()">
+  <div class="w-24 h-24 rounded-full bg-[#F5E6C4] flex items-center justify-center text-3xl shadow-2xl animate-pulse">R&P</div>
+  <p class="text-white mt-6 text-lg">Tap to Reveal</p>
 </div>
 
-<!-- 2. MAIN INVITE CARD -->
-<div class="card" id="mainCard">
-  <h1>Meenal & Avinash</h1>
-  <p>With the blessings of our families, we invite you</p>
+<!-- 2. MAIN INVITE -->
+<div id="mainInvite" class="hidden max-w-2xl mx-auto p-6 text-center">
   
-  <h2>Save the Date</h2>
-  <div>
-    <div class="scratch" onclick="this.innerHTML='JULY'">SCRATCH</div>
-    <div class="scratch" onclick="this.innerHTML='01'">SCRATCH</div>
-    <div class="scratch" onclick="this.innerHTML='2026'">SCRATCH</div>
+  <h1 class="cursive text-5xl text-[#8B3A3A]">Aryan & Priya</h1>
+  <p class="mt-2 text-gray-600">With the blessings of our families</p>
+
+  <h2 class="text-2xl mt-10 mb-4 font-semibold">Save the Date</h2>
+  <div class="flex justify-center gap-4">
+    <div class="scratch-box w-28 h-20" data-value="DEC">
+      <canvas id="c1" width="112" height="80"></canvas>
+      <div class="pt-2 text-xs">MONTH</div><div id="v1" class="text-xl font-bold hidden">DEC</div>
+    </div>
+    <div class="scratch-box w-28 h-20" data-value="15">
+      <canvas id="c2" width="112" height="80"></canvas>
+      <div class="pt-2 text-xs">DAY</div><div id="v2" class="text-xl font-bold hidden">15</div>
+    </div>
+    <div class="scratch-box w-28 h-20" data-value="2026">
+      <canvas id="c3" width="112" height="80"></canvas>
+      <div class="pt-2 text-xs">YEAR</div><div id="v3" class="text-xl font-bold hidden">2026</div>
+    </div>
   </div>
 
-  <h2>Our Story</h2>
-  <img src="couple1.jpg" width="90%" style="border-radius:15px; margin:10px 0;">
-  <img src="couple2.jpg" width="90%" style="border-radius:15px; margin:10px 0;">
+  <h2 class="text-2xl mt-10 font-semibold">Our Story</h2>
+  <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=800" class="rounded-xl my-4 shadow-lg w-full">
+  <img src="https://images.unsplash.com/photo-1606214174585-fe31582dc6ee?q=80&w=800" class="rounded-xl my-4 shadow-lg w-full">
 
-  <h2>The Venue</h2>
-  <p>Rajalakshmi Kalyana Mandapam</p>
-  <a href="https://maps.google.com" target="_blank">View on Maps</a>
+  <h2 class="text-2xl mt-10 font-semibold">Venue</h2>
+  <p>Royal Garden Banquet Hall, Garbada, Gujarat</p>
+  <a href="https://maps.google.com" target="_blank" class="bg-[#8B3A3A] text-white px-6 py-2 rounded-full inline-block mt-2">📍 View on Maps</a>
 
-  <h2>RSVP</h2>
-  <input placeholder="Your Name"><br><br>
-  <input placeholder="Phone"><br><br>
-  <button>Joyfully Accept</button>
+  <h3 class="mt-10">🎵 Background Music 🎵</h3>
+  <audio id="bgMusic" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" loop controls></audio>
 
-  <audio autoplay loop>
-    <source src="shaadi.mp3" type="audio/mpeg">
-  </audio>
 </div>
 
 <script>
-function openCard(){
-  document.querySelector('.envelope').style.display='none';
-  document.getElementById('mainCard').style.display='block';
-  // Confetti effect
-  for(let i=0;i<100;i++){
-    let conf = document.createElement('div');
-    conf.style = `position:fixed; width:10px; height:10px; background:hsl(${Math.random()*360},100%,50%); top:-10px; left:${Math.random()*100}%; animation:fall 3s linear;`;
-    document.body.appendChild(conf);
-  }
+let opened = false;
+let scratchCount = 0;
+
+function openInvite(){
+  document.getElementById('envelopeScreen').style.display = 'none';
+  document.getElementById('mainInvite').classList.remove('hidden');
+  document.getElementById('bgMusic').play();
+}
+
+// SCRATCH LOGIC
+document.querySelectorAll('.scratch-box').forEach((box, index) => {
+  const canvas = box.querySelector('canvas');
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#C2185B';
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle = 'white';
+  ctx.font = '14px Poppins';
+  ctx.fillText('SCRATCH', 25, 45);
+
+  let isDrawing = false;
+  canvas.addEventListener('mousedown', ()=>isDrawing=true);
+  canvas.addEventListener('mouseup', ()=>isDrawing=false);
+  canvas.addEventListener('mousemove', (e)=>{
+    if(!isDrawing) return;
+    const rect = canvas.getBoundingClientRect();
+    ctx.globalCompositeOperation = 'destination-out';
+    ctx.beginPath();
+    ctx.arc(e.clientX - rect.left, e.clientY - rect.top, 15, 0, Math.PI*2);
+    ctx.fill();
+  });
+  canvas.addEventListener('touchend', ()=>{
+    scratchCount++;
+    box.querySelector('div:last-child').classList.remove('hidden');
+    canvas.style.display = 'none';
+    if(scratchCount === 3) fireConfetti();
+  });
+});
+
+function fireConfetti(){
+  confetti({ particleCount: 200, spread: 120, origin: { y: 0.6 } });
 }
 </script>
-<style>@keyframes fall { to { transform:translateY(100vh) rotate(720deg); } }</style>
+
 </body>
 </html>
